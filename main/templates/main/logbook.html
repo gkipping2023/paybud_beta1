@@ -1,0 +1,47 @@
+{% extends 'main.html' %}   
+
+{% block content %}
+
+<h1>Logbook1</h1>
+
+<div class="container-sm">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+            <th scope="col">DATE</th>
+            <th scope="col">ROUTE</th>
+            <th scope="col">BLOCK TIME</th>
+            <th scope="col">BLOCK TIME (Decimal)</th>
+            <th scope="col">SUNDAY</th>
+            <th scope="col">SUNDAY (Decimal)</th>
+            <th scope="col">HOLIDAY</th>
+            <th scope="col">HOLIDAY (Decimal)</th>
+            <th scope="col">LIBRE</th>
+            <th scope="col">LIBRE (Decimal)</th>
+            <th scope="col">SA</th>
+            <th scope="col">SA (Decimal)</th>
+            <th scope="col">REMARKS</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">    
+            <tr>
+            {%for log in raw_logbook %}
+            <td>{{log.date}}</td>
+            <td>{{log.route}}</td>
+            <td>{{log.total_flight_block}}</td>
+            <td>{{log.total_decimal}}</td>
+            <td>{{log.total_sun_block}}</td>
+            <td>{{log.sun_decimal}}</td>
+            <td>{{log.total_holiday_block}}</td>
+            <td>{{log.holiday_decimal}}</td>
+            <td>{{log.total_libre_block}}</td>
+            <td>{{log.libre_decimal}}</td>
+            <td>{{log.total_sa_block}}</td>
+            <td>{{log.sa_decimal}}</td>
+            <td>{{log.remarks}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

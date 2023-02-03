@@ -1,0 +1,380 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container text-center">
+<h2>LOGBOOK</h2>
+<h2>Bienvenido, {{ user.name }}! {{ user.position }}</h2>
+    <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p>
+</div>
+<!-- <form method="POST" action="" class="mb-3">
+    <label class="form-label">New Entry</label>
+    {% csrf_token %}
+    <div class="form-control">
+
+        {{ logform }}
+
+<input type="submit" class="btn btn-primary" name="Submit"/>
+</div>
+</form> -->
+<div class="container-sm">
+<form method="POST" action="" class="mb-3">
+    <label class="form-label">New Entry</label>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label">Date:</label>
+                {{ logform.date }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Route:</label>
+                {{ logform.route }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Block Hours:</label>
+                {{ logform.total_hrs_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Block Minutes:</label>
+                {{ logform.total_min_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sunday Hours:</label>
+                {{ logform.sun_hrs_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sunday Minutes:</label>
+                {{ logform.sun_min_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Holiday Hours:</label>
+                {{ logform.holiday_hrs_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Holiday Minutes:</label>
+                {{ logform.holiday_min_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Day Off (L) Hours:</label>
+                {{ logform.libre_hrs_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Day Off (L) Minutes:</label>
+                {{ logform.libre_min_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">SA Hours:</label>
+                {{ logform.sa_hrs_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">SA Minutes:</label>
+                {{ logform.sa_min_input }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Remarks:</label>
+                {{ logform.remarks }}
+            </div>
+            <input type="submit" class="btn btn-primary container text-center" name="Submit" value="Save"/>
+        </div>
+        
+    </div>
+</div>            
+
+    
+</form>              
+<!-- <form method="POST" action="" class="mb-3">
+                    <label class="form-label">New Entry</label>
+                    {% csrf_token %}
+                    <div class="form-control">
+                        {{logform.as_div}}
+                    <input type="submit" class="btn btn-primary" name="Submit" value="Save"/>
+                    </div>
+                </form> -->
+                <div class="col-sm">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelectGrid">
+                            <option value="1" name="1">January</option>
+                            <option value="2" name="2">February</option>
+                            <option value="3" name="3">March</option>
+                            <option value="4" name="4">April</option>
+                            <option value="5" name="5">May</option>
+                            <option value="6" name="6">June</option>
+                            <option value="7" name="7">July</option>
+                            <option value="8" name="8">August</option>
+                            <option value="9" name="9">September</option>
+                            <option value="10" name="10">Octuber</option>
+                            <option value="11" name="11">November</option>
+                            <option value="12" name="12">December</option>
+                        </select>
+                        <label for="floatingSelectGrid">Select Month to Filter</label>
+                        <a name="logbook" class="btn btn-primary btn-sm">Filter</a>
+                    </div>
+            <div class="container-sm">
+                <table class="table table-sm table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">DATE</th>
+                        <th scope="col">ROUTE</th>
+                        <th scope="col">BLOCK TIME</th>
+                        <th scope="col">BLOCK TIME (Decimal)</th>
+                        <th scope="col">SUNDAY</th>
+                        <th scope="col">SUNDAY (Decimal)</th>
+                        <th scope="col">HOLIDAY</th>
+                        <th scope="col">HOLIDAY (Decimal)</th>
+                        <th scope="col">LIBRE</th>
+                        <th scope="col">LIBRE (Decimal)</th>
+                        <th scope="col">SA</th>
+                        <th scope="col">SA (Decimal)</th>
+                        <th scope="col">REMARKS</th>
+                        <th scope="col">DELETE</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">    
+                        <tr>
+                        {%for log in logbook %}
+                        <td>{{log.date}}</td>
+                        <td>{{log.route}}</td>
+                        <td>{{log.total_flight_block}}</td>
+                        <td>{{log.total_decimal}}</td>
+                        <td>{{log.total_sun_block}}</td>
+                        <td>{{log.sun_decimal}}</td>
+                        <td>{{log.total_holiday_block}}</td>
+                        <td>{{log.holiday_decimal}}</td>
+                        <td>{{log.total_libre_block}}</td>
+                        <td>{{log.libre_decimal}}</td>
+                        <td>{{log.total_sa_block}}</td>
+                        <td>{{log.sa_decimal}}</td>
+                        <td>{{log.remarks}}</td>
+                        <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>   
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                    <div class="container text-right">
+                        {% if user.position_id is 4 %}
+                            <h3>TOTALES</h3>
+                        {% else %}
+                        <h3>NOT WORKED!</h3>
+                        {% endif %}
+                            <p>Horas totales: {{sum_block}}<br>
+                            Horas Extras: {{block_extra}}<br>
+                            Horas de Domingo: {{sum_sunday}}<br>
+                            Horas de Feriado: {{sum_holiday}}<br>   
+                            Horas de Libre: {{sum_libre}}<br>
+                            Horas de SA: {{sum_sa}}</p>
+                    </div>
+            </div>
+<!-- Write your comments here -->
+                    {% if user.position_id is 4 %}
+                    <div class="container text-center">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            Salarios y Primas fijas
+                          </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                          <div class="accordion-body">
+                                <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Salario Base
+                                    <span>{{fo_atp_base}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Gasto de Representacion
+                                    <span>{{fod_natp_grep}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Prima Fija
+                                    <span>{{fo_atp_prima}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Viatico Garantizado
+                                    <span>{{fo_atp_viatico}}</span>
+                                </li>
+                                <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                                    Viatico Variable
+                                    <span>{{fo_atp_viatico_extra}}</span>
+                                </li>
+                                <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                                    Prima Variable
+                                    <span>{{fo_atp_prima_extra}}</span>
+                                </li>
+                                <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                                    Rata por Hora
+                                    <span>{{fod_natp_rata}}</span>
+                                </li>
+                                </ul>
+                          </div>
+                        </div>
+                    </div> 
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                Salarios y Primas fijas
+                              </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                          Viatico Variable
+                                          <span class="badge bg-success rounded-pill">{{fo_viatico_extra}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Prima Variable
+                                            <span class="badge bg-success rounded-pill">{{fo_prima_extra}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Recargo Domingo
+                                            <span class="badge bg-success rounded-pill">{{fod_natp_rec_dom}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Recargo Dia Libre
+                                            <span class="badge bg-success rounded-pill">{{fod_natp_rec_libre}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Recargo Dia SA
+                                            <span class="badge bg-success rounded-pill">{{fod_natp_rec_sa}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Recargo Dia Nacional
+                                            <span class="badge bg-success rounded-pill">{{fod_natp_rec_nac}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                </div>
+                        </div>
+                      </div>
+                </div>
+                    </div>
+                    <div class="container text-center">
+                        <h2>Salarios y Primas fijas</h2></div>
+                        <div class="col">
+                            <div class="box text-center">
+                                <h2>FO sin ATP (Tabla D)</h2>
+                                <div class="container shadow p-4 mb-4 bg-white rounded">
+                                    <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        Salario Base
+                                        <span>{{fo_atp_base}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        Gasto de Representacion
+                                        <span>{{fod_natp_grep}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        Prima Fija
+                                        <span>{{fo_atp_prima}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        Viatico Garantizado
+                                        <span>{{fo_atp_viatico}}</span>
+                                    </li>
+                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                                        Viatico Variable
+                                        <span>{{fo_atp_viatico_extra}}</span>
+                                    </li>
+                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                                        Prima Variable
+                                        <span>{{fo_atp_prima_extra}}</span>
+                                    </li>
+                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                                        Rata por Hora
+                                        <span>{{fod_natp_rata}}</span>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="container text-center">
+                                <h2>Compensaciones y Recargos</h2></div>
+                                <div class="col">
+                                    <div class="box text-center">
+                                        <div class="container shadow p-4 mb-4 bg-white rounded">
+                                        <ul class="list-group">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                              Viatico Variable
+                                              <span class="badge bg-success rounded-pill">{{fo_viatico_extra}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Prima Variable
+                                                <span class="badge bg-success rounded-pill">{{fo_prima_extra}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Recargo Domingo
+                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_dom}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Recargo Dia Libre
+                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_libre}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Recargo Dia SA
+                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_sa}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Recargo Dia Nacional
+                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_nac}}</span>
+                                            </li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container text-center">
+                                    <h2>Sub Totales - Ingresos</h2></div>
+                                    <div class="col">
+                                        <div class="box">
+                                            <div class="container text-bg-success text-center rounded-pill">
+                                                <h3> ${{fod_natp_subt}} </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container text-center">
+                                        <h2>Deducciones</h2></div>
+                                        <div class="col">
+                                            <div class="box">
+                                                <div class="container shadow p-4 mb-4 bg-white rounded">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                        C.S.S.
+                                                        <span class="badge bg-danger rounded-pill">{{fod_natp_css}}</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            Seguro Educativo
+                                                            <span class="badge bg-danger rounded-pill">{{fod_natp_seduc}}</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            Impuesto Sobre la Renta
+                                                            <span class="badge bg-danger rounded-pill">pend</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            Impuesto Sobre la Renta (Gasto de Representacion)
+                                                            <span class="badge bg-danger rounded-pill">{{fod_natp_isr_gr}}</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            UNPAC
+                                                            <span class="badge bg-danger rounded-pill">{{fod_natp_unpac}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="container text-center">
+                                            <h2>Sub Totales - Deducciones</h2></div>
+                                                    <div class="col">
+                                                        <div class="box">
+                                                            <div class="container text-bg-danger text-center rounded-pill">
+                                                                <h3> ${{fod_natp_total_deducciones}} </h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                    {% elif user.position_id is 2 %}
+                    <h2>FO sin ATP</h2>
+                    {% elif user.position_id is 3 %}
+                    <h2>FO con ATP</h2>
+                    {% elif user.position_id is 4 %}
+                    <h2>CAPITAN</h2>
+                    {% endif %}        
+
+{% endblock content %}

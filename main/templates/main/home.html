@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container text-center">
+    <div class="box"><h1>Bienvenido a PayBud!</h1>
+    
+        <!-- <div class="text-center">
+            <img src="{% static 'images/home1.jpg' %}" alt="" class="img-fluid">
+        </div> -->
+    <div class="container-sm text-center">
+        <p>PayBud es una herramienta desarrollada por pilotos y para pilotos de la compañia para ayudarte a calcular de una forma sencilla y facil tus horas voladas y de esta forma puedas seguir de cerca tus ingresos.
+        La puedes usar desde tu celular, iPad o computadora. 
+        Si necesitas ayuda ingresa aqui al <a href="{% url 'help-center' %}">Help Center</a> o en la parte superior para las instrucciones e informacion.
+        Esta herramienta esta en constante desarrollo, asique espera mas y nuevas caracteristicas en las proximas actualizaciones
+        </p>
+    </div>
+</div>
+</div>
+
+{% endblock %}

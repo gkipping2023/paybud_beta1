@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h2 class="text-center">Simple Calc</h2>
+<form method="POST" action="" class="mb-3">
+    {% csrf_token %}
+    <div class="container text-center">
+        <div class="col-md">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="floatingSelectGrid">
+                    <option value="1" name="capitan">Capitan</option>
+                    <option value="2" name="fo_natp">First Officer sin ATP</option>
+                    <option value="3" name="fo_atp">First Officer con ATP</option>
+                    <option value="4" name="fod_natp">First Officer (Tabla D)</option>
+                </select>
+                <label for="floatingSelectGrid">Select Position</label>
+            </div>
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input type="number" name="t_block" class="form-control" id="floatingInput" placeholder="na">
+                <label for="floatingInput">Ingresa Horas Totales del Mes</label>
+                {{block_1}}
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="number" name="t_sunday" class="form-control" id="floatingPassword" placeholder="na">
+                    <label for="floatingPassword">Ingresa Horas de Domingo</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingPassword" placeholder="na">
+                    <label for="floatingPassword">Ingresa Horas de Libre</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingPassword" placeholder="na">
+                    <label for="floatingPassword">Ingresa Horas de SA</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingPassword" placeholder="na">
+                    <label for="floatingPassword">Ingresa Horas de Feriado</label>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-center btn-primary" name="calculate" value="Calculate" />
+        <input type="reset" class="btn btn-center btn-danger" name="reset" value="Clear"/>
+</form>
+{% endblock %}
