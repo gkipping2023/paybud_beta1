@@ -1,6 +1,7 @@
 from multiprocessing import context
 import re
 from datetime import datetime
+import calendar
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -11,8 +12,8 @@ from django.db.models import Sum,Q
 
 # Create your views here.
 def today_date(request):
-    today_is = datetime.today()
-    return render (request,'paybud/templates/navbar.html', {'today_is' : today_is})
+    today_is2 = datetime.today()
+    return render (request,'paybud/templates/navbar.html', {'today_is2' : today_is2})
 
 def home(request):
     return render(request, 'main/home.html')
@@ -22,19 +23,19 @@ def simplecalc(request):
         sc_block = request.POST.get('t_block')
         sc_sunday = request.POST.get('t_sun')
         
-    context = {    }
+    context = {'sc_block' : sc_block,'sc_sunday' : sc_sunday}
     return render(request,'main/simple_calc.html', context)
 
 def loginPage(request):
     page = 'login'
     if request.method == 'POST':
-        username = request.POST.get('username').lower()
+        username = request.POST.get('username')
         password = request.POST.get('password')
 
-        try:
-            user = User.object.get(username=username)
-        except:
-            messages.error(request, 'User does not exist')
+        # try:
+        #     user = User.object.get(username=username)
+        # except:
+        #     messages.error(request, 'User does not exist')
 
         user = authenticate(request, username=username, password=password)
 
@@ -71,30 +72,37 @@ def registeruser(request):
 
 @login_required(login_url='login')
 def logbook_calc(request):
+    curr_month = datetime.now().month
+    m = request.GET.get('m') 
+    if m == None:
+        m = curr_month
+    else:
+        m = request.GET.get('m')
+    sel_month = calendar.month_name[int(m)]
     today_is = datetime.today()
     logform = LogbookForm()
-    logbook = Logbook.objects.filter(cmp_id=request.user)
-    bill_hrs_block = Logbook.objects.filter(cmp_id=request.user).aggregate(Sum('total_decimal'))
+    logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m).order_by('date')
+    bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
     try :
         sum_block = round(bill_hrs_block['total_decimal__sum'],2)
     except :
             sum_block = 66.00
-    bill_hrs_sunday = Logbook.objects.filter(cmp_id=request.user).aggregate(Sum('sun_decimal'))
+    bill_hrs_sunday = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('sun_decimal'))
     try:
         sum_sunday = round(bill_hrs_sunday['sun_decimal__sum'],2)
     except:
         sum_sunday = 0
-    bill_hrs_holiday = Logbook.objects.filter(cmp_id=request.user).aggregate(Sum('holiday_decimal'))
+    bill_hrs_holiday = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('holiday_decimal'))
     try:
         sum_holiday = round(bill_hrs_holiday['holiday_decimal__sum'],2)
     except:
         sum_holiday = 0
-    bill_hrs_libre = Logbook.objects.filter(cmp_id=request.user).aggregate(Sum('libre_decimal'))
+    bill_hrs_libre = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('libre_decimal'))
     try:
         sum_libre = round(bill_hrs_libre['libre_decimal__sum'],2)
     except:
         sum_libre = 0
-    bill_hrs_sa = Logbook.objects.filter(cmp_id=request.user).aggregate(Sum('sa_decimal'))
+    bill_hrs_sa = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('sa_decimal'))
     try:
         sum_sa = round(bill_hrs_sa['sa_decimal__sum'],2)
     except:
@@ -183,6 +191,7 @@ def logbook_calc(request):
             return redirect('logbook_calc')
     rooms = Users.objects.all() 
     context = {
+        'sel_month' : sel_month,
         'rooms': rooms,
         'logform': logform,
         'logbook': logbook,
@@ -283,7 +292,7 @@ def delete_entry(request, entry_id):
     
 @login_required(login_url='login')
 def RawLogbook(request):
-    raw_logbook = Logbook.objects.filter(cmp_id=request.user)
+    raw_logbook = Logbook.objects.filter(cmp_id=request.user).order_by('date')
     return render(request, 'main/logbook.html',{'raw_logbook' : raw_logbook})
 
 def ContactUs(request):

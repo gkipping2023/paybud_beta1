@@ -83,27 +83,31 @@
         </div>    
     </div>
 </div>               
-</form>              
-                <div class="container-sm gy-3">
-                    <div class="form-floating mb-3">
-                        <select class="form-select" id="floatingSelectGrid">
-                            <option value="1" name="1">January</option>
-                            <option value="2" name="2">February</option>
-                            <option value="3" name="3">March</option>
-                            <option value="4" name="4">April</option>
-                            <option value="5" name="5">May</option>
-                            <option value="6" name="6">June</option>
-                            <option value="7" name="7">July</option>
-                            <option value="8" name="8">August</option>
-                            <option value="9" name="9">September</option>
-                            <option value="10" name="10">Octuber</option>
-                            <option value="11" name="11">November</option>
-                            <option value="12" name="12">December</option>
-                        </select>
-                        <label for="floatingSelectGrid">Select Month to Filter</label>
-                        <a name="logbook" class="btn btn-primary btn-sm">Filter</a>
-                    </div>
-                </div>
+</form>         
+<form method="GET" action="{% url 'logbook_calc' %}">
+    <div class="container-sm gy-3">
+        <div class="form-floating mb-3">
+            <select class="form-select" name="m" id="floatingSelectGrid">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">Octuber</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <label>Select Month to Filter</label>
+            <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container text-center" value="Filter"/>
+        </div>
+    </div>
+</form>
+     
+                
             <div class="container-sm">
                 <table class="table table-sm table-striped">
                     <thead class="table-dark">
@@ -146,7 +150,7 @@
                     </tbody>
                     </table>
                     <div class="container text-center">
-                        <h2>Totales del Mes:</h2>
+                        <h2>Totales de {{sel_month}}:</h2>
                     </div>
                     <table class="table table-sm table-striped">
                         <thead>
