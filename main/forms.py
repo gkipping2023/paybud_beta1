@@ -6,15 +6,15 @@ from datetime import date
 # from django.db.models.functions import Extract
 
 class CMNewUsersForm(UserCreationForm):
-    cmp_id = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
-    position = forms.Select(attrs={'class':'form-control'})
+    cmp_id = forms.CharField(label='Employee ID',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    position = forms.Select(attrs={'class': 'dropdown-menu'})
     class Meta:
         model = User
         fields = ['cmp_id','first_name','last_name','position','email','password1','password2']
-        labels = {'cmp_id' : 'Employee ID'}
+        labels = {}
     
     # def __init__(self,*args, **kwargs):
     #     super(CMNewUsersForm, self).__init__(self,*args, **kwargs)

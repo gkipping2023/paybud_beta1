@@ -19,9 +19,8 @@ def home(request):
     return render(request, 'main/home.html')
 
 def simplecalc(request):
-    if request.method == 'POST':
-        sc_block = request.POST.get('t_block')
-        sc_sunday = request.POST.get('t_sun')
+    sc_block = request.GET.get('t_block')
+    sc_sunday = request.GET.get('t_sun')
         
     context = {'sc_block' : sc_block,'sc_sunday' : sc_sunday}
     return render(request,'main/simple_calc.html', context)
@@ -65,7 +64,7 @@ def registeruser(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, 'Error ocurred during Registration')
+            messages.error(request, 'Error ocurred during Registration. Try again or contact Administrator')
     return render (request, 'main/login_users.html', {'form':form})
 
     
@@ -270,20 +269,20 @@ def logbook_calc(request):
     return render(request,'main/logbook_calc.html', context)
 
 # POR ELIMINAR 
-def room(request, pk):
-    room = Users.objects.get(id=pk)
-    context = {'room': room}
-    return render(request,'main/room.html', context)
+# def room(request, pk):
+#     room = Users.objects.get(id=pk)
+#     context = {'room': room}
+#     return render(request,'main/room.html', context)
 
 # POR ELIMINAR
-def NewEntry(request):
-    form = UsersForm()
-    if request.method == 'POST':
-        form = UsersForm(request.POST)
-        if form.is_valid():
-            form.save()
-    context = {'form': form}
-    return render(request, 'main/form1.html', context)
+# def NewEntry(request):
+#     form = UsersForm()
+#     if request.method == 'POST':
+#         form = UsersForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#     context = {'form': form}
+#     return render(request, 'main/form1.html', context)
 
 def delete_entry(request, entry_id):
     delete_entry = Logbook.objects.get(pk=entry_id)
@@ -293,7 +292,9 @@ def delete_entry(request, entry_id):
 @login_required(login_url='login')
 def RawLogbook(request):
     raw_logbook = Logbook.objects.filter(cmp_id=request.user).order_by('date')
-    return render(request, 'main/logbook.html',{'raw_logbook' : raw_logbook})
+
+    context = {'raw_logbook' : raw_logbook}
+    return render(request, 'main/logbook.html',context)
 
 def ContactUs(request):
     return render(request, 'main/contact_us.html')

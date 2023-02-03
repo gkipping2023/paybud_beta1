@@ -29,17 +29,15 @@
 
 <div>
     <form method="POST" action="">
-        <div class="container">
+        <div class="container form-floating">
         {% csrf_token %}
         <div class="dropdown">
-        {{form}}
+        {{form.as_p}}
         </div>
             
         <div class="container text-center">
             <input class="btn btn-secondary" type="submit" value="Register" />
-        
-    
-            </form>
+    </form>
             <p>Already Sign up?</p>
             <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
         </div>
@@ -47,4 +45,5 @@
 </div>
 {% endif %}
 {% endblock content %}
+
 

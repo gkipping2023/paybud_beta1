@@ -6,7 +6,7 @@
 <h2>Bienvenido, {{ user.first_name }}! {{ user.position }}</h2>
     <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p>
 </div>
-<div class="container-sm">
+<div class="container-sm text-center">
 <form method="POST" action="" class="container border border-primary border-5 gx-5 gy-5">
     <label class="form-label"><h3>New Entry</h3></label>
     {% csrf_token %}
@@ -83,9 +83,11 @@
         </div>    
     </div>
 </div>               
-</form>         
+</form>
+<div class="container-sm gy-3 text-center">         
 <form method="GET" action="{% url 'logbook_calc' %}">
-    <div class="container-sm gy-3">
+    <h3>Filter by Month</h3>
+    <p>Select to view previous Months</p>
         <div class="form-floating mb-3">
             <select class="form-select" name="m" id="floatingSelectGrid">
                 <option value="1">January</option>
@@ -109,8 +111,9 @@
      
                 
             <div class="container-sm">
-                <table class="table table-sm table-striped">
-                    <thead class="table-dark">
+                <table class="table table-responsive table-sm table-primary table-hover">
+                    <h3 class="text-center">{{sel_month}}</h3>
+                    <thead class="table-info">
                         <tr>
                         <th scope="col">DATE</th>
                         <th scope="col">ROUTE</th>
@@ -129,7 +132,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">    
-                        <tr>
+                        <tr class="table-primary">
                         {%for log in logbook %}
                         <td>{{log.date}}</td>
                         <td>{{log.route}}</td>
@@ -150,7 +153,6 @@
                     </tbody>
                     </table>
                     <div class="container text-center">
-                        <h2>Totales de {{sel_month}}:</h2>
                     </div>
                     <table class="table table-sm table-striped">
                         <thead>
@@ -187,10 +189,10 @@
 <!-- FO_SIN_ATP_TABLA_D -->
                     {% if user.position_id is 5 %}
                     <div class="container text-center">
-                        <h2>Salarios y Primas fijas</h2></div>
+                        <h2>FO sin ATP (Tabla D)</h2>
+                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
                         <div class="col">
                             <div class="box text-center">
-                                <h2>FO sin ATP (Tabla D)</h2>
                                 <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
                                     <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between">
@@ -225,7 +227,7 @@
                                 </div>
                             </div>
                             <div class="container text-center">
-                                <h2>Compensaciones y Recargos</h2></div>
+                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
                                 <div class="col">
                                     <div class="box text-center">
                                         <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
@@ -259,7 +261,7 @@
                                     </div>
                                 </div>
                                 <div class="container text-center">
-                                    <h2>Sub Totales - Ingresos</h2></div>
+                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
                                     <div class="col">
                                         <div class="box">
                                             <div class="container text-bg-success bg-gradient text-center rounded-pill">
@@ -268,7 +270,7 @@
                                         </div>
                                     </div>
                                     <div class="container text-center">
-                                        <h2>Deducciones</h2></div>
+                                        <h2 class="text-danger">Deducciones</h2></div>
                                         <div class="col">
                                             <div class="box">
                                                 <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
@@ -298,7 +300,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2>Sub Totales - Deducciones</h2></div>
+                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
@@ -317,10 +319,10 @@
     <!-- FO_SIN_ATP -->
                     {% elif user.position_id is 6 %}
                     <div class="container text-center">
-                        <h2>Salarios y Primas fijas</h2></div>
+                        <h2>FO sin ATP</h2>
+                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
                         <div class="col">
                             <div class="box text-center">
-                                <h2>FO sin ATP</h2>
                                 <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
                                     <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between">
@@ -351,7 +353,7 @@
                                 </div>
                             </div>
                             <div class="container text-center">
-                                <h2>Compensaciones y Recargos</h2></div>
+                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
                                 <div class="col">
                                     <div class="box text-center">
                                         <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
@@ -385,7 +387,7 @@
                                     </div>
                                 </div>
                                 <div class="container text-center">
-                                    <h2>Sub Totales - Ingresos</h2></div>
+                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
                                     <div class="col">
                                         <div class="box">
                                             <div class="container text-bg-success text-center bg-gradient rounded-pill">
@@ -394,7 +396,7 @@
                                         </div>
                                     </div>
                                     <div class="container text-center">
-                                        <h2>Deducciones</h2></div>
+                                        <h2 class="text-danger">Deducciones</h2></div>
                                         <div class="col">
                                             <div class="box">
                                                 <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
@@ -420,7 +422,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2>Sub Totales - Deducciones</h2></div>
+                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
@@ -439,10 +441,10 @@
     <!-- FO_CON_ATP -->
                     {% elif user.position_id is 7 %}
                     <div class="container text-center">
-                        <h2>Salarios y Primas fijas</h2></div>
+                        <h2>FO con ATP</h2>
+                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
                         <div class="col">
                             <div class="box text-center">
-                                <h2>FO con ATP</h2>
                                 <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
                                     <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between">
@@ -477,7 +479,7 @@
                                 </div>
                             </div>
                             <div class="container text-center">
-                                <h2>Compensaciones y Recargos</h2></div>
+                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
                                 <div class="col">
                                     <div class="box text-center">
                                         <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
@@ -511,7 +513,7 @@
                                     </div>
                                 </div>
                                 <div class="container text-center">
-                                    <h2>Sub Totales - Ingresos</h2></div>
+                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
                                     <div class="col">
                                         <div class="box">
                                             <div class="container text-bg-success bg-gradient text-center rounded-pill">
@@ -520,7 +522,7 @@
                                         </div>
                                     </div>
                                     <div class="container text-center">
-                                        <h2>Deducciones</h2></div>
+                                        <h2 class="text-danger">Deducciones</h2></div>
                                         <div class="col">
                                             <div class="box">
                                                 <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
@@ -550,7 +552,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2>Sub Totales - Deducciones</h2></div>
+                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
@@ -569,10 +571,11 @@
         <!-- CAPITAN -->
                     {% elif user.position_id is 8 %}
                     <div class="container text-center">
-                        <h2>Salarios y Primas fijas</h2></div>
+                        <h2>CAPITAN</h2>
+                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
                         <div class="col">
                             <div class="box text-center">
-                                <h2>CAPITAN</h2>
+                                
                                 <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
                                     <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between">
@@ -607,7 +610,7 @@
                                 </div>
                             </div>
                             <div class="container text-center">
-                                <h2>Compensaciones y Recargos</h2></div>
+                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
                                 <div class="col">
                                     <div class="box text-center">
                                         <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
@@ -641,7 +644,7 @@
                                     </div>
                                 </div>
                                 <div class="container text-center">
-                                    <h2>Sub Totales - Ingresos</h2></div>
+                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
                                     <div class="col">
                                         <div class="box">
                                             <div class="container text-bg-success bg-gradient text-center rounded-pill">
@@ -650,7 +653,7 @@
                                         </div>
                                     </div>
                                     <div class="container text-center">
-                                        <h2>Deducciones</h2></div>
+                                        <h2 class="text-danger">Deducciones</h2></div>
                                         <div class="col">
                                             <div class="box">
                                                 <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
@@ -680,7 +683,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2>Sub Totales - Deducciones</h2></div>
+                                            <h2 class="text-success">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
