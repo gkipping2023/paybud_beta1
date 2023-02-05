@@ -1,6 +1,6 @@
 from multiprocessing import context
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 import calendar
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -288,13 +288,35 @@ def delete_entry(request, entry_id):
     delete_entry = Logbook.objects.get(pk=entry_id)
     delete_entry.delete()        
     return redirect('logbook_calc')
-    
+
+# Verificar esto    
 @login_required(login_url='login')
 def RawLogbook(request):
-    raw_logbook = Logbook.objects.filter(cmp_id=request.user).order_by('date')
+    today_month = datetime.today().month
+    current_month = calendar.month_name[int(today_month)]
+    prev_month = today_month - 1
+    if prev_month <= 0:
+        current_month_minus1_int = 12 - prev_month
+    else:
+        current_month_minus1_int = prev_month
+    current_month_minus1 = calendar.month_name[int(current_month_minus1_int)]
+    if prev_month <= 0:
+        current_month_minus2_int = 12 - prev_month
+    else:
+        current_month_minus2_int = prev_month
+    current_month_minus2 = calendar.month_name[int(current_month_minus2_int)-2]
+    raw_logbook = Logbook.objects.filter(cmp_id=request.user,date__month=today_month).order_by('date')
+    raw_logbook_1 = Logbook.objects.filter(cmp_id=request.user,date__month=current_month_minus1_int).order_by('date')
+    raw_logbook_2 = Logbook.objects.filter(cmp_id=request.user,date__month=current_month_minus2_int).order_by('date')
 
-    context = {'raw_logbook' : raw_logbook}
-    return render(request, 'main/logbook.html',context)
+    context = {'raw_logbook' : raw_logbook,
+    'current_month' : current_month,
+    'current_month_minus1':current_month_minus1,
+    'current_month_minus2':current_month_minus2,
+    'raw_logbook_1' : raw_logbook_1,
+    'raw_logbook_2' : raw_logbook_2
+    }
+    return render(request, 'main/logbook.html', context)
 
 def ContactUs(request):
     return render(request, 'main/contact_us.html')
