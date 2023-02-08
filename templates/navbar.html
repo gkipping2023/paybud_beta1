@@ -3,15 +3,21 @@
     <div class="container-fluid">
     </div>
 </nav> -->
-<nav class="navbar navbar-expand-sm bg-primary bg-gradient navbar-dark">
-    <div class="container-fluid">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="navbar-brand display-1" href="/"><img src="{% static 'images/FlexPay_Transparent.png' %}" style="width:200px;"></a>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <button class="btn btn-primary bg-gradient dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+<nav class="navbar navbar-expand-lg bg-light navbar-dark">
+    <div class="container">
+      <a class="navbar-brand display-1" href="/"><img src="{% static 'images/FlexPay_Transparent.png' %}" style="width:200px;"></a>
+      <!-- <button 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+
+      <!-- <div class="collapse navbar-collapse" id="#navmenu"> -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Tools
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -19,36 +25,18 @@
               <li><a class="dropdown-item" href="{% url 'logbook' %}">Logbook</a></li>
               <li><a class="dropdown-item" href="{% url 'on-development' %}">Simple Calculator</a></li>
             </ul>
-          </div>
-          <!-- <a class="nav-link" href="{% url 'logbook_calc' %}">Logbook Calc</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logbook' %}">Logbook</a>
-        </li>
-       <li class="nav-item">
-          <a class="nav-link" href="{% url 'on-development' %}">Simple Calculator</a> -->
        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <button class="btn btn-primary bg-gradient dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Help Center
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="{% url 'help-center' %}">Help</a></li>
               <li><a class="dropdown-item" href="{% url 'contact-us' %}">Contact Us</a></li>
             </ul>
-          </div>
-          <!-- <a class="nav-link" href="{% url 'help-center' %}">Help Center</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contact-us' %}">Contact Us!</a> -->
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="/admin">**Admin Panel**</a>
-        </li> -->
-        <li class="nav-item">
-          <div class="dropdown">
-            <button class="btn btn-primary bg-gradient dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Account
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -64,9 +52,9 @@
                 <a class="dropdown-item" href="/admin">**Admin Panel**</a>
               </li>
             </ul>
-          </div>  
+        </div>  
     </div>
-    <div class="text-light">
+    <div class="text-primary">
       <h4>Local Time: {{today_is}}</h4>
     </div>
 </nav>

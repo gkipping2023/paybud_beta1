@@ -62,7 +62,7 @@ def registeruser(request):
             user.first_name = user.first_name.capitalize()
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('logbook_calc')
         else:
             messages.error(request, 'Error ocurred during Registration. Try again or contact Administrator')
     return render (request, 'main/login_users.html', {'form':form})
