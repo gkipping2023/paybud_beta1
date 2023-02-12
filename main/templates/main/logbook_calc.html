@@ -79,12 +79,12 @@
                 <label class="form-label"><h3>Remarks:</h3></label>
                 {{ logform.remarks }}
             </div>
-            <input type="submit" class="btn btn-primary bg-gradient container text-center" name="Submit" value="Save"/>
+            <input type="submit" class="btn btn-primary bg-gradient container text-center my-3" name="Submit" value="Save"/>
         </div>    
     </div>
 </div>               
 </form>
-<div class="container-sm gy-3 text-center">         
+<div class="container-sm my-3 text-center">         
 <form method="GET" action="{% url 'logbook_calc' %}">
     <h3>Filter by Month</h3>
     <p>Select to view previous Months</p>
@@ -104,7 +104,7 @@
                 <option value="12">December</option>
             </select>
             <label>Select Month to Filter</label>
-            <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container text-center" value="Filter"/>
+            <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Filter"/>
         </div>
     </div>
 </form>
