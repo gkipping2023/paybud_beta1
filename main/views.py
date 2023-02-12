@@ -135,7 +135,8 @@ def logbook_calc(request):
     css_pa = 0.0975
     s_educ = 0.0125
     unpac = 0.01
-    isr_pa = 0.15
+    fo_isr = round((((((fo_atp_base)/2+fo_atp_viatico+fo_atp_prima+723.42)*13)-11000)*0.15)/13,2)
+    c_isr = round((((((c_base)/2+c_viatico+c_prima+1652.96)*13)-50000)*0.25)/13,2)
     isr_grep = 0.1
     fod_natp_rec_dom = round((float(sum_sunday) * 0.5)*fod_natp_rata,2)
     fo_atp_rec_dom = round((float(sum_sunday)*0.5)*fo_atp_rata,2)
@@ -170,10 +171,10 @@ def logbook_calc(request):
     fod_natp_isr_gr = round((fod_natp_grep/2)*isr_grep,2)
     fod_natp_seduc = round(((fo_atp_base/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*s_educ,2)
     fod_natp_css = round(((fo_atp_base/2)+(fod_natp_grep/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*css_pa,2)
-    c_total_descuentos = round(c_css+c_seduc+c_isr_gr+c_unpac,2)
-    fo_atp_total_descuentos = round(fo_atp_css+fo_atp_seduc+fo_atp_isr_gr+fo_atp_unpac,2)
-    fo_natp_total_deducciones = round(fo_natp_css+fo_natp_seduc+fo_natp_unpac,2)
-    fod_natp_total_deducciones = round(fod_natp_css+fod_natp_seduc+fod_natp_isr_gr+fod_natp_unpac,2)
+    c_total_descuentos = round(c_css+c_seduc+c_isr_gr+c_unpac+c_isr,2)
+    fo_atp_total_descuentos = round(fo_atp_css+fo_atp_seduc+fo_atp_isr_gr+fo_atp_unpac+fo_isr,2)
+    fo_natp_total_deducciones = round(fo_natp_css+fo_natp_seduc+fo_natp_unpac+fo_isr,2)
+    fod_natp_total_deducciones = round(fod_natp_css+fod_natp_seduc+fod_natp_isr_gr+fod_natp_unpac+fo_isr,2)
     c_neto = round(c_subt - c_total_descuentos,2)
     fod_natp_neto = round(fod_natp_subt - fod_natp_total_deducciones,2)
     fo_natp_neto = round(fo_natp_subt - fo_natp_total_deducciones,2)
@@ -187,11 +188,11 @@ def logbook_calc(request):
             cmp_id.cmp_id = request.user
             cmp_id.save()
             # logform.save()
-            return redirect('logbook_calc')
-    rooms = Users.objects.all() 
+            return redirect('logbook_calc') 
     context = {
+        'c_isr' : c_isr,
+        'fo_isr':fo_isr,
         'sel_month' : sel_month,
-        'rooms': rooms,
         'logform': logform,
         'logbook': logbook,
         'sum_block' : sum_block,
