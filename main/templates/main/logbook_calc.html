@@ -6,13 +6,13 @@
 <h2>Bienvenido, {{ user.first_name }}! {{ user.position }}</h2>
     <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p>
 </div>
-<div class="container text-center"><h3>Para periodo de RESERVA ingresa aqui <a type="button" href="{% url 'logbook_calc_reserve' %}" class="btn btn-primary">RESERVA</a></h3></div>
+<!-- <div class="container text-center"><h3>Para periodo de RESERVA ingresa aqui <a type="button" href="{% url 'logbook_calc_reserve' %}" class="btn btn-primary">RESERVA</a></h3></div> -->
 <div class="container-sm text-center">
 <form method="POST" action="" class="container border border-primary border-5 gx-5 gy-5">
     <label class="form-label"><h3>New Entry</h3></label>
     {% csrf_token %}
     <!-- <div class="row"> -->
-        <div class="col">
+        <div class="col bg-white bg-opacity-75">
             <div class="mb-3">
                 <label class="form-label">Date:</label>
                 {{ logform.date }}
@@ -315,7 +315,7 @@
                                                     <div class="container text-center">
                                                         <h2>Neto Aproximado a Recibir</h2></div>
                                                         <div class="col">
-                                                            <div class="container text-bg-info text-center rounded-pill">
+                                                            <div class="container text-bg-info text-center bg-gradient rounded-pill">
                                                                 <h3> ${{fod_natp_subt}} - ${{fod_natp_total_deducciones}} = ${{fod_natp_neto}} </h3>
                                                             </div>        
                                                         </div>
@@ -440,7 +440,7 @@
                                                     <div class="container text-center">
                                                         <h2>Neto Aproximado a Recibir</h2></div>
                                                         <div class="col">
-                                                            <div class="container text-bg-info text-center rounded-pill">
+                                                            <div class="container text-bg-info text-center bg-gradient rounded-pill">
                                                                 <h3> ${{fo_natp_subt}} - ${{fo_natp_total_deducciones}} = ${{fo_natp_neto}} </h3>
                                                             </div>        
                                                         </div>
@@ -573,7 +573,7 @@
                                                     <div class="container text-center">
                                                         <h2>Neto Aproximado a Recibir</h2></div>
                                                         <div class="col">
-                                                            <div class="container text-bg-info text-center rounded-pill">
+                                                            <div class="container text-bg-info text-center bg-gradient rounded-pill">
                                                                 <h3> ${{fo_atp_subt}} - ${{fo_atp_total_descuentos}} = ${{fo_atp_neto}} </h3>
                                                             </div>        
                                                         </div>
@@ -707,7 +707,7 @@
                                                 <div class="container text-center">
                                                     <h2>Neto Aproximado a Recibir</h2></div>
                                                     <div class="col">
-                                                        <div class="container text-bg-info text-center rounded-pill">
+                                                        <div class="container text-bg-info text-center bg-gradient rounded-pill">
                                                             <h3> ${{c_subt}} - ${{c_total_descuentos}} = ${{c_neto}} </h3>
                                                         </div>        
                                                     </div>
