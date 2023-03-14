@@ -21,14 +21,14 @@
     {% include 'navbar.html' %}
 
     {% if messages %}
+</br>
     <ul class="messages">
         {% for message in messages %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <li>{{ message }}</li>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        
+        <div class="alert {{ message.tags }} text-center fade show" role="alert">
+            <h3><strong>{{ message }}</strong></h3>
+</div>
         {% endfor %}
+        
     </ul>
     {% endif %}
 

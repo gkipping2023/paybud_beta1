@@ -42,7 +42,7 @@ def loginPage(request):
             login(request, user)
             return redirect('logbook_calc')
         else:
-            messages.error(request, 'Username OR Password does not exist')
+            messages.error(request, 'Invalid Username OR Password')
 
     context = {'page' : page}
     return render(request,'main/login_users.html', context)
@@ -187,6 +187,7 @@ def logbook_calc(request):
             cmp_id = logform.save(commit=False)
             cmp_id.cmp_id = request.user
             cmp_id.save()
+            messages.success(request,'Entry recorded Successfully!')
             # logform.save()
             return redirect('logbook_calc') 
     context = {
@@ -472,7 +473,8 @@ def logbook_calc_reserve(request):
 
 def delete_entry(request, entry_id):
     delete_entry = Logbook.objects.get(pk=entry_id)
-    delete_entry.delete()        
+    delete_entry.delete()
+    messages.error(request,'Entry DELETED!')
     return redirect('logbook_calc')
 
 # Verificar esto    
