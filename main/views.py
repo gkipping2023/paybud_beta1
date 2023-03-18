@@ -175,7 +175,7 @@ def logbook_calc(request):
     fod_natp_css = round(((fo_atp_base/2)+(fod_natp_grep/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*css_pa,2)
     c_total_descuentos = round(c_css+c_seduc+c_isr_gr+c_unpac+c_isr,2)
     fo_atp_total_descuentos = round(fo_atp_css+fo_atp_seduc+fo_atp_isr_gr+fo_atp_unpac+fo_isr,2)
-    fo_natp_total_deducciones = round(fo_natp_css+fo_natp_seduc+fo_natp_unpac+fo_isr,2)
+    fo_natp_total_deducciones = round(fo_natp_css+fo_natp_seduc+fo_natp_isr_gr+fo_natp_unpac+fo_isr,2)
     fod_natp_total_deducciones = round(fod_natp_css+fod_natp_seduc+fod_natp_isr_gr+fod_natp_unpac+fo_isr,2)
     c_neto = round(c_subt - c_total_descuentos,2)
     fod_natp_neto = round(fod_natp_subt - fod_natp_total_deducciones,2)
@@ -218,7 +218,7 @@ def logbook_calc(request):
         'c_rec_nac' : c_rec_nac,
         'fo_atp_base' : fo_atp_base,
         'fo_atp_grep' : fo_atp_grep,
-        'fo_natp_grep' : fo_natp_grep,
+        'fo_natp_grep' : fo_natp_grep, #CC 2023
         'fo_atp_prima' : fo_atp_prima,
         'fo_atp_viatico' : fo_atp_viatico,
         'fo_atp_viatico_extra' : fo_atp_viatico_extra,
@@ -253,8 +253,8 @@ def logbook_calc(request):
         'fo_atp_css' : fo_atp_css,
         'fo_atp_seduc' :fo_atp_seduc,
         'fo_atp_unpac' : fo_atp_unpac,
-        'fo_atp_isr_gr' : fo_atp_isr_gr,
-        'fo_natp_isr_gr' : fo_natp_isr_gr,
+        'fo_atp_isr_gr' : fo_atp_isr_gr, 
+        'fo_natp_isr_gr' : fo_natp_isr_gr, #CC 2023
         'fo_natp_css' : fo_natp_css,
         'fo_natp_seduc' : fo_natp_seduc,
         'fo_natp_unpac' : fo_natp_unpac,
