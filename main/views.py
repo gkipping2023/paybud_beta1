@@ -110,9 +110,9 @@ def logbook_calc(request):
         block_extra = 0
     else : block_extra = sum_block - 66
     c_base = 3500.00
-    c_g_rep = 2613.00
+    c_g_rep = 2663.00 #CC 2023
     c_prima = 650.00
-    c_viatico = 1848.00
+    c_viatico = 1998.00 #CC 2023
     c_viatico_extra = 18.00
     c_prima_extra = 85.31
     c_rata = round((c_base + c_g_rep)/ 75,2)
@@ -123,10 +123,11 @@ def logbook_calc(request):
     c_rec_sa = round((float(sum_sa)*0.5)*c_rata,2)
     c_rec_nac = round((float(sum_holiday)*0.5)*c_rata,2)
     fo_atp_base = 1915.00
-    fo_atp_grep = 1293.53
+    fo_atp_grep = 1342.00 #CC 2023
     fo_atp_prima = 264.00
-    fo_atp_viatico = 1338.00
-    fod_natp_grep = 1163.53
+    fo_atp_viatico = 1370.00 #CC 2023
+    fod_natp_grep = 1212.00 #CC 2023
+    fo_natp_grep = 48.00 #CC 2023
     fo_atp_viatico_extra = 13.00
     fo_atp_prima_extra= 32.20
     fo_atp_rata = round((fo_atp_base + fo_atp_grep)/75,2)
@@ -169,6 +170,7 @@ def logbook_calc(request):
     fo_natp_unpac = round(fo_atp_base * unpac,2)
     fod_natp_unpac = round(fo_atp_base * unpac,2)
     fod_natp_isr_gr = round((fod_natp_grep/2)*isr_grep,2)
+    fo_natp_isr_gr = round((fo_natp_grep/2)*isr_grep,2) #CC 2023
     fod_natp_seduc = round(((fo_atp_base/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*s_educ,2)
     fod_natp_css = round(((fo_atp_base/2)+(fod_natp_grep/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*css_pa,2)
     c_total_descuentos = round(c_css+c_seduc+c_isr_gr+c_unpac+c_isr,2)
@@ -216,6 +218,7 @@ def logbook_calc(request):
         'c_rec_nac' : c_rec_nac,
         'fo_atp_base' : fo_atp_base,
         'fo_atp_grep' : fo_atp_grep,
+        'fo_natp_grep' : fo_natp_grep,
         'fo_atp_prima' : fo_atp_prima,
         'fo_atp_viatico' : fo_atp_viatico,
         'fo_atp_viatico_extra' : fo_atp_viatico_extra,
@@ -251,6 +254,7 @@ def logbook_calc(request):
         'fo_atp_seduc' :fo_atp_seduc,
         'fo_atp_unpac' : fo_atp_unpac,
         'fo_atp_isr_gr' : fo_atp_isr_gr,
+        'fo_natp_isr_gr' : fo_natp_isr_gr,
         'fo_natp_css' : fo_natp_css,
         'fo_natp_seduc' : fo_natp_seduc,
         'fo_natp_unpac' : fo_natp_unpac,
