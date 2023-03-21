@@ -1,20 +1,8 @@
 {% load static %}
-<!-- <nav class="navbar navbar-expand-lg bg-primary navbar-dark" href="/">
-    <div class="container-fluid">
-    </div>
-</nav> -->
 <nav class="navbar navbar-expand-lg bg-light navbar-dark">
     <div class="container">
       <a class="navbar-brand display-1" href="/"><img src="{% static '/images/FlexPay_Transparent.png' %}" style="width:200px;"></a>
-      <!-- <button 
-        class="navbar-toggler" 
-        type="button" 
-        data-bs-toggle="collapse" 
-        data-bs-target="#navmenu">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
 
-      <!-- <div class="collapse navbar-collapse" id="#navmenu"> -->
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,6 +43,6 @@
         </div>  
     </div>
     <div class="text-primary">
-      <h4>Local Time: {{today_is}}</h4>
+      <h4>Time (Panama): {{today_is}}</h4>
     </div>
 </nav>

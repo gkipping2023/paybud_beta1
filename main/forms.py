@@ -3,7 +3,6 @@ from .models import Users, Logbook, User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from datetime import date
-# from django.db.models.functions import Extract
 
 class CMNewUsersForm(UserCreationForm):
     cmp_id = forms.CharField(label='Employee ID',widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -16,12 +15,6 @@ class CMNewUsersForm(UserCreationForm):
         fields = ['cmp_id','first_name','last_name','position','email','password1','password2']
         labels = {}
     
-    # def __init__(self,*args, **kwargs):
-    #     super(CMNewUsersForm, self).__init__(self,*args, **kwargs)
-
-    #     self.fields['password1'].widget.attrs['class'] = 'form-control'
-    #     self.fields['password2'].widget.attrs['class'] = 'form-control'
-
 
 class UsersForm(ModelForm):
     class Meta:
@@ -29,12 +22,7 @@ class UsersForm(ModelForm):
         fields = '__all__'
 
 class LogbookForm(ModelForm):
-    # def __init__(self,*args, **kwargs):
-    #     self.request = kwargs.pop("request")
-    #     super(LogbookForm, self).__init__(*args,**kwargs)
-
-    date = forms.DateField(initial=date.today(),widget=forms.DateInput(attrs={'class':'form-control'}))
-    #cmp_id = forms.CharField(disabled=True)
+    date = forms.DateField(initial=date.today(),widget=forms.DateInput(attrs={'class':'form-control','type':'date'}))
     route = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     total_hrs_input = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Hours'}))
     total_min_input = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Minutes'}))
@@ -50,7 +38,6 @@ class LogbookForm(ModelForm):
 
     class Meta:
         model = Logbook
-        # fields = ['date','cmp_id']
         exclude = ['total_decimal',
         'total_flight_block',
         'total_sun_block',

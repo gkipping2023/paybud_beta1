@@ -10,14 +10,16 @@ from .models import Users, Logbook, User
 from .forms import UsersForm, LogbookForm,CMNewUsersForm
 from django.db.models import Sum,Q
 
-# Create your views here.
+# Date on Navbar
 def today_date(request):
     today_is2 = datetime.today()
     return render (request,'paybud/templates/navbar.html', {'today_is2' : today_is2})
 
+# Render Home
 def home(request):
     return render(request, 'main/home.html')
 
+# WIP Calculator
 def simplecalc(request):
     sc_block = request.GET.get('t_block')
     sc_sunday = request.GET.get('t_sun')
@@ -25,16 +27,12 @@ def simplecalc(request):
     context = {'sc_block' : sc_block,'sc_sunday' : sc_sunday}
     return render(request,'main/simple_calc.html', context)
 
+# Login & Authenticate User
 def loginPage(request):
     page = 'login'
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
-        # try:
-        #     user = User.object.get(username=username)
-        # except:
-        #     messages.error(request, 'User does not exist')
 
         user = authenticate(request, username=username, password=password)
 
@@ -47,11 +45,12 @@ def loginPage(request):
     context = {'page' : page}
     return render(request,'main/login_users.html', context)
 
-
+# Logout User
 def logoutUser(request):
     logout(request)
     return redirect('home')
 
+# Register New User
 def registeruser(request):
     form = CMNewUsersForm()
 
@@ -182,7 +181,7 @@ def logbook_calc(request):
     fo_natp_neto = round(fo_natp_subt - fo_natp_total_deducciones,2)
     fo_atp_neto = round(fo_atp_subt - fo_atp_total_descuentos,2)
 
-
+# Save Form
     if request.method == 'POST':
         logform = LogbookForm(request.POST)
         if logform.is_valid():
@@ -190,7 +189,6 @@ def logbook_calc(request):
             cmp_id.cmp_id = request.user
             cmp_id.save()
             messages.success(request,'Entry recorded Successfully!')
-            # logform.save()
             return redirect('logbook_calc') 
     context = {
         'c_isr' : c_isr,
@@ -274,7 +272,7 @@ def logbook_calc(request):
     }
     return render(request,'main/logbook_calc.html', context)
 
-# -------------- RESERVA ----------- IN progress
+# WIP Reserva
 @login_required(login_url='login')
 def logbook_calc_reserve(request):
     curr_month = datetime.now().month
@@ -474,7 +472,7 @@ def logbook_calc_reserve(request):
     }
     return render(request,'main/logbook_calc_Reserve.html', context)
 
-
+#Delete Entry
 def delete_entry(request, entry_id):
     delete_entry = Logbook.objects.get(pk=entry_id)
     delete_entry.delete()

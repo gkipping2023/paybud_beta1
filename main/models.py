@@ -47,10 +47,7 @@ class Logbook(models.Model):
 
     date = models.DateField()
     cmp_id = models.CharField(max_length=6, null=True)
-    # equip = models.ForeignKey(Aircraft_Type, on_delete=models.CASCADE, max_length=20)
-    #reg = models.CharField(max_length=9)
     route = models.CharField(max_length=250)
-    #to = models.CharField(max_length=3)
     #TOTAL
     total_hrs_input = models.CharField(max_length=2, null=False)
     total_min_input = models.CharField(max_length=2, null=False)
@@ -82,21 +79,11 @@ class Logbook(models.Model):
 
 
 #RECUERDA: Limpiar el model antes de makemigrations!
-    
-    #FORMAT INPUT
-    #def hp_cmp_reg(self):
-    #    hp_cmp_reg = 'HP' + self.reg + 'CMP'
-    #    return hp_cmp_reg
-    
+        
     def caps_fm(self):
         xyz = self.route
         caps_from = xyz.upper()
         return caps_from
-
-    #def caps_to(self) :
-    #    abc = self.to
-    #    caps_to = abc.upper()
-    #    return caps_to
 
     #BLOCK_COMPUTED
     def get_computed_block(self):
@@ -160,9 +147,7 @@ class Logbook(models.Model):
         self.total_libre_block = self.get_raw_time_libre()
         self.sa_decimal = self.get_computed_sa()
         self.total_sa_block = self.get_raw_time_sa()
-    #    self.reg = self.hp_cmp_reg()
         self.route = self.caps_fm()
-    #    self.to = self.caps_to()
         super(Logbook, self).save(*args, **kwargs)
 
         

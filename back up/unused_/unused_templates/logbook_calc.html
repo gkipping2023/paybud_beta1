@@ -3,7 +3,6 @@
 {% block content %}
 <div class="container text-center">
 <h2>LOGBOOK</h2>
-
 <h2>Bienvenido, {{ user.first_name }}! {{ user.position }}</h2>
     <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p>
 </div>
@@ -11,7 +10,8 @@
 <form method="POST" action="" class="container border border-primary border-5 gx-5 gy-5">
     <label class="form-label"><h3>New Entry</h3></label>
     {% csrf_token %}
-        <div class="col bg-white bg-opacity-75">
+    <!-- <div class="row"> -->
+        <div class="col">
             <div class="mb-3">
                 <label class="form-label">Date:</label>
                 {{ logform.date }}
@@ -74,17 +74,17 @@
                         <label class="form-label">SA Minutes:</label>
                         {{ logform.sa_min_input }}
                     </div>
-                </div>                                                                  
+                </div>
             <div class="mb-3">
                 <label class="form-label"><h3>Remarks:</h3></label>
                 {{ logform.remarks }}
             </div>
-            <input type="submit" class="btn btn-primary bg-gradient container text-center my-3" name="Submit" value="Save"/>
-        </div>    
+            <input type="submit" class="btn btn-primary bg-gradient container text-center mb-3" name="Submit" value="Save"/>
+        </div>
     </div>
-</div>               
+</div>
 </form>
-<div class="container-sm my-3 text-center">         
+<div class="container-sm gy-3 text-center">
 <form method="GET" action="{% url 'logbook_calc' %}">
     <h3>Filter by Month</h3>
     <p>Select to view previous Months</p>
@@ -104,12 +104,12 @@
                 <option value="12">December</option>
             </select>
             <label>Select Month to Filter</label>
-            <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Filter"/>
+            <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container text-center my-3" value="Filter"/>
         </div>
     </div>
 </form>
-     
-                
+
+
             <div class="container-sm">
                 <table class="table table-responsive table-sm table-primary table-hover">
                     <h3 class="text-center">{{sel_month}}</h3>
@@ -131,7 +131,7 @@
                         <th scope="col">DELETE</th>
                         </tr>
                     </thead>
-                    <tbody class="table-group-divider">    
+                    <tbody class="table-group-divider">
                         <tr class="table-primary">
                         {%for log in logbook %}
                         <td>{{log.date}}</td>
@@ -148,7 +148,7 @@
                         <td>{{log.sa_decimal}}</td>
                         <td>{{log.remarks}}</td>
                         <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">Delete</a></td>
-                        </tr>   
+                        </tr>
                         {% endfor %}
                     </tbody>
                     </table>
@@ -165,7 +165,7 @@
                             <th scope="col">Horas de SA</th>
                             </tr>
                         </thead>
-                        <tbody class="table-group-divider">    
+                        <tbody class="table-group-divider">
                             <tr>
                             <td>{{sum_block}}</td>
                             <td>{{block_extra}}</td>
@@ -173,9 +173,18 @@
                             <td>{{sum_holiday}}</td>
                             <td>{{sum_libre}}</td>
                             <td>{{sum_sa}}</td>
-                            </tr>   
+                            </tr>
                         </tbody>
                         </table>
+                    <!-- <div class="container text-right">
+                            <h3>TOTALES</h3>
+                            <p>Horas totales: {{sum_block}}<br>
+                            Horas Extras: {{block_extra}}<br>
+                            Horas de Domingo: {{sum_sunday}}<br>
+                            Horas de Feriado: {{sum_holiday}}<br>
+                            Horas de Libre: {{sum_libre}}<br>
+                            Horas de SA: {{sum_sa}}</p>
+                    </div> -->
             </div>
 <!-- FO_SIN_ATP_TABLA_D -->
                     {% if user.position_id is 5 %}
@@ -261,7 +270,7 @@
                                         </div>
                                     </div>
                                     <div class="container text-center">
-                                        <h2 class="text-danger">Descuentos</h2></div>
+                                        <h2 class="text-danger">Deducciones</h2></div>
                                         <div class="col">
                                             <div class="box">
                                                 <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
@@ -294,7 +303,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Descuentos</h2></div>
+                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
@@ -303,25 +312,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{fod_natp_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{fod_natp_total_deducciones}}</h4>
+                                                        <h2>Neto Aproximado a Recibir</h2></div>
+                                                        <div class="col">
+                                                            <div class="container text-bg-info text-center bg-gradient rounded-pill">
+                                                                <h3> ${{fod_natp_subt}} - ${{fod_natp_total_deducciones}} = ${{fod_natp_neto}} </h3>
                                                             </div>
                                                         </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{fod_natp_neto}}   </h3>
-                                                        </div>    
                                                     </div>
-                                                        </div>
     <!-- FO_SIN_ATP -->
                     {% elif user.position_id is 6 %}
                     <div class="container text-center">
@@ -338,6 +335,7 @@
                                     <li class="list-group-item d-flex justify-content-between">
                                         Gasto de Representacion
                                         <span>{{fo_natp_grep}}</span>
+                                    </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         Prima Fija
                                         <span>{{fo_atp_prima}}</span>
@@ -405,7 +403,7 @@
                                         </div>
                                     </div>
                                     <div class="container text-center">
-                                        <h2 class="text-danger">Descuentos</h2></div>
+                                        <h2 class="text-danger">Deducciones</h2></div>
                                         <div class="col">
                                             <div class="box">
                                                 <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
@@ -438,7 +436,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Descuentos</h2></div>
+                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
@@ -447,25 +445,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{fo_natp_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{fo_natp_total_deducciones}}</h4>
+                                                        <h2>Neto Aproximado a Recibir</h2></div>
+                                                        <div class="col">
+                                                            <div class="container text-bg-info text-center bg-gradient rounded-pill">
+                                                                <h3> ${{fo_natp_subt}} - ${{fo_natp_total_deducciones}} = ${{fo_natp_neto}} </h3>
                                                             </div>
                                                         </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{fo_natp_neto}}   </h3>
-                                                        </div>    
                                                     </div>
-                                                        </div>
     <!-- FO_CON_ATP -->
                     {% elif user.position_id is 7 %}
                     <div class="container text-center">
@@ -508,7 +494,7 @@
                             </div>
                             <div class="container text-center">
                                 <h2 class="text-success">Compensaciones y Recargos</h2></div>
-                                <div class="col">
+                                <div class="col-md">
                                     <div class="box text-center">
                                         <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
                                         <ul class="list-group">
@@ -550,8 +536,8 @@
                                         </div>
                                     </div>
                                     <div class="container text-center">
-                                        <h2 class="text-danger">Descuentos</h2></div>
-                                        <div class="col">
+                                        <h2 class="text-danger">Deducciones</h2></div>
+                                        <div class="col-md">
                                             <div class="box">
                                                 <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
                                                     <ul class="list-group">
@@ -583,7 +569,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Descuentos</h2></div>
+                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
@@ -592,25 +578,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{fo_atp_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{fo_atp_total_descuentos}}</h4>
+                                                        <h2>Neto Aproximado a Recibir</h2></div>
+                                                        <div class="col">
+                                                            <div class="container text-bg-info text-center bg-gradient rounded-pill">
+                                                                <h3> ${{fo_atp_subt}} - ${{fo_atp_total_descuentos}} = ${{fo_atp_neto}} </h3>
                                                             </div>
                                                         </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{fo_atp_neto}}   </h3>
-                                                        </div>    
                                                     </div>
-                                                        </div>
         <!-- CAPITAN -->
                     {% elif user.position_id is 8 %}
                     <div class="container text-center">
@@ -618,7 +592,7 @@
                         <h2 class="text-primary">Salarios y Primas fijas</h2></div>
                         <div class="col">
                             <div class="box text-center">
-                                
+
                                 <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
                                     <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between">
@@ -729,7 +703,7 @@
                                             </div>
                                         </div>
                                         <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
+                                            <h2 class="text-success">Sub Totales - Deducciones</h2></div>
                                                     <div class="col">
                                                         <div class="box">
                                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
@@ -737,26 +711,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{c_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{c_total_descuentos}}</h4>
-                                                            </div>
+                                                <div class="container text-center">
+                                                    <h2>Neto Aproximado a Recibir</h2></div>
+                                                    <div class="col">
+                                                        <div class="container text-bg-info text-center bg-gradient rounded-pill">
+                                                            <h3> ${{c_subt}} - ${{c_total_descuentos}} = ${{c_neto}} </h3>
                                                         </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{c_neto}}   </h3>
-                                                        </div>    
                                                     </div>
-                                                        </div>
-                    {% endif %}        
+                                                </div>
+                    {% endif %}
 
 {% endblock content %}
