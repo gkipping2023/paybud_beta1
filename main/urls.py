@@ -9,6 +9,7 @@ urlpatterns = [
     path('logbook/', views.RawLogbook, name='logbook'),
     path('simple_calc/', views.simplecalc, name='simple_calc'),
     path('delete_entry/<entry_id>', views.delete_entry, name='delete_entry'),
+    path('profile/<str:pk>/', views.userprofile, name='profile'),
     path('logbook_calculator/', views.logbook_calc, name='logbook_calc'),
     path('logbook_calculator_RESERVE/', views.logbook_calc_reserve, name='logbook_calc_reserve'),
     path('contact-us/', views.ContactUs, name='contact-us'),

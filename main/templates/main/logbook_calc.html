@@ -4,7 +4,8 @@
 <div class="container text-center">
 <h2>LOGBOOK</h2>
 
-<h2>Bienvenido, {{ user.first_name }}! {{ user.position }}</h2>
+<h2>Bienvenido, {{ user.first_name }}! </h2>
+<h3>{{ user.position }}</h3>
     <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p>
 </div>
 <div class="container-sm text-center">
@@ -723,6 +724,22 @@
                                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                                             UNPAC
                                                             <span class="badge bg-danger rounded-pill">{{c_unpac}}</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            Descuento 1
+                                                            <span class="badge bg-danger rounded-pill">{{user.custom_disc_1}}</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            Descuento 2
+                                                            <span class="badge bg-danger rounded-pill">{{user.custom_disc_2}}</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            Descuento 3
+                                                            <span class="badge bg-danger rounded-pill">{{user.custom_disc_3}}</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            Descuento 4
+                                                            <span class="badge bg-danger rounded-pill">{{user.custom_disc_4}}</span>
                                                         </li>
                                                     </ul>
                                                 </div>

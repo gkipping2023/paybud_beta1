@@ -1,11 +1,11 @@
 from django.forms import ModelForm
-from .models import Users, Logbook, User
+from .models import Logbook, User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from datetime import date
 
 class CMNewUsersForm(UserCreationForm):
-    cmp_id = forms.CharField(label='Employee ID',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    cmp_id = forms.IntegerField(label='Employee ID',widget=forms.NumberInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
@@ -16,10 +16,20 @@ class CMNewUsersForm(UserCreationForm):
         labels = {}
     
 
-class UsersForm(ModelForm):
+class UpdateUserForm(ModelForm):
+    first_name = forms.CharField(disabled=True,widget=forms.TextInput(attrs={'class': 'form-control',}))
+    last_name = forms.CharField(disabled=True,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    position = forms.Select(attrs={'class': 'form-select'})
+    custom_disc_1 = forms.IntegerField(label='Descuento 1',widget=forms.NumberInput(attrs={'class':'form-control'}))
+    custom_disc_2 = forms.IntegerField(label='Descuento 2',widget=forms.NumberInput(attrs={'class':'form-control'}))
+    custom_disc_3 = forms.IntegerField(label='Descuento 3',widget=forms.NumberInput(attrs={'class':'form-control'}))
+    custom_disc_4 = forms.IntegerField(label='Descuento 4',widget=forms.NumberInput(attrs={'class':'form-control'}))
+    custom_disc_5 = forms.IntegerField(label='Descuento 5',widget=forms.NumberInput(attrs={'class':'form-control'}))
+                
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['first_name','last_name','position','custom_disc_1','custom_disc_2','custom_disc_3','custom_disc_4','custom_disc_5']
 
 class LogbookForm(ModelForm):
     date = forms.DateField(initial=date.today(),widget=forms.DateInput(attrs={'class':'form-control','type':'date'}))

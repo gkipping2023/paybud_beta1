@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<form class="container border border-primary border-5 gx-5 gy-5" action="" method="POST">
+    <div class="text-center"><h1>{{user.first_name}} {{user.last_name}}</h1></div>
+    <div class="text-center"><h3>ID: {{user.cmp_id}}</h3></div>
+    {% csrf_token %}
+{% for field in form %}
+<div class="col bg-white bg-opacity-75">
+    <label class="form-label">{{field.label}}</label>
+    {{field}}
+</div>
+{% endfor %}
+<div class="">
+    <a href="/" class="btn btn-dark">Cancel</a>
+    <button class="btn btn-primary" type="submit">Update</button>
+</div>
+</form>
+
+{% endblock content %}

@@ -6,9 +6,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Users, Logbook, User
-from .forms import UsersForm, LogbookForm,CMNewUsersForm
-from django.db.models import Sum,Q
+from .models import Logbook, User
+from .forms import LogbookForm,CMNewUsersForm, UpdateUserForm
+from django.db.models import Sum,Count
 
 # Date on Navbar
 def today_date(request):
@@ -81,6 +81,8 @@ def logbook_calc(request):
     logform = LogbookForm()
     logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m).order_by('date')
     bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
+    home_total_hours_logged = Logbook.objects.aggregate(Sum('total_decimal'))
+    home_total_users_registered = User.objects.aggregate(Count('cmp_id'))
     try :
         sum_block = round(bill_hrs_block['total_decimal__sum'],2)
     except :
@@ -190,7 +192,10 @@ def logbook_calc(request):
             cmp_id.save()
             messages.success(request,'Entry recorded Successfully!')
             return redirect('logbook_calc') 
+        
     context = {
+        'home_total_hours_logged': home_total_hours_logged,
+        'home_total_users_registered': home_total_users_registered,
         'c_isr' : c_isr,
         'fo_isr':fo_isr,
         'sel_month' : sel_month,
@@ -479,6 +484,21 @@ def delete_entry(request, entry_id):
     messages.error(request,'Entry DELETED!')
     return redirect('logbook_calc')
 
+#User Profile
+@login_required(login_url='login')
+def userprofile(request,pk):
+    user = User.objects.get(id=pk)
+    user2 = request.user
+    form = UpdateUserForm(instance=user2)
+
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=user2)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Profile Updated Successfully')
+            redirect('profile',pk=user.id)
+    return render(request,'main/user_profile.html', {'form': form})
+
 # Verificar esto    
 @login_required(login_url='login')
 def RawLogbook(request):
@@ -507,6 +527,9 @@ def RawLogbook(request):
     'raw_logbook_2' : raw_logbook_2
     }
     return render(request, 'main/logbook.html', context)
+
+
+
 
 def ContactUs(request):
     return render(request, 'main/contact_us.html')
