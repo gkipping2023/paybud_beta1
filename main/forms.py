@@ -19,7 +19,7 @@ class CMNewUsersForm(UserCreationForm):
 class UpdateUserForm(ModelForm):
     first_name = forms.CharField(disabled=True,widget=forms.TextInput(attrs={'class': 'form-control',}))
     last_name = forms.CharField(disabled=True,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(label='Confirm your Email:',widget=forms.EmailInput(attrs={'class': 'form-control'}))
     position = forms.Select(attrs={'class': 'form-select'})
     custom_disc_1 = forms.IntegerField(label='Descuento 1',widget=forms.NumberInput(attrs={'class':'form-control'}))
     custom_disc_2 = forms.IntegerField(label='Descuento 2',widget=forms.NumberInput(attrs={'class':'form-control'}))
