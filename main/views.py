@@ -498,6 +498,7 @@ def userprofile(request,pk):
             messages.success(request,'Profile Updated Successfully')
             redirect('profile',pk=user.id)
         else:
+            form.errors
             messages.error(request,'Error in update, Please verify your profile')
     return render(request,'main/user_profile.html', {'form': form})
 

@@ -155,7 +155,5 @@ class Logbook(models.Model):
         self.route = self.caps_fm()
         super(Logbook, self).save(*args, **kwargs)
 
-        
-
     def __str__(self):
         return str(self.cmp_id)

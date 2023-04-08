@@ -19,13 +19,14 @@ class CMNewUsersForm(UserCreationForm):
 class UpdateUserForm(ModelForm):
     first_name = forms.CharField(disabled=True,widget=forms.TextInput(attrs={'class': 'form-control',}))
     last_name = forms.CharField(disabled=True,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label='Confirm your Email:',widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    position = forms.Select(attrs={'class': 'form-select'})
-    custom_disc_1 = forms.IntegerField(label='Descuento 1',widget=forms.NumberInput(attrs={'class':'form-control'}))
-    custom_disc_2 = forms.IntegerField(label='Descuento 2',widget=forms.NumberInput(attrs={'class':'form-control'}))
-    custom_disc_3 = forms.IntegerField(label='Descuento 3',widget=forms.NumberInput(attrs={'class':'form-control'}))
-    custom_disc_4 = forms.IntegerField(label='Descuento 4',widget=forms.NumberInput(attrs={'class':'form-control'}))
-    custom_disc_5 = forms.IntegerField(label='Descuento 5',widget=forms.NumberInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    position = forms.Select()
+    custom_disc_1 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_2 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_3 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_4 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_5 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    
                 
     class Meta:
         model = User
