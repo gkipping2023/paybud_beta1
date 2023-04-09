@@ -17,7 +17,11 @@ def today_date(request):
 
 # Render Home
 def home(request):
-    return render(request, 'main/home.html')
+    home_total = Logbook.objects.aggregate(Sum('total_decimal'))
+    home_total_hours_logged = round(home_total['total_decimal__sum'],2)
+    home_users = User.objects.aggregate(Count('cmp_id'))
+    home_total_users_reg = home_users['cmp_id__count']
+    return render(request, 'main/home.html',{'home_total_hours_logged' : home_total_hours_logged,'home_total_users_reg' : home_total_users_reg})
 
 # WIP Calculator
 def simplecalc(request):
@@ -80,6 +84,9 @@ def logbook_calc(request):
     today_is = datetime.today()
     logform = LogbookForm()
     logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m).order_by('date')
+    disc1 = User.objects.filter(cmp_id=request.user)
+    home_total = Logbook.objects.aggregate(Sum('total_decimal'))
+    home_total_hours_logged = round(home_total['total_decimal__sum'],2)
     bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
     home_total_hours_logged = Logbook.objects.aggregate(Sum('total_decimal'))
     home_total_users_registered = User.objects.aggregate(Count('cmp_id'))
@@ -194,6 +201,7 @@ def logbook_calc(request):
             return redirect('logbook_calc') 
         
     context = {
+        'disc1' : disc1,
         'home_total_hours_logged': home_total_hours_logged,
         'home_total_users_registered': home_total_users_registered,
         'c_isr' : c_isr,
