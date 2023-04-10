@@ -85,7 +85,16 @@ def logbook_calc(request):
     logform = LogbookForm()
     logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m).order_by('date')
     disc1 = User.objects.filter(cmp_id=request.user)
-    disc11 = disc1.aggregate(Sum('custom_disc_1'))
+    disc11 = disc1.aggregate(Sum('custom_disc_1')).get('custom_disc_1__sum',0)
+    disc2 = User.objects.filter(cmp_id=request.user)
+    disc22 = disc2.aggregate(Sum('custom_disc_2')).get('custom_disc_2__sum',0)
+    disc3 = User.objects.filter(cmp_id=request.user)
+    disc33 = disc3.aggregate(Sum('custom_disc_3')).get('custom_disc_3__sum',0)
+    disc4 = User.objects.filter(cmp_id=request.user)
+    disc44 = disc4.aggregate(Sum('custom_disc_4')).get('custom_disc_4__sum',0)
+    disc5 = User.objects.filter(cmp_id=request.user)
+    disc55 = disc5.aggregate(Sum('custom_disc_5')).get('custom_disc_5__sum',0)
+    total_personal_discount = disc11 + disc22 + disc33 + disc44 + disc55
     home_total = Logbook.objects.aggregate(Sum('total_decimal'))
     home_total_hours_logged = round(home_total['total_decimal__sum'],2)
     bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
@@ -182,14 +191,15 @@ def logbook_calc(request):
     fo_natp_isr_gr = round((fo_natp_grep/2)*isr_grep,2) #CC 2023
     fod_natp_seduc = round(((fo_atp_base/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*s_educ,2)
     fod_natp_css = round(((fo_atp_base/2)+(fod_natp_grep/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*css_pa,2)
-    c_total_descuentos = round(c_css+c_seduc+c_isr_gr+c_unpac+c_isr,2)
-    fo_atp_total_descuentos = round(fo_atp_css+fo_atp_seduc+fo_atp_isr_gr+fo_atp_unpac+fo_isr,2)
-    fo_natp_total_deducciones = round(fo_natp_css+fo_natp_seduc+fo_natp_isr_gr+fo_natp_unpac+fo_isr,2)
-    fod_natp_total_deducciones = round(fod_natp_css+fod_natp_seduc+fod_natp_isr_gr+fod_natp_unpac+fo_isr,2)
+    c_total_descuentos = round(c_css+c_seduc+c_isr_gr+c_unpac+c_isr+float(total_personal_discount),2)
+    fo_atp_total_descuentos = round(fo_atp_css+fo_atp_seduc+fo_atp_isr_gr+fo_atp_unpac+fo_isr+float(total_personal_discount),2)
+    fo_natp_total_deducciones = round(fo_natp_css+fo_natp_seduc+fo_natp_isr_gr+fo_natp_unpac+fo_isr+float(total_personal_discount),2)
+    fod_natp_total_deducciones = round(fod_natp_css+fod_natp_seduc+fod_natp_isr_gr+fod_natp_unpac+fo_isr+float(total_personal_discount),2)
     c_neto = round(c_subt - c_total_descuentos,2)
     fod_natp_neto = round(fod_natp_subt - fod_natp_total_deducciones,2)
     fo_natp_neto = round(fo_natp_subt - fo_natp_total_deducciones,2)
     fo_atp_neto = round(fo_atp_subt - fo_atp_total_descuentos,2)
+    
 
 # Save Form
     if request.method == 'POST':
@@ -202,8 +212,12 @@ def logbook_calc(request):
             return redirect('logbook_calc') 
         
     context = {
+        'total_personal_discount':total_personal_discount,
         'disc11' : disc11,
-        'disc1' : disc1,
+        'disc22':disc22,
+        'disc33':disc33,
+        'disc44':disc44,
+        'disc55':disc55,
         'home_total_hours_logged': home_total_hours_logged,
         'home_total_users_registered': home_total_users_registered,
         'c_isr' : c_isr,
