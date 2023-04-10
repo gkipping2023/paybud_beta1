@@ -85,6 +85,7 @@ def logbook_calc(request):
     logform = LogbookForm()
     logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m).order_by('date')
     disc1 = User.objects.filter(cmp_id=request.user)
+    disc11 = disc1.aggregate(Sum('custom_disc_1'))
     home_total = Logbook.objects.aggregate(Sum('total_decimal'))
     home_total_hours_logged = round(home_total['total_decimal__sum'],2)
     bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
@@ -201,6 +202,7 @@ def logbook_calc(request):
             return redirect('logbook_calc') 
         
     context = {
+        'disc11' : disc11,
         'disc1' : disc1,
         'home_total_hours_logged': home_total_hours_logged,
         'home_total_users_registered': home_total_users_registered,
