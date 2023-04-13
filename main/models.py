@@ -14,10 +14,15 @@ class User(AbstractUser):
     email = models.EmailField(null=True)
     position = models.ForeignKey(PilotRank,on_delete=models.CASCADE,max_length=20,null=True)
     custom_disc_1 = models.DecimalField(max_digits=7, decimal_places=2, default=0)
+    custom_disc_1_name =models.CharField(max_length=250,default='Descuento 1')
     custom_disc_2 = models.DecimalField(max_digits=7, decimal_places=2, default=0)
+    custom_disc_2_name =models.CharField(max_length=250,default='Descuento 2')
     custom_disc_3 = models.DecimalField(max_digits=7, decimal_places=2, default=0)
+    custom_disc_3_name =models.CharField(max_length=250,default='Descuento 3')
     custom_disc_4 = models.DecimalField(max_digits=7, decimal_places=2, default=0)
+    custom_disc_4_name =models.CharField(max_length=250,default='Descuento 5')
     custom_disc_5 = models.DecimalField(max_digits=7, decimal_places=2, default=0)
+    custom_disc_5_name =models.CharField(max_length=250,default='Descuento 5')
 
     USERNAME_FIELD  =   'cmp_id'
     REQUIRED_FIELDS =   ['username']

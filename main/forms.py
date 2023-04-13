@@ -22,10 +22,15 @@ class UpdateUserForm(ModelForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     position = forms.Select()
     custom_disc_1 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_1_name = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control text-danger'}))
     custom_disc_2 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_2_name = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control text-danger'}))
     custom_disc_3 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_3_name = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control text-danger'}))
     custom_disc_4 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_4_name = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control text-danger'}))
     custom_disc_5 = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-danger'}))
+    custom_disc_5_name = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control text-danger'}))
     
                 
     class Meta:
