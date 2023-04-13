@@ -1,0 +1,159 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container text-center">
+    <h2 class="text-center">Simple Calc</h2>
+<div class="col shadow">
+    <div class="container text-center">
+        <h2>Calculo de Pago</h2>
+        <h2>FO con ATP</h2>
+        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
+        <div class="col">
+            <div class="box text-center">
+                <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
+                    <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between">
+                        Salario Base
+                        <span>{{fo_atp_base}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        Gasto de Representacion
+                        <span>{{fo_atp_grep}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        Prima Fija
+                        <span>{{fo_atp_prima}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        Viatico Garantizado
+                        <span>{{fo_atp_viatico}}</span>
+                    </li>
+                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                        Viatico Variable
+                        <span>{{fo_atp_viatico_extra}}</span>
+                    </li>
+                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                        Prima Variable
+                        <span>{{fo_atp_prima_extra}}</span>
+                    </li>
+                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
+                        Rata por Hora
+                        <span>{{fo_atp_rata}}</span>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container text-center">
+                <h2 class="text-success">Compensaciones y Recargos</h2></div>
+                <div class="col">
+                    <div class="box text-center">
+                        <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Bloque Extra (Sobre el Garantizado)
+                                <span class="badge bg-success rounded-pill">{{bloque_extra}}</span>
+                              </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Viatico Variable
+                              <span class="badge bg-success rounded-pill">{{fo_viatico_extra}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Prima Variable
+                                <span class="badge bg-success rounded-pill">{{fo_prima_extra}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Recargo {{total_sunday}} Domingo
+                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_dom}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Recargo {{total_libre}} Dia Libre
+                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_libre}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Recargo {{total_sa}} Dia SA
+                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_sa}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Recargo {{total_feriado}} Dia Nacional
+                                <span class="badge bg-success bg-gradient rounded-pill">{{fo_atp_rec_nac}}</span>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center">
+                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
+                    <div class="col">
+                        <div class="box">
+                            <div class="container text-bg-success bg-gradient text-center rounded-pill">
+                                <h3> ${{fo_atp_subt}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container text-center">
+                        <h2 class="text-danger">Deducciones</h2></div>
+                        <div class="col">
+                            <div class="box">
+                                <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        C.S.S.
+                                        <span class="badge bg-danger rounded-pill">{{fo_atp_css}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Seguro Educativo
+                                            <span class="badge bg-danger rounded-pill">{{fo_atp_seduc}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Impuesto Sobre la Renta
+                                            <span class="badge bg-danger rounded-pill">{{fo_isr}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex text-danger justify-content-between align-items-center">
+                                            El ISR esta calculado estimando 82hrs y es solo un estimado.
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Impuesto Sobre la Renta (Gasto de Representacion)
+                                            <span class="badge bg-danger rounded-pill">{{fo_atp_isr_gr}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            UNPAC
+                                            <span class="badge bg-danger rounded-pill">{{fo_atp_unpac}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container text-center">
+                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
+                                    <div class="col">
+                                        <div class="box">
+                                            <div class="container text-bg-danger bg-gradient text-center rounded-pill">
+                                                <h3> ${{fo_atp_total_descuentos}} </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container text-center">
+                                        <h2>Aproximado a Recibir:</h2></div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
+                                                <h4>$ {{fo_atp_subt}}</h4>
+                                            </div>
+                                            <div class="col-auto">
+                                                <h4> - </h4>
+                                            </div>
+                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
+                                                <h4>$ {{fo_atp_total_descuentos}}</h4>
+                                            </div>
+                                        </div>
+                                    </br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
+                                            <h3>  = ${{fo_atp_neto}}</h3>
+                                        </div>    
+                                    </div>
+                                        </div>   
+</div>
+</div>
+</div>
+{% endblock %}

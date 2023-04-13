@@ -2,61 +2,74 @@
 
 {% block content %}
 {% load static %}
-
-<section class="bg-primary text-light p-5 text-center">
+<section class="bg-primary lh-2 fs-6 text-light text-center">
     <div class="container">
         <div class="d-sm-flex">
             <div>
-                <h1> Keep Track of your flight time</h1>
-                <p class="lead">
+                <p >
                     FLEXpay es una herramienta desarrollada por pilotos y para pilotos de la compañia para ayudarte a calcular de una forma sencilla y facil tus horas voladas y de esta forma puedas seguir de cerca tus ingresos.
                     La puedes usar desde tu celular, iPad o computadora. 
                     Si necesitas ayuda ingresa aqui al <a class="text-light" href="{% url 'help-center' %}">Help Center</a> o en la parte superior para las instrucciones e informacion.
                     Esta herramienta esta en constante desarrollo, asique espera mas y nuevas caracteristicas en las proximas actualizaciones
                 </p>
-                <a class="btn btn-secondary" href="{% url 'register' %}"> Register Now!</a>
             </div>
         </div>
     </div>
 </section>
-
-<section class="bg-light text-primary p-5">
-    <div class="container">
-        <div class="d-md-flex justify-content-between align-items-center">
-            <h3>Sign Up and start loggin'</h3>
-            <a class="btn btn-lg btn-primary" href="{% url 'login' %}">Login</a>
-            <a class="btn btn-lg btn-secondary" href="{% url 'register' %}"> Register Now!</a>
-            <p>Hours Logged so far: {{home_total_hours_logged}}</p>
-            <p>Users Registred so far: {{home_total_users_reg}}</p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="p-5">
     <div class="container">
-        <div class="row text-center">
-            <div class="col-md h1">Log</div>
-            <div class="col-md h1">Track</div>
-            <div class="col-md h1">Compare</div>
+        <div class="row justify-content-center text-center mb-3 gx-5">
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 6rem" href="{% url 'login' %}">
+                    <img src="{% static '/icons/arrow-login.svg' %}" alt="Log-in" width="50" height="50">Log In
+                </a></br>
+                
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 6rem" href="{% url 'register' %}">
+                    <img src="{% static '/icons/new-user.svg' %}" alt="Log-in" width="50" height="50">Register
+                </a></br>
+                
+            </div>
+        </div>
+        <div class="row justify-content-center text-center mb-3 gx-5">
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 6rem" href="{% url 'logbook_calc' %}">
+                    <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc
+                </a></br>
+                
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 6rem" href="{% url 'logbook' %}">
+                    <img src="{% static '/icons/logbook.svg' %}" alt="Log-in" width="50" height="50">Logbook
+                </a></br>
+                
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 8rem" href="{% url 'simple_calc' %}">
+                    <img src="{% static '/icons/simple-calc.svg' %}" alt="Log-in" width="50" height="50">Simple Calculator
+                </a></br>
+            </div>
+        </div>
+        <div class="row justify-content-center text-center mb-3 gx-5">
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 6rem" href="{% url 'help-center' %}">
+                    <img src="{% static '/icons/help-center.svg' %}" alt="Log-in" width="64" height="64">Help Center
+                </a></br>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 6rem" href="{% url 'on-development' %}">
+                    <img src="{% static '/icons/contact-us.svg' %}" alt="Log-in" width="64" height="64">Contact Us
+                </a></br>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width : 6rem" href="{% url 'logout' %}">
+                    <img src="{% static '/icons/arrow-logout.svg' %}" alt="Log-in" width="64" height="64">Log Out
+                </a></br>
+            </div>
         </div>
     </div>
 </section>
-
-<div class="container text-center">
-    <div class="box"><h1>Bienvenido a FLEXpay!</h1>
-    
-        <!-- <div class="text-center">
-            <img src="{% static 'images/home1.jpg' %}" alt="" class="img-fluid">
-        </div> -->
-    <div class="container-sm text-center">
-        <p>FLEXpay es una herramienta desarrollada por pilotos y para pilotos de la compañia para ayudarte a calcular de una forma sencilla y facil tus horas voladas y de esta forma puedas seguir de cerca tus ingresos.
-        La puedes usar desde tu celular, iPad o computadora. 
-        Si necesitas ayuda ingresa aqui al <a href="{% url 'help-center' %}">Help Center</a> o en la parte superior para las instrucciones e informacion.
-        Esta herramienta esta en constante desarrollo, asique espera mas y nuevas caracteristicas en las proximas actualizaciones
-        </p>
-    </div>
-</div>
 </div>
 
 {% endblock %}

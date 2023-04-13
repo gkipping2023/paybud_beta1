@@ -24,12 +24,225 @@ def home(request):
     return render(request, 'main/home.html',{'home_total_hours_logged' : home_total_hours_logged,'home_total_users_reg' : home_total_users_reg})
 
 # WIP Calculator
+def CapitanCalc(t_block,t_sunday,t_libre,t_sa,t_feriado):
+    total_bloque = float(t_block)
+    total_sunday = float(t_sunday)
+    total_libre = float(t_libre)
+    total_sa = float(t_sa)
+    total_feriado = float(t_feriado)
+    if total_bloque <=66:
+        bloque_extra = 0
+    else : bloque_extra = total_bloque - 66
+    c_base = 3500.00
+    c_g_rep = 2663.00 #CC 2023
+    c_prima = 650.00
+    c_viatico = 1998.00 #CC 2023
+    c_viatico_extra = 18.00
+    c_prima_extra = 85.31
+    c_rata = round((c_base + c_g_rep)/ 75,2)
+    c_viatico_variable = round(float(bloque_extra) * c_viatico_extra,2)
+    c_prima_variable = round(float(bloque_extra) * c_prima_extra,2)
+    c_rec_dom = round((float(total_sunday)*0.5)*c_rata,2)
+    c_rec_libre = round((float(total_libre)*0.5)*c_rata,2)
+    c_rec_sa = round((float(total_sa)*0.5)*c_rata,2)
+    c_rec_nac = round((float(total_feriado)*1.5)*c_rata,2)
+    c_subt = round((c_base / 2) + (c_g_rep / 2) + c_prima + c_viatico + c_viatico_variable + c_prima_variable + c_rec_dom + c_rec_libre + c_rec_sa + c_rec_nac,2)
+    css_pa = 0.0975
+    s_educ = 0.0125
+    unpac = 0.01
+    isr_grep = 0.1
+    c_isr = round((((((c_base)/2+c_viatico+c_prima+1652.96)*13)-50000)*0.25)/13,2)
+    c_css = round(((c_base/2)+ (c_g_rep/2) + c_rec_dom + c_rec_libre + c_rec_sa + c_rec_nac)*css_pa,2)
+    c_seduc = round(((c_base/2) + c_rec_dom + c_rec_libre + c_rec_sa)*s_educ,2)
+    c_unpac = round(c_base * unpac,2)
+    c_isr_gr = round(((c_g_rep/2) * isr_grep),2)
+    c_total_descuentos = round(c_css+c_seduc+c_isr_gr+c_unpac+c_isr,2)
+    c_neto = round(c_subt - c_total_descuentos,2)
+    result = {
+        'total_feriado': total_feriado,
+        'total_sa':total_sa,
+        'total_libre':total_libre,
+        'total_sunday':total_sunday,
+        'total_bloque':total_bloque,
+        'bloque_extra':bloque_extra,
+        'c_base': c_base,
+        'c_g_rep':c_g_rep,
+        'c_prima':c_prima,
+        'c_viatico':c_viatico,
+        'c_viatico_extra':c_viatico_extra,
+        'c_prima_extra':c_prima_extra,
+        'c_rata':c_rata,
+        'c_viatico_variable':c_viatico_variable,
+        'c_prima_variable':c_prima_variable,
+        'c_rec_dom':c_rec_dom,
+        'c_rec_libre':c_rec_libre,
+        'c_rec_sa': c_rec_sa,
+        'c_rec_nac':c_rec_nac,
+        'c_subt':c_subt,
+        'c_css' : c_css,
+        'c_seduc' : c_seduc,
+        'c_unpac' : c_unpac,
+        'c_isr_gr' : c_isr_gr,
+        'c_isr' : c_isr,
+        'c_total_descuentos':c_total_descuentos,
+        'c_neto':c_neto
+    }
+    return result
+
+def fo_atpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado):
+    total_bloque = float(t_block)
+    total_sunday = float(t_sunday)
+    total_libre = float(t_libre)
+    total_sa = float(t_sa)
+    total_feriado = float(t_feriado)
+    if total_bloque <=66:
+        bloque_extra = 0
+    else : bloque_extra = total_bloque - 66
+    fo_atp_base = 1915.00
+    fo_atp_grep = 1342.00 #CC 2023
+    fo_atp_prima = 264.00
+    fo_atp_viatico = 1370.00 #CC 2023
+    fo_atp_viatico_extra = 13.00
+    fo_atp_prima_extra= 32.20
+    fo_atp_rata = round((fo_atp_base + fo_atp_grep)/75,4)
+    fo_atp_rec_dom = round((float(total_sunday)*0.5)*fo_atp_rata,2)
+    fo_viatico_extra = round(float(bloque_extra) * fo_atp_viatico_extra,2)
+    fo_prima_extra = round(float(bloque_extra) * fo_atp_prima_extra,2)
+    fo_atp_rec_libre = round((float(total_libre)*0.5)*fo_atp_rata,2)
+    fo_atp_rec_sa = round((float(total_sa)*0.5)*fo_atp_rata,2)
+    fo_atp_rec_nac = round((float(total_feriado)*1.5)*fo_atp_rata,2)
+    fo_atp_subt = round((fo_atp_base / 2) + (fo_atp_grep / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fo_atp_rec_dom + fo_atp_rec_libre + fo_atp_rec_sa + fo_atp_rec_nac,2)
+    css_pa = 0.0975
+    s_educ = 0.0125
+    unpac = 0.01
+    isr_grep = 0.1
+    fo_isr = round((((((fo_atp_base)/2+fo_atp_viatico+fo_atp_prima+723.42)*13)-11000)*0.15)/13,2)
+    fo_atp_css = round(((fo_atp_base/2)+(fo_atp_grep/2)+fo_atp_rec_dom+fo_atp_rec_libre+fo_atp_rec_sa+fo_atp_rec_nac)*css_pa,2)
+    fo_atp_seduc = round(((fo_atp_base/2)+fo_atp_rec_dom+fo_atp_rec_libre+fo_atp_rec_sa+fo_atp_rec_nac)*s_educ,2)
+    fo_atp_unpac = round(fo_atp_base * unpac,2)
+    fo_atp_isr_gr = round((fo_atp_grep/2)*isr_grep,2)
+    fo_atp_total_descuentos = round(fo_atp_css+fo_atp_seduc+fo_atp_isr_gr+fo_atp_unpac+fo_isr,2)
+    fo_atp_neto = round(fo_atp_subt - fo_atp_total_descuentos,2)
+    result = {
+        'fo_atp_neto':fo_atp_neto,
+        'fo_atp_total_descuentos':fo_atp_total_descuentos,
+        'fo_atp_isr_gr':fo_atp_isr_gr,
+        'fo_atp_unpac':fo_atp_unpac,
+        'fo_atp_seduc':fo_atp_seduc,
+        'fo_atp_css':fo_atp_css,
+        'fo_isr':fo_isr,
+        'bloque_extra':bloque_extra,
+        'fo_atp_subt':fo_atp_subt,
+        'fo_atp_rec_nac':fo_atp_rec_nac,
+        'fo_atp_rec_sa':fo_atp_rec_sa,
+        'fo_atp_rec_libre':fo_atp_rec_libre,
+        'fo_prima_extra':fo_prima_extra,
+        'fo_viatico_extra':fo_viatico_extra,
+        'fo_atp_base' : fo_atp_base,
+        'fo_atp_grep' : fo_atp_grep,
+        'fo_atp_prima' : fo_atp_prima,
+        'fo_atp_viatico' : fo_atp_viatico,
+        'fo_atp_viatico_extra' : fo_atp_viatico_extra,
+        'fo_atp_prima_extra' : fo_atp_prima_extra,
+        'fo_atp_rata' : fo_atp_rata,
+        'fo_atp_rec_dom' : fo_atp_rec_dom,
+        'total_sunday':total_sunday,
+        'total_libre':total_libre,
+        'total_sa':total_sa,
+        'total_feriado':total_feriado,
+    }
+    return result
+
+def fo_natpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado):
+    total_bloque = float(t_block)
+    total_sunday = float(t_sunday)
+    total_libre = float(t_libre)
+    total_sa = float(t_sa)
+    total_feriado = float(t_feriado)
+    if total_bloque <=66:
+        bloque_extra = 0
+    else : bloque_extra = total_bloque - 66
+    fo_atp_base = 1915.00
+    fo_natp_grep = 48.00 #CC 2023
+    fo_atp_prima = 264.00
+    fo_atp_viatico = 1370.00 #CC 2023
+    fo_atp_viatico_extra = 13.00
+    fo_atp_prima_extra= 32.20
+    fo_natp_rata = round((fo_atp_base + fo_natp_grep) / 75,2)
+    fo_natp_rec_dom = round((float(total_sunday)*0.5)*fo_natp_rata,2)
+    fo_viatico_extra = round(float(bloque_extra) * fo_atp_viatico_extra,2)
+    fo_prima_extra = round(float(bloque_extra) * fo_atp_prima_extra,2)
+    fo_natp_rec_libre = round((float(total_libre)*0.5)*fo_natp_rata,2)
+    fo_natp_rec_sa = round((float(total_sa)*0.5)*fo_natp_rata,2)
+    fo_natp_rec_nac = round((float(total_feriado)*1.5)*fo_natp_rata,2)
+    fo_natp_subt = round((fo_atp_base / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fo_natp_rec_dom + fo_natp_rec_libre + fo_natp_rec_sa + fo_natp_rec_nac,2)
+    css_pa = 0.0975
+    s_educ = 0.0125
+    unpac = 0.01
+    isr_grep = 0.1
+    fo_isr = round((((((fo_atp_base)/2+fo_atp_viatico+fo_atp_prima+723.42)*13)-11000)*0.15)/13,2)
+    fo_natp_css = round(((fo_atp_base/2)+fo_natp_rec_dom+fo_natp_rec_libre+fo_natp_rec_sa+fo_natp_rec_nac)*css_pa,2)
+    fo_natp_seduc = round(((fo_atp_base/2)+fo_natp_rec_dom+fo_natp_rec_libre+fo_natp_rec_sa+fo_natp_rec_nac)*s_educ,2)
+    fo_natp_unpac = round(fo_atp_base * unpac,2)
+    fo_natp_isr_gr = round((fo_natp_grep/2)*isr_grep,2) #CC 2023
+    fo_natp_total_deducciones = round(fo_natp_css+fo_natp_seduc+fo_natp_isr_gr+fo_natp_unpac+fo_isr,2)
+    fo_natp_neto = round(fo_natp_subt - fo_natp_total_deducciones,2)
+    
+    result = {
+        'fo_natp_neto':fo_natp_neto,
+        'fo_natp_total_deducciones':fo_natp_total_deducciones,
+        'fo_natp_isr_gr':fo_natp_isr_gr,
+        'fo_natp_unpac':fo_natp_unpac,
+        'fo_natp_seduc':fo_natp_seduc,
+        'fo_natp_css':fo_natp_css,
+        'fo_isr':fo_isr,
+        'bloque_extra':bloque_extra,
+        'fo_natp_subt':fo_natp_subt,
+        'fo_natp_rec_nac':fo_natp_rec_nac,
+        'fo_natp_rec_sa':fo_natp_rec_sa,
+        'fo_natp_rec_libre':fo_natp_rec_libre,
+        'fo_prima_extra':fo_prima_extra,
+        'fo_viatico_extra':fo_viatico_extra,
+        'fo_atp_base' : fo_atp_base,
+        'fo_natp_grep' : fo_natp_grep,
+        'fo_atp_prima' : fo_atp_prima,
+        'fo_atp_viatico' : fo_atp_viatico,
+        'fo_atp_viatico_extra' : fo_atp_viatico_extra,
+        'fo_atp_prima_extra' : fo_atp_prima_extra,
+        'fo_natp_rata' : fo_natp_rata,
+        'fo_natp_rec_dom' : fo_natp_rec_dom,
+        'total_sunday' : total_sunday,
+        'total_libre':total_libre,
+        'total_sa':total_sa,
+        'total_feriado':total_feriado,
+    }
+    return result
+
+
+def fod_natpCalc(t_block,t_sunday):
+    result = int(t_block)*4
+    return result
+
 def simplecalc(request):
-    sc_block = request.GET.get('t_block')
-    sc_sunday = request.GET.get('t_sun')
-        
-    context = {'sc_block' : sc_block,'sc_sunday' : sc_sunday}
-    return render(request,'main/simple_calc.html', context)
+    if request.method == 'POST':
+        t_block = request.POST['t_block']
+        t_sunday = request.POST['t_sunday']
+        t_libre = request.POST['t_libre']
+        t_sa = request.POST['t_sa']
+        t_feriado = request.POST['t_feriado']
+        if 'cap' in request.POST:
+            result = CapitanCalc(t_block,t_sunday,t_libre,t_sa,t_feriado)
+            return render(request,'main/simple_calc_cap.html',result)
+        if 'fo_atp' in request.POST:
+            result = fo_atpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado)
+            return render(request,'main/simple_calc_fo_atp.html',result)
+        if 'fo_natp' in request.POST:
+            result = fo_natpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado)
+            return render(request,'main/simple_calc_fo_natp.html',result)
+        if 'fod_natp' in request.POST:
+            result = fod_natpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado)
+            return render(request,'main/simple_calc_fod_natp.html',{'result':result})
+    return render(request,'main/simple_calc.html')
 
 # Login & Authenticate User
 def loginPage(request):
@@ -150,13 +363,13 @@ def logbook_calc(request):
     fo_atp_prima_extra= 32.20
     fo_atp_rata = round((fo_atp_base + fo_atp_grep)/75,2)
     fod_natp_rata = round((fo_atp_base + fod_natp_grep)/75,2)
-    fo_natp_rata = round(fo_atp_base / 75)
+    fo_natp_rata = round(fo_atp_base + fo_natp_grep / 75)
     css_pa = 0.0975
     s_educ = 0.0125
     unpac = 0.01
+    isr_grep = 0.1
     fo_isr = round((((((fo_atp_base)/2+fo_atp_viatico+fo_atp_prima+723.42)*13)-11000)*0.15)/13,2)
     c_isr = round((((((c_base)/2+c_viatico+c_prima+1652.96)*13)-50000)*0.25)/13,2)
-    isr_grep = 0.1
     fod_natp_rec_dom = round((float(sum_sunday) * 0.5)*fod_natp_rata,2)
     fo_atp_rec_dom = round((float(sum_sunday)*0.5)*fo_atp_rata,2)
     fo_viatico_extra = round(float(block_extra) * fo_atp_viatico_extra,2)

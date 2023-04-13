@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container text-center">
@@ -148,7 +149,10 @@
                         <td>{{log.total_sa_block}}</td>
                         <td>{{log.sa_decimal}}</td>
                         <td>{{log.remarks}}</td>
-                        <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">Delete</a></td>
+                        <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">
+                            <img src="{% static '/icons/delete-entry.svg' %}">
+                        </a>
+                    </td>
                         </tr>   
                         {% endfor %}
                     </tbody>
@@ -324,7 +328,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
+                                                        <h2>Aproximado a Recibir:</h2></div>
                                                         <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{fod_natp_subt}}</h4>
@@ -488,7 +492,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
+                                                        <h2>Aproximado a Recibir:</h2></div>
                                                         <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{fo_natp_subt}}</h4>
@@ -653,7 +657,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
+                                                        <h2>Aproximado a Recibir:</h2></div>
                                                         <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{fo_atp_subt}}</h4>
@@ -819,7 +823,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="container text-center">
-                                                        <h2>Neto Aproximado a Recibir:</h2></div>
+                                                        <h2>Aproximado a Recibir:</h2></div>
                                                         <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{c_subt}}</h4>
