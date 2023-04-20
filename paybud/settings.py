@@ -83,7 +83,11 @@ WSGI_APPLICATION = 'paybud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'ezylabs$default',
+        'HOST': 'ezylabs.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
+        'USER': 'ezylabs',
+        'PASSWORD': 'PanamaSQL2023'
     }
 }
 
