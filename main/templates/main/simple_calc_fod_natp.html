@@ -7,7 +7,7 @@
 <div class="col shadow">
     <div class="container text-center">
         <h2>Calculo de Pago</h2>
-        <h2>FO con ATP</h2>
+        <h2>FO sin ATP(Antigua Tabla D)</h2>
         <h2 class="text-primary">Salarios y Primas fijas</h2></div>
         <div class="col">
             <div class="box text-center">
@@ -19,7 +19,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         Gasto de Representacion
-                        <span>{{fo_atp_grep}}</span>
+                        <span>{{fod_natp_grep}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         Prima Fija
@@ -39,7 +39,7 @@
                     </li>
                     <li class="list-group-item list-group-item-info d-flex justify-content-between">
                         Rata por Hora
-                        <span>{{fo_atp_rata}}</span>
+                        <span>{{fod_natp_rata}}</span>
                     </li>
                     </ul>
                 </div>
@@ -56,27 +56,27 @@
                               </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                               Viatico Variable
-                              <span class="badge bg-success rounded-pill">{{fo_viatico_extra}}</span>
+                              <span class="badge bg-success rounded-pill">{{fod_viatico_extra}}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Prima Variable
-                                <span class="badge bg-success rounded-pill">{{fo_prima_extra}}</span>
+                                <span class="badge bg-success rounded-pill">{{fod_prima_extra}}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Recargo {{total_sunday}} Domingo
-                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_dom}}</span>
+                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_dom}}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Recargo {{total_libre}} Dia Libre
-                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_libre}}</span>
+                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_libre}}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Recargo {{total_sa}} Dia SA
-                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_sa}}</span>
+                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_sa}}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Recargo {{total_feriado}} Dia Nacional
-                                <span class="badge bg-success bg-gradient rounded-pill">{{fo_atp_rec_nac}}</span>
+                                <span class="badge bg-success bg-gradient rounded-pill">{{fod_natp_rec_nac}}</span>
                             </li>
                         </ul>
                         </div>
@@ -87,7 +87,7 @@
                     <div class="col">
                         <div class="box">
                             <div class="container text-bg-success bg-gradient text-center rounded-pill">
-                                <h3> ${{fo_atp_subt}}</h3>
+                                <h3> ${{fod_natp_subt}}</h3>
                             </div>
                         </div>
                     </div>
@@ -99,11 +99,11 @@
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                         C.S.S.
-                                        <span class="badge bg-danger rounded-pill">{{fo_atp_css}}</span>
+                                        <span class="badge bg-danger rounded-pill">{{fod_natp_css}}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             Seguro Educativo
-                                            <span class="badge bg-danger rounded-pill">{{fo_atp_seduc}}</span>
+                                            <span class="badge bg-danger rounded-pill">{{fod_natp_seduc}}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             Impuesto Sobre la Renta
@@ -114,11 +114,11 @@
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             Impuesto Sobre la Renta (Gasto de Representacion)
-                                            <span class="badge bg-danger rounded-pill">{{fo_atp_isr_gr}}</span>
+                                            <span class="badge bg-danger rounded-pill">{{fod_natp_isr_gr}}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             UNPAC
-                                            <span class="badge bg-danger rounded-pill">{{fo_atp_unpac}}</span>
+                                            <span class="badge bg-danger rounded-pill">{{fod_natp_unpac}}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -129,7 +129,7 @@
                                     <div class="col">
                                         <div class="box">
                                             <div class="container text-bg-danger bg-gradient text-center rounded-pill">
-                                                <h3> ${{fo_atp_total_descuentos}} </h3>
+                                                <h3> ${{fod_natp_total_deducciones}} </h3>
                                             </div>
                                         </div>
                                     </div>
@@ -137,19 +137,19 @@
                                         <h2>Aproximado a Recibir:</h2></div>
                                         <div class="row justify-content-center">
                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                <h4>$ {{fo_atp_subt}}</h4>
+                                                <h4>$ {{fod_natp_subt}}</h4>
                                             </div>
                                             <div class="col-auto">
                                                 <h4> - </h4>
                                             </div>
                                             <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                <h4>$ {{fo_atp_total_descuentos}}</h4>
+                                                <h4>$ {{fod_natp_total_deducciones}}</h4>
                                             </div>
                                         </div>
                                     </br>
                                     <div class="row justify-content-center">
                                         <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                            <h3>  = ${{fo_atp_neto}}</h3>
+                                            <h3>  = ${{fod_natp_neto}}</h3>
                                         </div>    
                                     </div>
                                         </div>   

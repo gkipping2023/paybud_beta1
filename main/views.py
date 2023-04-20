@@ -219,8 +219,69 @@ def fo_natpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado):
     return result
 
 
-def fod_natpCalc(t_block,t_sunday):
-    result = int(t_block)*4
+def fod_natpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado):
+    total_bloque = float(t_block)
+    total_sunday = float(t_sunday)
+    total_libre = float(t_libre)
+    total_sa = float(t_sa)
+    total_feriado = float(t_feriado)
+    if total_bloque <=66:
+        bloque_extra = 0
+    else : bloque_extra = total_bloque - 66
+    fo_atp_base = 1915.00
+    fod_natp_grep = 1212.00 #CC 2023
+    fo_atp_prima = 264.00
+    fo_atp_viatico = 1370.00 #CC 2023
+    fo_atp_viatico_extra = 13.00
+    fo_atp_prima_extra= 32.20
+    fod_natp_rata = round((fo_atp_base + fod_natp_grep) / 75,2)
+    fod_natp_rec_dom = round((float(total_sunday)*0.5)*fod_natp_rata,2)
+    fod_viatico_extra = round(float(bloque_extra) * fo_atp_viatico_extra,2)
+    fod_prima_extra = round(float(bloque_extra) * fo_atp_prima_extra,2)
+    fod_natp_rec_libre = round((float(total_libre)*0.5)*fod_natp_rata,2)
+    fod_natp_rec_sa = round((float(total_sa)*0.5)*fod_natp_rata,2)
+    fod_natp_rec_nac = round((float(total_feriado)*1.5)*fod_natp_rata,2)
+    fod_natp_subt = round((fo_atp_base / 2) + fo_atp_prima + fo_atp_viatico + fod_viatico_extra + fod_prima_extra + fod_natp_rec_dom + fod_natp_rec_libre + fod_natp_rec_sa + fod_natp_rec_nac,2)
+    css_pa = 0.0975
+    s_educ = 0.0125
+    unpac = 0.01
+    isr_grep = 0.1
+    fo_isr = round((((((fo_atp_base)/2+fo_atp_viatico+fo_atp_prima+723.42)*13)-11000)*0.15)/13,2)
+    fod_natp_css = round(((fo_atp_base/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*css_pa,2)
+    fod_natp_seduc = round(((fo_atp_base/2)+fod_natp_rec_dom+fod_natp_rec_libre+fod_natp_rec_sa+fod_natp_rec_nac)*s_educ,2)
+    fod_natp_unpac = round(fo_atp_base * unpac,2)
+    fod_natp_isr_gr = round((fod_natp_grep/2)*isr_grep,2) #CC 2023
+    fod_natp_total_deducciones = round(fod_natp_css+fod_natp_seduc+fod_natp_isr_gr+fod_natp_unpac+fo_isr,2)
+    fod_natp_neto = round(fod_natp_subt - fod_natp_total_deducciones,2)
+    
+    result = {
+        'fod_natp_neto':fod_natp_neto,
+        'fod_natp_total_deducciones':fod_natp_total_deducciones,
+        'fod_natp_isr_gr':fod_natp_isr_gr,
+        'fod_natp_unpac':fod_natp_unpac,
+        'fod_natp_seduc':fod_natp_seduc,
+        'fod_natp_css':fod_natp_css,
+        'fo_isr':fo_isr,
+        'bloque_extra':bloque_extra,
+        'fod_natp_subt':fod_natp_subt,
+        'fod_natp_rec_nac':fod_natp_rec_nac,
+        'fod_natp_rec_sa':fod_natp_rec_sa,
+        'fod_natp_rec_libre':fod_natp_rec_libre,
+        'fod_prima_extra':fod_prima_extra,
+        'fod_viatico_extra':fod_viatico_extra,
+        'fo_atp_base' : fo_atp_base,
+        'fod_natp_grep' : fod_natp_grep,
+        'fo_atp_prima' : fo_atp_prima,
+        'fo_atp_viatico' : fo_atp_viatico,
+        'fo_atp_viatico_extra' : fo_atp_viatico_extra,
+        'fo_atp_prima_extra' : fo_atp_prima_extra,
+        'fod_natp_rata' : fod_natp_rata,
+        'fod_natp_rec_dom' : fod_natp_rec_dom,
+        'total_sunday' : total_sunday,
+        'total_libre':total_libre,
+        'total_sa':total_sa,
+        'total_feriado':total_feriado,
+    }
     return result
 
 def simplecalc(request):
@@ -241,7 +302,7 @@ def simplecalc(request):
             return render(request,'main/simple_calc_fo_natp.html',result)
         if 'fod_natp' in request.POST:
             result = fod_natpCalc(t_block,t_sunday,t_libre,t_sa,t_feriado)
-            return render(request,'main/simple_calc_fod_natp.html',{'result':result})
+            return render(request,'main/simple_calc_fod_natp.html',result)
     return render(request,'main/simple_calc.html')
 
 # Login & Authenticate User
