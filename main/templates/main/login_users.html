@@ -2,9 +2,9 @@
 
 {% block content %}
 {% if page == 'login' %}
-<div class="container container-center">
+<div class="container text-center container-center">
     <div class="form-control">
-       
+       <h1>Log In</h1>
     <form method="POST" action="">
         {% csrf_token %}
     <div class="form-floating mb-3"> 
@@ -17,7 +17,7 @@
     </div>
     <div class="text-center">
     <input class="btn btn-primary" type="submit" value="Login" /></br>
-    <a href="" class="">Forgot your password?</a>
+    <a href="{% url 'reset_password' %}" class="">Forgot your password?</a>
         <p>Haven't Sign up Yet?</p>
         <a class="btn btn-secondary" href="{% url 'register' %}"> Register Now!</a>
     </div>
