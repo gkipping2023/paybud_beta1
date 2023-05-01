@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Logbook, User
 from .forms import LogbookForm,CMNewUsersForm, UpdateUserForm
 from django.db.models import Sum,Count
+from django.core.mail import send_mail
 
 # Date on Navbar
 def today_date(request):
@@ -23,7 +24,6 @@ def home(request):
     home_total_users_reg = home_users['cmp_id__count']
     return render(request, 'main/home.html',{'home_total_hours_logged' : home_total_hours_logged,'home_total_users_reg' : home_total_users_reg})
 
-# WIP Calculator
 def CapitanCalc(t_block,t_sunday,t_libre,t_sa,t_feriado):
     total_bloque = float(t_block)
     total_sunday = float(t_sunday)
@@ -833,6 +833,20 @@ def RawLogbook(request):
 
 
 def ContactUs(request):
+    if request.method == 'POST':
+        message_name = request.POST['message-name']
+        message_email = request.POST['message-email']
+        message_text = request.POST['message-text']
+        
+        #send email
+        send_mail(
+            'Contact Request - ' + message_name,
+            message_text,
+            message_email,
+            ['info@ezy-labs.com','george.kipping@hotmail.com']
+        )
+
+        return render(request,'main/contact_us.html',{'message_name':message_name})
     return render(request, 'main/contact_us.html')
 
 

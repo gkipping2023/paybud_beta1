@@ -7,10 +7,10 @@
         <div class="d-sm-flex">
             <div>
                 <p >
-                    FLEXpay es una herramienta desarrollada por pilotos y para pilotos de la compañia para ayudarte a calcular de una forma sencilla y facil tus horas voladas y de esta forma puedas seguir de cerca tus ingresos.
-                    La puedes usar desde tu celular, iPad o computadora. 
-                    Si necesitas ayuda ingresa aqui al <a class="text-light" href="{% url 'help-center' %}">Help Center</a> o en la parte superior para las instrucciones e informacion.
-                    Esta herramienta esta en constante desarrollo, asique espera mas y nuevas caracteristicas en las proximas actualizaciones
+                    FLEXpay es una herramienta desarrollada por pilotos y para pilotos para ayudarte a calcular de una forma sencilla y facil tus horas voladas y de esta forma puedas seguir de cerca tus ingresos.
+                    
+                    Si necesitas ayuda ingresa al <a class="text-light" href="{% url 'help-center' %}">Help Center</a>
+                    
                 </p>
             </div>
         </div>
@@ -20,45 +20,41 @@
     <div class="container">
         <div class="col justify-content-center text-center mb-3 gx-5">
             <div class="row">
-                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" href="{% url 'login' %}">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width: 50%;" href="{% url 'login' %}">
                     <img src="{% static '/icons/arrow-login.svg' %}" alt="Log-in" width="50" height="50">Log In
                 </a>
-            </div>
-            <div class="row">
-                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" href="{% url 'register' %}">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width: 50%;" href="{% url 'register' %}">
                     <img src="{% static '/icons/new-user.svg' %}" alt="Log-in" width="50" height="50">Register
                 </a>
             </div>
+        </br>
             <div class="row">
-                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" href="{% url 'logbook_calc' %}">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width: 50%;" href="{% url 'logbook_calc' %}">
                     <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc
                 </a>
-            </div>
-            <div class="row">
-                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" href="{% url 'logbook' %}">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width: 50%;" href="{% url 'logbook' %}">
                     <img src="{% static '/icons/logbook.svg' %}" alt="Log-in" width="50" height="50">Logbook
                 </a>
             </div>
+        </br>
             <div class="row">
-                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" href="{% url 'simple_calc' %}">
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width: 50%;" href="{% url 'simple_calc' %}">
                     <img src="{% static '/icons/simple-calc.svg' %}" alt="Log-in" width="50" height="50">Simple Calculator
                 </a>
-            </div>
-            <div class="row">
-                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" href="{% url 'help-center' %}">
-                    <img src="{% static '/icons/help-center.svg' %}" alt="Log-in" width="64" height="64">Help Center
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width: 50%;" href="{% url 'help-center' %}">
+                    <img src="{% static '/icons/help-center.svg' %}" alt="Log-in" width="50" height="50">Help Center
                 </a>
             </div>
+        </br>
             <div class="row">
-                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" href="{% url 'on-development' %}">
-                    <img src="{% static '/icons/contact-us.svg' %}" alt="Log-in" width="64" height="64">Contact Us
+                <a class="btn btn-lg rounded-5 btn-primary bg-gradient text-wrap" style="width: 50%;" href="{% url 'contact-us' %}">
+                    <img src="{% static '/icons/contact-us.svg' %}" alt="Log-in" width="50" height="50">Contact Us
+                </a>
+                <a class="btn btn-lg rounded-5 btn-danger bg-gradient text-wrap" style="width: 50%;" href="{% url 'logout' %}">
+                    <img src="{% static '/icons/arrow-logout.svg' %}" alt="Log-in" width="50" height="50">Log Out
                 </a>
             </div>
-            <div class="row">
-                <a class="btn btn-lg rounded-5 btn-danger bg-gradient text-wrap" href="{% url 'logout' %}">
-                    <img src="{% static '/icons/arrow-logout.svg' %}" alt="Log-in" width="64" height="64">Log Out
-                </a>
-            </div>
+        </br>
             </div>
         </div>
     </div>

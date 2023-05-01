@@ -1,6 +1,32 @@
 {% extends 'main.html'%}
 
 {% block content %}
-<h1>Contact Us</h1>
+<div class="container text-center container-center">
+<div class="form-control">
+    <h1>Contact Us</h1>
+    <h2>info@ezy-labs.com</h2>
+    {% if message_name %}
+    <h2>Thanks {{message_name}}!</h2>
+    <p>We received your message and will respond shortly...</p>
+    {% else %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name:</label>
+            <input type="text" class="form-control" name="message-name" placeholder="Enter Your Name">
+          </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address:</label>
+            <input type="email" class="form-control" name="message-email" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Message:</label>
+            <textarea class="form-control" name="message-text" rows="6"></textarea>
+          </div>
+          <input class="btn btn-primary" type="submit" value="Send" />
+    </form>
+    {% endif %}
+</div>
+</div>
 
 {% endblock content %}
