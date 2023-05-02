@@ -785,16 +785,15 @@ def delete_entry(request, entry_id):
 #User Profile
 @login_required(login_url='login')
 def userprofile(request,pk):
-    user = User.objects.get(id=pk)
-    user2 = request.user
-    form = UpdateUserForm(instance=user2)
+    user = request.user
+    form = UpdateUserForm(instance=user)
 
     if request.method == 'POST':
-        form = UpdateUserForm(request.POST, instance=user2)
+        form = UpdateUserForm(request.POST,instance=user)
         if form.is_valid():
             form.save()
             messages.success(request,'Profile Updated Successfully')
-            redirect('profile',pk=user.id)
+            return redirect('profile',pk=user.id)
         else:
             form.errors
             messages.error(request,'Error in update, Please verify your profile')

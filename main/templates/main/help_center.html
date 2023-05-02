@@ -2,18 +2,17 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <h1 class="text-center">Help Center</h1>
-<p>Welcome to FLEXpay!
-  A tool to keep track of your flight time as well as your money earned.
+  <h1 class="text-center display-2">Help Center</h1>
+<h2 class="text-center display-4">Welcome to FLEXpay!</h2>
+<p>A tool to keep track of your flight time as well as your money earned.
   In this short documentation we are going to show you how easy it is to use it, from registration for the first time to view reports from previous months. So lets get started so you can start tracking right away!
   If after reading this you still have questions, dont hesitate to contact us by clicking <a class="text-primary" href="{% url 'contact-us' %}">Here</a>
 </p>
 </div>
 <section class="text-center">
- <div class="container bg-light">
+ <div class="container bg-light p-5">
   <div class="d-flex">
       <div class="row">
-        
           <h1>Home</h1>
  <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.
   You can always come back to this main page by clicking in the FLEXpay logo.
@@ -24,7 +23,7 @@
  </div>
 </section>
 <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -60,7 +59,7 @@
    </div>
 </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -103,7 +102,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -122,7 +121,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -141,7 +140,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -156,7 +155,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -173,7 +172,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -192,7 +191,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -207,7 +206,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -231,7 +230,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -245,7 +244,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -259,7 +258,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -273,7 +272,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -287,7 +286,7 @@
    </div>
  </section>
  <section class="text-center">
-  <div class="container bg-light">
+  <div class="container bg-light p-5">
     <div class="d-flex">
         <div class="row">
           <div class="col">
@@ -298,6 +297,22 @@
           <p class="text-warning">Recuerada que tu usuario es tu numero de empleado de la compania</p>
           <p class="">Si olvidaste tu contradddsena, ingresa al link: <a href="{% url 'reset_password' %}" class="">Forgot your password?</a></p>
         <img class="img-fluid" src="{% static '/images/log_in.png' %}" alt="">
+      </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light p-5">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'login' %}">
+              <img src="{% static '/icons/arrow-login.svg' %}" alt="Log-in" width="50" height="50">Profile</h1>
+   <p>Igualmente, si estas accesando desde algun dispositivo ajeno o por primera vez, utilizaras este boton para ingresar con tu usuario y contrasena.</p>
+          <img class="img-fluid" src="{% static '/images/profile.png' %}" alt="">
+          <p class="">En esta seccion podras ver tu perfil personal y modificar tu Posicion, correo asi como tus descuentos personales.</p>
+          <p class="text-danger">Importante: Para guardar cambios en tu perfil es necesario que confirmes tu E-mail.</p>
       </div>
         </div>
     </div>
