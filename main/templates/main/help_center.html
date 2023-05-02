@@ -1,28 +1,313 @@
 {% extends 'main.html'%}
-
+{% load static %}
 {% block content %}
-<div class="container text-center">
-    <div class="text-center">
-        <h1>Welcome to FLEXpay</h1>
-        <h2>Help Center</h2>
-    </div>
-    <div class="row align-items-center">
-        <div class="col">
-          One of three columns
-        </div>
-        <div class="col">
-          One of three columns
-        </div>
-      </div>
-      <div class="row align-items-center">
-        <div class="col">
-          One of three columns
-        </div>
-        <div class="col">
-          One of three columns
-        </div>
-      </div>
+<div class="container">
+  <h1 class="text-center">Help Center</h1>
+<p>Welcome to FLEXpay!
+  A tool to keep track of your flight time as well as your money earned.
+  In this short documentation we are going to show you how easy it is to use it, from registration for the first time to view reports from previous months. So lets get started so you can start tracking right away!
+  If after reading this you still have questions, dont hesitate to contact us by clicking <a class="text-primary" href="{% url 'contact-us' %}">Here</a>
+</p>
 </div>
-
-
+<section class="text-center">
+ <div class="container bg-light">
+  <div class="d-flex">
+      <div class="row">
+        
+          <h1>Home</h1>
+ <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.
+  You can always come back to this main page by clicking in the FLEXpay logo.
+ </p>
+        <img class="img-fluid" src="{% static '/images/home.png' %}" alt="">
+      </div>
+  </div>
+ </div>
+</section>
+<section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" href="{% url 'register' %}">
+              <img src="{% static '/icons/new-user.svg' %}" alt="Log-in" width="50" height="50">Register</h1>
+   <p>The first thing that you will need to do is register. </br>You will need to register using:</p>
+   <ul>
+    <li>
+      Your company Employee ID (1)
+    </li>
+    <li>
+      Your First Name (2)
+    </li>
+    <li>
+      Your Last Name (3)
+    </li>
+    <li>
+      Your Current Position (4)
+    </li>
+    <li>
+      Your personal E-mail (5)
+      Is very important to receive notifications and to reset your password.
+    </li>
+    <li>
+      Your Password (6)
+    </li>
+    
+   </ul>
+          </div>
+            <img class="img-fluid" src="{% static '/images/register_page.png' %}" alt="">
+        </div>
+    </div>
+   </div>
+</section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
+              <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
+            <h2>New Entry</h2>
+   <p>The first section you will see here is the New Entry Section, its a form that is divided in different fields.
+    <ul>
+      <li>
+        <strong>Date*:</strong> Select the date of the flight that you want to record. 
+    *Note: You can record flights of past, present, and future dates. This is useful when you want to have an idea or projection of your total of the month.
+      </li>
+      <li>
+        <strong>Route*:</strong> Type in the route of your flight or assignment to keep it in record (ex. ADM, MOD3, SIM…) 
+    *Note: You can write letters and numbers as you feel more comfortable(Ex. MIA227, 453, LAXPTY, PTYJFK808…)
+      </li>
+      <li>
+        <strong>Block Time*:</strong> Here you will type the block time as shown in ACARS (HH:MM format) 
+    *Note: You have to enter the hour and the minutes in separate fields. There is one for the hours and another one for the minutes. You can enter up to two digits on each field.
+      </li>
+      <li>
+        Sunday, Holiday, Day Off and SA: This fields work all the same and have the same restrictions, here you will enter the hours and minutes depending on the condition.
+      </li>
+      <li>
+        <strong>Remarks:</strong> This field is for any personal comment for you to keep in mind.
+    *Note: This filed is open to enter numbers, letters, symbols or anything that you need to remember for this entry (Ex. “Vuelo Removido”, “viatico training”,”Cambio en BR”…)
+      </li>
+      <li>
+        <strong>SAVE:</strong> This is the save button, press it for record your entry. If its correctly you will see a message in the top of your screen “Entry Recorded Successfully!”
+      </li>
+      <li class="text-danger">
+        *Note: The date, route and block time, fields are required. If any of this fields are left in blank you will get an error message.
+      </li>      
+     </ul>
+    </p>
+   <img class="img-fluid" src="{% static '/images/new_entry.png' %}" alt="">        
+  </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
+              <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
+            <h2>Filter</h2>
+   <p>In this section you will be able to see entry records from up to 12 months in the past as well as the total times of that month and the approximate payment earned.
+    If you want to see a calculation of a previous month, just select the month that you want to see and hit FILTER.
+  </p>
+  <p class="text-warning">Note: It will show January as a default, however this is not the month shown in the Logbook section</p>
+          <img class="img-fluid" src="{% static '/images/filter1.png' %}" alt="">
+        </div>
+        
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
+              <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
+            <h2>Entries</h2>
+   <p>In this section you will see every entry that you made correctly on the “New Entry” section. And additionally you will see the equivalent of the time converted into decimals on each field (ex. 1.54, 2.37, 3.98…)
+    Also, each entry has a DELETE button (<img class="btn btn-danger btn-sm" src="{% static '/icons/delete-entry.svg' %}">), use it if you made a mistake on your entry, delete it and enter it again.
+    At the bottom of the “Logbook Section” we will find the “Totals Strip”. That is not more that the totals of the entries on the “Logbook Section”. It could be either the current month by default or a past month selected in the FILTER BY MONTH Section.
+    </p>
+          <img class="img-fluid" src="{% static '/images/logbook1.png' %}" alt="">
+        <img class="img-fluid" src="{% static '/images/totals.png' %}" alt="">
+      </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
+              <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
+            <h2>Salarios y Primas Fijas</h2>
+   <p>En esta seccion podremos ver los salarios, viaticos y primas fijasasi como, ratas para calculos de recargos tomado de nuestra Convencion Colectiva vigente</p>
+          <img class="img-fluid" src="{% static '/images/comp_recargos.png' %}" alt="">
+        </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
+              <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
+            <h2>Compensaciones y Recargos</h2>
+   <p>En esta seccion podremos ver las compensaciones variables y recargos detallados por rubro.</p>
+          </div>
+            <img class="img-fluid" src="{% static '/images/recargos.png' %}" alt="">
+            <p>Asi mismo, en la parte inferior se puede ver el total de ingresos en tiempo real. Es la suma del cuadro anterior mas la seccion de Salarios y Primas Fijas</p>
+            <img class="img-fluid" src="{% static '/images/total_ingresos.png' %}" alt="">
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
+              <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
+            <h2>Descuentos</h2>
+   <p>En esta seccion se puede ver los Descuentos por ley como C.S.S, Seguro Educativo y otros...</p>
+   <p class="text-danger">El impuesto sobre la renta esta calculado a un estimado de 83 horas al mes. Y es un calculo bastante conservador.</p>
+   <p class="">En esta seccion tambien se pueden ver los descuentos personalizados que se pueden modificar en la seccion de Profile </p>
+          </div>
+          <img class="img-fluid" src="{% static '/images/descuentos.png' %}" alt="">
+          <p class="">Mas abajo podemos ver el total de estos descuentos en timpo real. La suma de todos los descuentos.</p>
+          <img class="img-fluid" src="{% static '/images/total_descuentos.png' %}" alt="">
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
+              <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
+            <h2>Aproximado a Recibir</h2>
+   <p>Y con los dos subtotales anteriores, los podemos restar y tenemos un aproximado a recibir.</p>
+          <img class="img-fluid" src="{% static '/images/aprox_rec.png' %}" alt="">
+        </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <img class="img-fluid" src="{% static '/images/home_simple_calc.png' %}" alt="">
+          </div>
+          <div class="col">
+            <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'simple_calc' %}">
+              <img src="{% static '/icons/simple-calc.svg' %}" alt="Log-in" width="50" height="50">Simple Calculator</h1>
+   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
+          </div>
+        <div class="col">
+          <img class="img-fluid" src="{% static '/images/sc_main.png' %}" alt="">
+        </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'help-center' %}">
+              <img src="{% static '/icons/help-center.svg' %}" alt="Log-in" width="50" height="50">Help Center</h1>
+   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
+          </div>
+        <div class="col">
+          <img class="img-fluid" src="{% static '/images/home_help.png' %}" alt="">
+        </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+          <img class="img-fluid" src="{% static '/images/contact_us.png' %}" alt="">
+        </div>
+          <div class="col">
+            <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'contact-us' %}">
+              <img src="{% static '/icons/contact-us.svg' %}" alt="Log-in" width="50" height="50">Contact Us</h1>
+   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
+          </div>
+        
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <h1 class="btn btn-lg rounded-5 btn-warning bg-gradient" style="width: 50%;" href="/admin">
+              <img src="{% static '/icons/admin.svg' %}" alt="Log-in" width="50" height="50">Maintenance</h1>
+   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
+          </div>
+        <div class="col">
+          <img class="img-fluid" src="{% static '/images/home_maint.png' %}" alt="">
+        </div>
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+          <img class="img-fluid" src="{% static '/images/home_logout.png' %}" alt="">
+        </div>
+          <div class="col">
+            <h1 class="btn btn-lg rounded-5 btn-danger bg-gradient" style="width: 50%;" href="{% url 'logout' %}">
+              <img src="{% static '/icons/arrow-logout.svg' %}" alt="Log-in" width="50" height="50">Log Out</h1>
+   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
+          </div>
+        
+        </div>
+    </div>
+   </div>
+ </section>
+ <section class="text-center">
+  <div class="container bg-light">
+    <div class="d-flex">
+        <div class="row">
+          <div class="col">
+            <img class="img-fluid" src="{% static '/images/home_login.png' %}" alt="">
+          </div>
+          <div class="col">
+            <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'login' %}">
+              <img src="{% static '/icons/arrow-login.svg' %}" alt="Log-in" width="50" height="50">Log In</h1>
+   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
+          </div>
+        <div class="col">
+          <img class="img-fluid" src="{% static '/images/log_in.png' %}" alt="">
+        </div>
+        </div>
+    </div>
+   </div>
+ </section>
 {% endblock content %}
