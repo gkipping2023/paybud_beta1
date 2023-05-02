@@ -211,14 +211,19 @@
     <div class="d-flex">
         <div class="row">
           <div class="col">
-            <img class="img-fluid" src="{% static '/images/home_simple_calc.png' %}" alt="">
-          </div>
-          <div class="col">
             <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'simple_calc' %}">
               <img src="{% static '/icons/simple-calc.svg' %}" alt="Log-in" width="50" height="50">Simple Calculator</h1>
-   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
-          </div>
-        <div class="col">
+   <p>Aqui vas a poder sacar un calculo rapido de las horas voladas y compensaciones, pero sin poder ver tus totales de meses anteriores.</p>
+   <p class="">Solo introduce las horas totales del mes en los cuadros correspondientes</p>
+   <ol class="">
+    <li class="">Ingresa Horas totales del mes</li>
+    <li class="">Ingresa Horas totales de Domingo</li>
+    <li class="">Ingresa Horas totales trabajadas en L (Libre)</li>
+    <li class="">Ingresa Horas totales trabajadas en SA (Sin Asignacion)</li>
+    <li class="">Ingresa Horas totales trabajadas en Holiday (Feriado)</li>
+   </ol>
+   <p class="text-danger">IMPORTANTE: Debes ingresar las horas en formato decimal (2.37, 1.45,...)</p>
+   <p class="">Selecciona tu pocision en los botones de abajo y te llavara a los totales y aproximados a recibir segun tu posicion.</p>
           <img class="img-fluid" src="{% static '/images/sc_main.png' %}" alt="">
         </div>
         </div>
@@ -232,9 +237,7 @@
           <div class="col">
             <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'help-center' %}">
               <img src="{% static '/icons/help-center.svg' %}" alt="Log-in" width="50" height="50">Help Center</h1>
-   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
-          </div>
-        <div class="col">
+   <p>Aqui podras acceder a esta pagina de ayuda para cualquier consulta.</p>
           <img class="img-fluid" src="{% static '/images/home_help.png' %}" alt="">
         </div>
         </div>
@@ -246,14 +249,11 @@
     <div class="d-flex">
         <div class="row">
           <div class="col">
-          <img class="img-fluid" src="{% static '/images/contact_us.png' %}" alt="">
-        </div>
-          <div class="col">
             <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'contact-us' %}">
               <img src="{% static '/icons/contact-us.svg' %}" alt="Log-in" width="50" height="50">Contact Us</h1>
-   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
-          </div>
-        
+   <p>Usa esta pagina para comunicarte con alguien del equipo de FLEXpay para dudas, comentarios o sugerencias.</p>
+          <img class="img-fluid" src="{% static '/images/contact_us.png' %}" alt="">
+        </div>
         </div>
     </div>
    </div>
@@ -265,9 +265,7 @@
           <div class="col">
             <h1 class="btn btn-lg rounded-5 btn-warning bg-gradient" style="width: 50%;" href="/admin">
               <img src="{% static '/icons/admin.svg' %}" alt="Log-in" width="50" height="50">Maintenance</h1>
-   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
-          </div>
-        <div class="col">
+   <p>Este link esta reservado solo para Mantenimiento por parte del Equipo de FLEXpay</p>
           <img class="img-fluid" src="{% static '/images/home_maint.png' %}" alt="">
         </div>
         </div>
@@ -279,14 +277,11 @@
     <div class="d-flex">
         <div class="row">
           <div class="col">
-          <img class="img-fluid" src="{% static '/images/home_logout.png' %}" alt="">
-        </div>
-          <div class="col">
             <h1 class="btn btn-lg rounded-5 btn-danger bg-gradient" style="width: 50%;" href="{% url 'logout' %}">
               <img src="{% static '/icons/arrow-logout.svg' %}" alt="Log-in" width="50" height="50">Log Out</h1>
-   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
-          </div>
-        
+   <p>Utiliza este boton solo si es necesario para cerrar tu sesion.(Ej. Al usar el aplicativo en algun dispositivo ajeno o publico)</p>
+   <p class="text-warning"> Recomendamos mantener la sesion abierta para un uso mas comododo del aplicativo</p>
+          <img class="img-fluid" src="{% static '/images/home_logout.png' %}" alt="">
         </div>
     </div>
    </div>
@@ -296,16 +291,14 @@
     <div class="d-flex">
         <div class="row">
           <div class="col">
-            <img class="img-fluid" src="{% static '/images/home_login.png' %}" alt="">
-          </div>
-          <div class="col">
             <h1 class="btn btn-lg rounded-5 btn-primary bg-gradient" style="width: 50%;" href="{% url 'login' %}">
               <img src="{% static '/icons/arrow-login.svg' %}" alt="Log-in" width="50" height="50">Log In</h1>
-   <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.</p>
-          </div>
-        <div class="col">
-          <img class="img-fluid" src="{% static '/images/log_in.png' %}" alt="">
-        </div>
+   <p>Igualmente, si estas accesando desde algun dispositivo ajeno o por primera vez, utilizaras este boton para ingresar con tu usuario y contrasena.</p>
+          <img class="img-fluid" src="{% static '/images/home_login.png' %}" alt="">
+          <p class="text-warning">Recuerada que tu usuario es tu numero de empleado de la compania</p>
+          <p class="">Si olvidaste tu contradddsena, ingresa al link: <a href="{% url 'reset_password' %}" class="">Forgot your password?</a></p>
+        <img class="img-fluid" src="{% static '/images/log_in.png' %}" alt="">
+      </div>
         </div>
     </div>
    </div>
