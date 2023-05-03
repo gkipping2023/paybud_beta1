@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = ['django-insecure-szp2o$d4et9=#o-b(-(065lwz7$$7d#r6q8!a^%vu586tm467y']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ezylabs.pythonanywhere.com']
+ALLOWED_HOSTS = ['ezylabs.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'paybud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': config('DATABASE_NAME'),
-        'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASS')
+        'NAME': 'ezylabs$default',
+        'HOST': 'ezylabs.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
+        'USER': 'ezylabs',
+        'PASSWORD': 'PanamaSQL2023'
     }
 }
 
@@ -150,9 +150,9 @@ MESSAGE_TAGS = {
 }
 #SMTP Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = 'info@ezy-labs.com'
+EMAIL_HOST_PASSWORD = 'Panama$2023'
 
