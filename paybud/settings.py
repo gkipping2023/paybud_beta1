@@ -85,11 +85,7 @@ WSGI_APPLICATION = 'paybud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'ezylabs$default',
-        'HOST': 'ezylabs.mysql.pythonanywhere-services.com',
-        'PORT': '3306',
-        'USER': 'ezylabs',
-        'PASSWORD': 'PanamaSQL2023'
+
     }
 }
 
@@ -150,9 +146,5 @@ MESSAGE_TAGS = {
 }
 #SMTP Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtpout.secureserver.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'info@ezy-labs.com'
-EMAIL_HOST_PASSWORD = 'Panama$2023'
+
 
