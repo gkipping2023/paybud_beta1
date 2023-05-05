@@ -1,25 +1,26 @@
 {% extends 'main.html'%}
 
 {% block content %}
+{% load static %}
 {% if page == 'login' %}
-<div class="container text-center container-center">
+<div class="container text-center">
+    <h2 class="display-2"><img src="{% static '/icons/arrow-login.svg' %}" alt="Log-in" width="50" height="50">Log In</h2>
     <div class="form-control">
-       <h1>Log In</h1>
     <form method="POST" action="">
         {% csrf_token %}
     <div class="form-floating mb-3"> 
         <input class="form-control" type="text" name="username" placeholder="Enter your username" /><br>
-        <label>Username:</label>
+        <label>Usuario:</label>
     </div>
     <div class="form-floating mb-3">    
         <input class="form-control" type="password" name="password" placeholder="Enter your password" /><br>
-        <label>Password:</label>  
+        <label>Contrasena:</label>  
     </div>
     <div class="text-center">
     <input class="btn btn-primary" type="submit" value="Login" /></br>
-    <a href="{% url 'reset_password' %}" class="">Forgot your password?</a>
-        <p>Haven't Sign up Yet?</p>
-        <a class="btn btn-secondary" href="{% url 'register' %}"> Register Now!</a>
+    <a href="{% url 'reset_password' %}" class="">Olvidaste tu Contrasena?</a>
+        <p>No te has Registrado?</p>
+        <a class="btn btn-secondary" href="{% url 'register' %}">Registrate!</a>
     </div>
     </form>
     
@@ -28,22 +29,21 @@
 
 {% else %}
 
-<div>
+<div class="container text-center">
+    <h2 class="display-2"><img src="{% static '/icons/new-user.svg' %}" alt="Log-in" width="50" height="50">Registrate</h2>
     <form method="POST" action="">
         <div class="container form-floating">
         {% csrf_token %}
-        <div class="dropdown">
+        <div class="dropdown text-start">
         {{form.as_p}}
         </div>
             
         <div class="container text-center">
             <input class="btn btn-primary" type="submit" value="Register" />
     </form>
-            <p>Already Sign up?</p>
-            <a class="link-info" href="{% url 'login' %}">Login</a>
+            <p>Ya estas Registrado?</p>
+            <a class="link-info" href="{% url 'login' %}">Ingresa</a>
         </div>
-    </div>
-</div>
 {% endif %}
 {% endblock content %}
 

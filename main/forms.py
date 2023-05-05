@@ -43,8 +43,8 @@ class UpdateUserForm(ModelForm):
                   'custom_disc_5_name','custom_disc_5']
 
 class LogbookForm(ModelForm):
-    date = forms.DateField(initial=date.today(),widget=forms.DateInput(attrs={'class':'form-control','type':'date'}))
-    route = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    date = forms.DateField(label='Fecha',initial=date.today(),widget=forms.DateInput(attrs={'class':'form-control','type':'date'}))
+    route = forms.CharField(label='Ruta',widget=forms.TextInput(attrs={'class':'form-control'}))
     total_hrs_input = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Hours'}))
     total_min_input = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Minutes'}))
     sun_hrs_input = forms.CharField(empty_value=str(0),required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Hours'}))
@@ -71,14 +71,14 @@ class LogbookForm(ModelForm):
         'sa_decimal','cmp_id'
         ]
         labels = {
-        'total_hrs_input' : 'Block Hours',
-        'total_min_input' : 'Block Minutes',
-        'sun_hrs_input' : 'Sunday (Hours)',
-        'sun_min_input' : 'Sunday (Minutes)',
-        'holiday_hrs_input' : 'Holiday (Hours)',
-        'holiday_min_input' : 'Holiday (Minutes)',
-        'libre_hrs_input' : 'LIBRE (Hours)',
-        'libre_min_input' : 'LIBRE (Minutes)',
-        'sa_hrs_input' : 'SA (Hours)',
-        'sa_min_input' : 'SA (Minutes)'
+        'total_hrs_input' : 'Bloque (Horas)',
+        'total_min_input' : 'Bloque (Minutos)',
+        'sun_hrs_input' : 'Domingo (Horas)',
+        'sun_min_input' : 'Domingo (Minutos)',
+        'holiday_hrs_input' : 'Feriado (Horas)',
+        'holiday_min_input' : 'Feriado (Minutos)',
+        'libre_hrs_input' : 'Libre (Horas)',
+        'libre_min_input' : 'Libre (Minutos)',
+        'sa_hrs_input' : 'SA (Horas)',
+        'sa_min_input' : 'SA (Minutos)'
         }
