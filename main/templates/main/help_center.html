@@ -2,11 +2,11 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <h1 class="text-center display-2">Help Center</h1>
-<h2 class="text-center display-4">Welcome to FLEXpay!</h2>
-<p>A tool to keep track of your flight time as well as your money earned.
-  In this short documentation we are going to show you how easy it is to use it, from registration for the first time to view reports from previous months. So lets get started so you can start tracking right away!
-  If after reading this you still have questions, dont hesitate to contact us by clicking <a class="text-primary" href="{% url 'contact-us' %}">Here</a>
+  <h1 class="text-center display-2"><img src="{% static '/icons/help-center.svg' %}" alt="Log-in" width="50" height="50">Help Center</h1>
+<h2 class="text-center display-4">Bienvenido a FLEXpay!</h2>
+<p>Una herramienta para controlar el tiempo de vuelo y el dinero ganado.
+  En esta breve documentación vamos a mostrarte lo fácil que es utilizarlo, desde el registro por primera vez hasta la visualización de informes de meses anteriores. ¡Así que vamos a empezar para que pueda empezar a hacer un seguimiento de inmediato!
+  Si después de leer esto sigue teniendo preguntas, no dude en ponerse en contacto con nosotros haciendo clic en <a class="text-primary" href="{% url 'contact-us' %}">Aquí</a>.
 </p>
 </div>
 <section class="text-center">
@@ -14,8 +14,8 @@
   <div class="d-flex">
       <div class="row">
           <h1>Home</h1>
- <p>The first thing you will see is the home screen as well as the top menu. From here we can navigate to the other tools available to FLEXpay.
-  You can always come back to this main page by clicking in the FLEXpay logo.
+ <p>Lo primero que verá es la pantalla de inicio así como el menú superior. Desde aquí podemos navegar al resto de herramientas de las que dispone FLEXpay.
+  Siempre puede volver a esta página principal pulsando en el logo de FLEXpay.
  </p>
         <img class="img-fluid" src="{% static '/images/home.png' %}" alt="">
       </div>
@@ -29,23 +29,23 @@
           <div class="col">
             <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" href="{% url 'register' %}">
               <img src="{% static '/icons/new-user.svg' %}" alt="Log-in" width="50" height="50">Register</h1>
-   <p>The first thing that you will need to do is register. </br>You will need to register using:</p>
+   <p>Lo primero que tendrás que hacer es registrarte.  </br>Tendrás que registrarte utilizando:</p>
    <ul>
     <li>
-      Your company Employee ID (1)
+      Tu numero de Empleado ID (1)
     </li>
     <li>
-      Your First Name (2)
+      Tu nombre (2)
     </li>
     <li>
-      Your Last Name (3)
+      Tu Apellido (3)
     </li>
     <li>
-      Your Current Position (4)
+      Tu Posicion Actual (4)
     </li>
     <li>
-      Your personal E-mail (5)
-      Is very important to receive notifications and to reset your password.
+      Tu correo electronico personal (5)
+      Es muy importante para recibir notificaciones y restablecer tu contraseña.
     </li>
     <li>
       Your Password (6)
@@ -65,33 +65,33 @@
           <div class="col">
             <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
               <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
-            <h2>New Entry</h2>
-   <p>The first section you will see here is the New Entry Section, its a form that is divided in different fields.
+            <h2>Nueva Entrada</h2>
+   <p>La primera sección que verá aquí es la de Nueva Entrada, es un formulario que se divide en diferentes campos.
     <ul>
       <li>
-        <strong>Date*:</strong> Select the date of the flight that you want to record. 
-    *Note: You can record flights of past, present, and future dates. This is useful when you want to have an idea or projection of your total of the month.
+        <strong>Fecha*:</strong> Seleccione la fecha del vuelo que desea grabar. 
+        *Nota: Puedes grabar vuelos de fechas pasadas, presentes y futuras. Esto es útil cuando quieres tener una idea o proyección de tu total del mes.
       </li>
       <li>
-        <strong>Route*:</strong> Type in the route of your flight or assignment to keep it in record (ex. ADM, MOD3, SIM…) 
-    *Note: You can write letters and numbers as you feel more comfortable(Ex. MIA227, 453, LAXPTY, PTYJFK808…)
+        <strong>Ruta*:</strong> Escriba la ruta de su vuelo o asignación para tenerla registrada (ej. ADM, MOD3, SIM...) 
+        *Nota: Puedes escribir letras y números como te sientas más cómodo(Ej. MIA227, 453, LAXPTY, PTYJFK808...)
       </li>
       <li>
-        <strong>Block Time*:</strong> Here you will type the block time as shown in ACARS (HH:MM format) 
-    *Note: You have to enter the hour and the minutes in separate fields. There is one for the hours and another one for the minutes. You can enter up to two digits on each field.
+        <strong>Tiempo de Bloque*:</strong> Aquí escribirá la hora en bloque tal y como aparece en ACARS (formato HH:MM) 
+        *Nota: Tiene que introducir la hora y los minutos en campos separados. Hay uno para las horas y otro para los minutos. Puede introducir hasta dos dígitos en cada campo.
       </li>
       <li>
-        Sunday, Holiday, Day Off and SA: This fields work all the same and have the same restrictions, here you will enter the hours and minutes depending on the condition.
+        Domingo, Feriado, Dia Libre y SA:Estos campos funcionan igual y tienen las mismas restricciones, aquí introducirá las horas y minutos dependiendo de la condición.
       </li>
       <li>
-        <strong>Remarks:</strong> This field is for any personal comment for you to keep in mind.
-    *Note: This filed is open to enter numbers, letters, symbols or anything that you need to remember for this entry (Ex. “Vuelo Removido”, “viatico training”,”Cambio en BR”…)
+        <strong>Comentario:</strong> Este campo es para cualquier comentario personal para que lo tengas en cuenta.
+        *Nota: Este campo está abierto para introducir números, letras, símbolos o cualquier cosa que necesites recordar para esta entrada (Ej. "Vuelo Removido", "viatico training", "Cambio en BR"...)
       </li>
       <li>
-        <strong>SAVE:</strong> This is the save button, press it for record your entry. If its correctly you will see a message in the top of your screen “Entry Recorded Successfully!”
+        <strong>SAVE:</strong> Este es el botón de guardar, púlselo para grabar su entrada. Si se ha grabado correctamente, aparecerá un mensaje en la parte superior de la pantalla: "Entrada grabada correctamente".
       </li>
       <li class="text-danger">
-        *Note: The date, route and block time, fields are required. If any of this fields are left in blank you will get an error message.
+        *Nota: Los campos de fecha, ruta y hora de bloqueo son obligatorios. Si alguno de estos campos se deja en blanco, aparecerá un mensaje de error.
       </li>      
      </ul>
     </p>
@@ -108,10 +108,9 @@
           <div class="col">
             <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
               <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
-            <h2>Filter</h2>
-   <p>In this section you will be able to see entry records from up to 12 months in the past as well as the total times of that month and the approximate payment earned.
-    If you want to see a calculation of a previous month, just select the month that you want to see and hit FILTER.
-  </p>
+            <h2>Filtro</h2>
+   <p>En esta sección podrá ver los registros de entrada de hasta 12 meses en el pasado, así como los tiempos totales de ese mes y el pago aproximado ganado.
+    Si quieres ver el cálculo de un mes anterior, sólo tienes que seleccionar el mes que quieres ver y pulsar FILTRO.</p>
   <p class="text-warning">Note: It will show January as a default, however this is not the month shown in the Logbook section</p>
           <img class="img-fluid" src="{% static '/images/filter1.png' %}" alt="">
         </div>
@@ -127,10 +126,12 @@
           <div class="col">
             <h1 class="btn btn-lg rounded-4 btn-primary bg-gradient" style="width: 50%;" href="{% url 'logbook_calc' %}">
               <img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50">Logbook Calc</h1>
-            <h2>Entries</h2>
-   <p>In this section you will see every entry that you made correctly on the “New Entry” section. And additionally you will see the equivalent of the time converted into decimals on each field (ex. 1.54, 2.37, 3.98…)
-    Also, each entry has a DELETE button (<img class="btn btn-danger btn-sm" src="{% static '/icons/delete-entry.svg' %}">), use it if you made a mistake on your entry, delete it and enter it again.
-    At the bottom of the “Logbook Section” we will find the “Totals Strip”. That is not more that the totals of the entries on the “Logbook Section”. It could be either the current month by default or a past month selected in the FILTER BY MONTH Section.
+            <h2>Entradas</h2>
+   <p>En esta sección verá todas las entradas que hayas realizado correctamente en la sección "Nueva entrada". Y adicionalmente verás el equivalente del tiempo convertido en decimales en cada campo (ej. 1.54, 2.37, 3.98...)
+    Además, cada entrada tiene un botón de BORRAR (<img class="btn btn-danger btn-sm" src="{% static '/icons/delete-entry.svg' %}">), úsalo si te has equivocado en tu entrada, bórrala y vuelve a introducirla.
+    En la parte inferior de la "Sección Bitácora" encontraremos la "Tira de Totales". Esto no es más que los totales de las entradas de la "Sección Cuaderno de Bitácora". Puede ser el mes actual por defecto o un mes pasado seleccionado en la Sección FILTRAR POR MES.
+
+Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
     </p>
           <img class="img-fluid" src="{% static '/images/logbook1.png' %}" alt="">
         <img class="img-fluid" src="{% static '/images/totals.png' %}" alt="">

@@ -2,8 +2,9 @@
 
 {% block content %}
 
+{% load static %}
 <div class="container text-center">
-    <h2 class="text-center">Simple Calc</h2>
+    <h2 class="display-2"><img src="{% static '/icons/simple-calc.svg' %}" alt="Log-in" width="50" height="50"> Simple Calc</h2>
 <form method="POST" action="" class="mb-3">
     {% csrf_token %}
     <div class="container text-center">
@@ -38,10 +39,9 @@
                 </div>
             </div>
         </div>
-        <button type="submit" name="cap" class="btn btn-primary col-5">Capitan</button>
-        <button type="submit" name="fo_atp" class="btn btn-primary col-5">FO con ATP</button>
-    </br>
-        <button type="submit" name="fo_natp" class="btn btn-primary col-5">FO sin ATP</button>
-        <button type="submit" name="fod_natp" class="btn btn-primary col-5">FO sin ATP (Tabla D)</button>
+        <button type="submit" name="cap" class="btn btn-primary col-5 m-1">Capitan</button>
+        <button type="submit" name="fo_atp" class="btn btn-primary col-5 m-1">FO con ATP</button>
+        <button type="submit" name="fo_natp" class="btn btn-primary col-5 m-1">FO sin ATP</button>
+        <button type="submit" name="fod_natp" class="btn btn-primary col-5 m-1">FO sin ATP (Tabla D)</button>
 </form>
 {% endblock %}
