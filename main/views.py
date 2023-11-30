@@ -378,9 +378,9 @@ def logbook_calc(request):
     total_personal_discount = disc11 + disc22 + disc33 + disc44 + disc55
     home_total = Logbook.objects.aggregate(Sum('total_decimal'))
     home_total_hours_logged = round(home_total['total_decimal__sum'],2)
-    bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
     home_total_hours_logged = Logbook.objects.aggregate(Sum('total_decimal'))
     home_total_users_registered = User.objects.aggregate(Count('cmp_id'))
+    bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
     try :
         sum_block = round(bill_hrs_block['total_decimal__sum'],2)
     except :
@@ -405,6 +405,11 @@ def logbook_calc(request):
         sum_sa = round(bill_hrs_sa['sa_decimal__sum'],2)
     except:
         sum_sa = 0
+    add_incentive1 = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('incentive'))
+    try:
+        add_incentive = round(add_incentive1['incentive__sum'],2)
+    except:
+        add_incentive = 0.00
     if sum_block <=66:
         block_extra = 0
     else : block_extra = sum_block - 66
@@ -452,10 +457,10 @@ def logbook_calc(request):
     fo_atp_rec_libre = round((float(sum_libre)*0.5)*fo_atp_rata,2)
     fo_atp_rec_sa = round((float(sum_sa)*0.5)*fo_atp_rata,2)
     fo_atp_rec_nac = round((float(sum_holiday)*1.5)*fo_atp_rata,2)
-    fod_natp_subt = round((fo_atp_base / 2) + (fod_natp_grep / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fod_natp_rec_dom + fod_natp_rec_libre + fod_natp_rec_sa + fod_natp_rec_nac,2)
-    fo_natp_subt = round((fo_atp_base / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fo_natp_rec_dom + fo_natp_rec_libre + fo_natp_rec_sa + fo_natp_rec_nac,2)
-    fo_atp_subt = round((fo_atp_base / 2) + (fo_atp_grep / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fo_atp_rec_dom + fo_atp_rec_libre + fo_atp_rec_sa + fo_atp_rec_nac,2)
-    c_subt = round((c_base / 2) + (c_g_rep / 2) + c_prima + c_viatico + c_viatico_variable + c_prima_variable + c_rec_dom + c_rec_libre + c_rec_sa + c_rec_nac,2)
+    fod_natp_subt = round((fo_atp_base / 2) + (fod_natp_grep / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fod_natp_rec_dom + fod_natp_rec_libre + fod_natp_rec_sa + fod_natp_rec_nac + float(add_incentive),2)
+    fo_natp_subt = round((fo_atp_base / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fo_natp_rec_dom + fo_natp_rec_libre + fo_natp_rec_sa + fo_natp_rec_nac + float(add_incentive),2)
+    fo_atp_subt = round((fo_atp_base / 2) + (fo_atp_grep / 2) + fo_atp_prima + fo_atp_viatico + fo_viatico_extra + fo_prima_extra + fo_atp_rec_dom + fo_atp_rec_libre + fo_atp_rec_sa + fo_atp_rec_nac + float(add_incentive),2)
+    c_subt = round((c_base / 2) + (c_g_rep / 2) + c_prima + c_viatico + c_viatico_variable + c_prima_variable + c_rec_dom + c_rec_libre + c_rec_sa + c_rec_nac + float(add_incentive),2)
     c_css = round(((c_base/2)+ (c_g_rep/2) + c_rec_dom + c_rec_libre + c_rec_sa + c_rec_nac)*css_pa,2)
     c_seduc = round(((c_base/2) + c_rec_dom + c_rec_libre + c_rec_sa)*s_educ,2)
     c_unpac = round(c_base * unpac,2)
@@ -578,7 +583,8 @@ def logbook_calc(request):
         'fod_natp_neto' : fod_natp_neto,
         'fo_natp_neto': fo_natp_neto,
         'fo_atp_neto' : fo_atp_neto,
-        'today_is' : today_is
+        'today_is' : today_is,
+        'add_incentive' : add_incentive
     }
     return render(request,'main/logbook_calc.html', context)
 

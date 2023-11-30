@@ -84,6 +84,7 @@ class Logbook(models.Model):
     total_sa_block = models.CharField(max_length=5, null=True, blank=True)
     sa_decimal = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     #REMARKS
+    incentive = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     remarks = models.CharField(max_length=250, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 

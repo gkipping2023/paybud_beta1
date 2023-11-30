@@ -6,6 +6,14 @@
 <h2 class="display-2"><img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50"> Logbook Calc</h2>
 <h2>Bienvenido, {{ user.first_name }}! </h2>
 <h3>{{ user.position }}</h3>
+<!-- <div class="container text-center">
+    <div class="form-label">Minimo Garantizado:</div>
+    <select>
+        <option>33hrs Vacaciones 15 dias</option>
+        <option>66hrs Minimo Garantizado Normal</option>
+        <option>70hrs Reserva</option>
+    </select>
+</div> -->
     <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p>
 </div>
 <div class="container-sm text-center">
@@ -82,6 +90,10 @@
                 <label class="form-label"><h3>Comentarios:</h3></label>
                 {{ logform.remarks }}
             </div>
+            <div class="mb-3">
+                <label class="form-label"><h3>Bonos, Viaticos, Primas o Incentivos Adicionales:</h3></label>
+                {{ logform.incentive }}
+            </div>
             <input type="submit" class="btn btn-primary bg-gradient container text-center my-3" name="Submit" value="Save"/>
         </div>    
     </div>
@@ -130,6 +142,7 @@
                         <th scope="col">LIBRE (Decimal)</th>
                         <th scope="col">SA</th>
                         <th scope="col">SA (Decimal)</th>
+                        <th scope="col">Incentivos Adicionales</th>
                         <th scope="col">COMENTARIOS</th>
                         <th scope="col">BORRAR</th>
                         </tr>
@@ -149,6 +162,7 @@
                         <td>{{log.libre_decimal}}</td>
                         <td>{{log.total_sa_block}}</td>
                         <td>{{log.sa_decimal}}</td>
+                        <td>{{log.incentive}}</td>
                         <td>{{log.remarks}}</td>
                         <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">
                             <img src="{% static '/icons/delete-entry.svg' %}">
@@ -252,6 +266,10 @@
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 Recargo Dia Nacional
                                                 <span class="badge bg-success rounded-pill">{{fod_natp_rec_nac}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Bonos, Viaticos, Primas o Incentivos Adicionales
+                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
                                             </li>
                                         </ul>
                                         </div>
@@ -416,6 +434,10 @@
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 Recargo Dia Nacional
                                                 <span class="badge bg-success rounded-pill">{{fo_natp_rec_nac}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Bonos, Viaticos, Primas o Incentivos Adicionales
+                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
                                             </li>
                                         </ul>
                                         </div>
@@ -582,6 +604,10 @@
                                                 Recargo Dia Nacional
                                                 <span class="badge bg-success rounded-pill">{{fo_atp_rec_nac}}</span>
                                             </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Bonos, Viaticos, Primas o Incentivos Adicionales
+                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
+                                            </li>
                                         </ul>
                                         </div>
                                     </div>
@@ -747,6 +773,10 @@
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 Recargo Dia Nacional
                                                 <span class="badge bg-success bg-gradient rounded-pill">{{c_rec_nac}}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Bonos, Viaticos, Primas o Incentivos Adicionales
+                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
                                             </li>
                                         </ul>
                                         </div>
