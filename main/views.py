@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Logbook, User
+from .models import Logbook, User, Airports
 from .forms import LogbookForm,CMNewUsersForm, UpdateUserForm
 from django.db.models import Sum,Count
 from django.core.mail import send_mail, EmailMultiAlternatives
@@ -356,15 +356,23 @@ def registeruser(request):
 @login_required(login_url='login')
 def logbook_calc(request):
     curr_month = datetime.now().month
+    curr_year = datetime.now().year
     m = request.GET.get('m') 
+    y = request.GET.get('y')
     if m == None:
         m = curr_month
     else:
         m = request.GET.get('m')
+    if y == None:
+        y = curr_year
+    else:
+        y = request.GET.get('y')
     sel_month = calendar.month_name[int(m)]
+    sel_year = y
     today_is = datetime.today()
     logform = LogbookForm()
-    logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m).order_by('date')
+    logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).order_by('date')
+    airport = Airports.objects.filter(oaci_id__startswith='K') | Airports.objects.filter(oaci_id__startswith='M') | Airports.objects.filter(oaci_id__startswith='S') | Airports.objects.filter(oaci_id__startswith='C') | Airports.objects.filter(oaci_id__startswith='T')
     disc1 = User.objects.filter(cmp_id=request.user)
     disc11 = disc1.aggregate(Sum('custom_disc_1')).get('custom_disc_1__sum',0)
     disc2 = User.objects.filter(cmp_id=request.user)
@@ -380,32 +388,32 @@ def logbook_calc(request):
     home_total_hours_logged = round(home_total['total_decimal__sum'],2)
     home_total_hours_logged = Logbook.objects.aggregate(Sum('total_decimal'))
     home_total_users_registered = User.objects.aggregate(Count('cmp_id'))
-    bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('total_decimal'))
+    bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('total_decimal'))
     try :
         sum_block = round(bill_hrs_block['total_decimal__sum'],2)
     except :
             sum_block = 66.00
-    bill_hrs_sunday = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('sun_decimal'))
+    bill_hrs_sunday = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('sun_decimal'))
     try:
         sum_sunday = round(bill_hrs_sunday['sun_decimal__sum'],2)
     except:
         sum_sunday = 0
-    bill_hrs_holiday = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('holiday_decimal'))
+    bill_hrs_holiday = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('holiday_decimal'))
     try:
         sum_holiday = round(bill_hrs_holiday['holiday_decimal__sum'],2)
     except:
         sum_holiday = 0
-    bill_hrs_libre = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('libre_decimal'))
+    bill_hrs_libre = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('libre_decimal'))
     try:
         sum_libre = round(bill_hrs_libre['libre_decimal__sum'],2)
     except:
         sum_libre = 0
-    bill_hrs_sa = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('sa_decimal'))
+    bill_hrs_sa = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('sa_decimal'))
     try:
         sum_sa = round(bill_hrs_sa['sa_decimal__sum'],2)
     except:
         sum_sa = 0
-    add_incentive1 = Logbook.objects.filter(cmp_id=request.user,date__month=m).aggregate(Sum('incentive'))
+    add_incentive1 = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('incentive'))
     try:
         add_incentive = round(add_incentive1['incentive__sum'],2)
     except:
@@ -498,6 +506,8 @@ def logbook_calc(request):
             return redirect('logbook_calc') 
         
     context = {
+        'airport' : airport,
+        'sel_year' : sel_year,
         'total_personal_discount':total_personal_discount,
         'disc11' : disc11,
         'disc22':disc22,

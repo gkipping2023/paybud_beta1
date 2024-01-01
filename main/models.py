@@ -163,3 +163,11 @@ class Logbook(models.Model):
 
     def __str__(self):
         return str(self.cmp_id)
+    
+class Airports(models.Model):
+    oaci_id = models.CharField(max_length=250)
+    iata_id = models.CharField(max_length=250)
+    airport_name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return str(self.iata_id)

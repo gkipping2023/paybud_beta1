@@ -86,11 +86,7 @@ WSGI_APPLICATION = 'paybud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.getenv('DATABASE_NAME'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
-        'USER': os.getenv('DATABSE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD')
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
