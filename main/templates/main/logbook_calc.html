@@ -708,11 +708,11 @@
                                                                   <div class="card  mb-2">
                                                             <div class="card-header p-3 pt-2">
                                                               <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
-                                                                <img src="{% static '/icons/arrow-login.svg' %}" alt="Log-in" width="50" height="50">
+                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
                                                                 {% comment %} <i class="material-icons opacity-10">weekend</i> {% endcomment %}
                                                               </div>
                                                               <div class="text-end pt-1">
-                                                                <p class="text-sm mb-0 text-capitalize">Bookings</p>
+                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
                                                                 <h4 class="mb-0">$ {{fo_atp_subt}}</h4>
                                                               </div>
                                                             </div>
@@ -720,21 +720,23 @@
                                                             <div class="card  mb-2">
                                                                 <div class="card-header p-3 pt-2">
                                                                   <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary shadow text-center border-radius-xl mt-n4 position-absolute">
-                                                                    <i class="material-icons opacity-10">leaderboard</i>
+                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
+                                                                    <!-- <i class="material-icons opacity-10">leaderboard</i> -->
                                                                   </div>
                                                                   <div class="text-end pt-1">
-                                                                    <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
                                                                     <h4 class="mb-0">$ {{fo_atp_total_descuentos}}</h4>
                                                                   </div>
                                                               </div>
                                                             </div>
                                                               <div class="card  mb-2">
-                                                        <div class="card-header p-3 pt-2 bg-transparent">
+                                                        <div class="card-header p-3 pt-2 ">
                                                           <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                                                            <i class="material-icons opacity-10">store</i>
+                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
+                                                            <!-- <i class="material-icons opacity-10">store</i> -->
                                                           </div>
                                                           <div class="text-end pt-1">
-                                                            <p class="text-sm mb-0 text-capitalize ">Revenue</p>
+                                                            <p class="text-sm mb-0 text-capitalize text-info">TOTAL</p>
                                                             <h4 class="mb-0 ">$ {{fo_atp_neto}}</h4>
                                                           </div>
                                                         </div>
