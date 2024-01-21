@@ -134,12 +134,12 @@
                 </select>
                 <label>Selecciona el Ano</label>
             </div>
-            <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Buscar"/>
+            <input href="#filtered" for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Buscar"/>
         </div>
     </div>
 </form>
      
-                
+        <section id="filtered">
             <div class="container-sm">
                 <table class="table table-responsive table-sm table-primary table-hover">
                     <h3 class="text-center">{{sel_month}} - {{sel_year}}</h3>
@@ -212,6 +212,7 @@
                         </tbody>
                         </table>
             </div>
+        </section>
 <!-- FO_SIN_ATP_TABLA_D -->
                     {% if user.position_id is 5 %}
                     <div class="container text-center">
