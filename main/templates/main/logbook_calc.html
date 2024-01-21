@@ -151,14 +151,14 @@
                         <th scope="col">RUTA</th>
                         <th scope="col">BLOQUE</th>
                         <th scope="col">BLOQUE (Decimal)</th>
+                        {% comment %} <th scope="col">DOMINGO</th> {% endcomment %}
                         <th scope="col">DOMINGO</th>
-                        <th scope="col">DOMINGO (Decimal)</th>
+                        {% comment %} <th scope="col">FERIADO</th> {% endcomment %}
                         <th scope="col">FERIADO</th>
-                        <th scope="col">FERIADO (Decimal)</th>
+                        {% comment %} <th scope="col">LIBRE</th> {% endcomment %}
                         <th scope="col">LIBRE</th>
-                        <th scope="col">LIBRE (Decimal)</th>
+                        {% comment %} <th scope="col">SA</th> {% endcomment %}
                         <th scope="col">SA</th>
-                        <th scope="col">SA (Decimal)</th>
                         <th scope="col">Incentivos Adicionales</th>
                         <th scope="col">COMENTARIOS</th>
                         <th scope="col">BORRAR</th>
@@ -171,13 +171,13 @@
                         <td>{{log.route}}</td>
                         <td>{{log.total_flight_block}}</td>
                         <td>{{log.total_decimal}}</td>
-                        <td>{{log.total_sun_block}}</td>
+                        {% comment %} <td>{{log.total_sun_block}}</td> {% endcomment %}
                         <td>{{log.sun_decimal}}</td>
-                        <td>{{log.total_holiday_block}}</td>
+                        {% comment %} <td>{{log.total_holiday_block}}</td> {% endcomment %}
                         <td>{{log.holiday_decimal}}</td>
-                        <td>{{log.total_libre_block}}</td>
+                        {% comment %} <td>{{log.total_libre_block}}</td> {% endcomment %}
                         <td>{{log.libre_decimal}}</td>
-                        <td>{{log.total_sa_block}}</td>
+                        {% comment %} <td>{{log.total_sa_block}}</td> {% endcomment %}
                         <td>{{log.sa_decimal}}</td>
                         <td>{{log.incentive}}</td>
                         <td>{{log.remarks}}</td>
