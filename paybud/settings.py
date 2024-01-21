@@ -90,6 +90,13 @@ DATABASES = {
     }
 }
 
+DATE_FORMAT = {
+    'd/M/Y'
+}
+
+SHORT_DATE_FORMAT = {
+    'd/M/Y'
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

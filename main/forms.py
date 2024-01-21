@@ -9,7 +9,7 @@ class CMNewUsersForm(UserCreationForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    position = forms.Select(attrs={'class':'dropdown-menu'})
+    position = forms.Select()
     class Meta:
         model = User
         fields = ['cmp_id','first_name','last_name','position','email','password1','password2']

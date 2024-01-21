@@ -39,22 +39,22 @@
             </div>
             <div class="row text-center"><h3>Tiempo de Bloque:</h3><div>
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col">
                     <label class="form-label">Horas de Bloque:</label>
                     {{ logform.total_hrs_input }}
                 </div>
-                <div class="col-sm">
+                <div class="col">
                     <label class="form-label">Minutos de Bloque:</label>
                     {{ logform.total_min_input }}
                 </div>
             </div>
             <div class="row text-center"><h3>Domingo:</h3></div>
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Horas de Domingo:</label>
                         {{ logform.sun_hrs_input }}
                     </div>
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Minutos de Domingo:</label>
                         {{ logform.sun_min_input }}
                     </div>
@@ -62,11 +62,11 @@
                 <div class="row text-center"><h3>Feriado:</h3></div>
                 <p>Genera dia Compensatorio</p>
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Horas de Feriado:</label>
                         {{ logform.holiday_hrs_input }}
                     </div>
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Minutos de Feriado:</label>
                         {{ logform.holiday_min_input }}
                     </div>
@@ -74,22 +74,22 @@
                 <div class="row text-center"><h3>Dia Libre (L):</h3></div>
                 <p>Genera dia Compensatorio (CMPL)</p>
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Horas en Dia Libre:</label>
                         {{ logform.libre_hrs_input }}
                     </div>
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Minutos en Dia Libre:</label>
                         {{ logform.libre_min_input }}
                     </div>
                 </div>
                 <div class="row text-center"><h3>Dia Sin Asignacion (SA):</h3></div>
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Horas de SA:</label>
                         {{ logform.sa_hrs_input }}
                     </div>
-                    <div class="col-sm">
+                    <div class="col">
                         <label class="form-label">Minutos de SA:</label>
                         {{ logform.sa_min_input }}
                     </div>
@@ -110,7 +110,8 @@
 <div class="row container-sm my-3 text-center">         
 <form method="GET" action="{% url 'logbook_calc' %}">
     <h3>Historial</h3>
-        <div class="col-sm form-floating mb-3">
+    <div class="row">
+        <div class="col form-floating mb-3">
             <select class="form-select" name="m" id="floatingSelectGrid">
                 <option value="1">Enero</option>
                 <option value="2">Febrero</option>
@@ -126,14 +127,15 @@
                 <option value="12">Diciembre</option>
             </select>
             <label>Selecciona el Mes</label>
-            </div>
-            <div class="col-sm form-floating mb-3">
+        </div>
+            <div class="col form-floating mb-3">
                 <select class="form-select" name="y" id="floatingSelectGrid">
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
                 </select>
                 <label>Selecciona el Ano</label>
             </div>
+    </div>
             <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Buscar"/>
         </div>
     </div>
