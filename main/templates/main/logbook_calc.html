@@ -703,48 +703,48 @@
                                                     <div class="container text-center">
                                                         <h2>Aproximado a Recibir:</h2></div>
                                                         <div class="container">
-                                                            {% comment %} <div class="row"> {% endcomment %}
-                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %}
-                                                                  <div class="card  mb-2">
-                                                            <div class="card-header p-3 pt-2">
-                                                              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
+                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
+                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
+                                                                  <div class="card border-success mb-2">
+                                                            <div class="card-header p-3 pt-3">
+                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
                                                                 <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
-                                                                {% comment %} <i class="material-icons opacity-10">weekend</i> {% endcomment %}
+                                                                
                                                               </div>
                                                               <div class="text-end pt-1">
                                                                 <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
-                                                                <h4 class="mb-0">$ {{fo_atp_subt}}</h4>
+                                                                <h4 class="mb-0 text-success">$ {{fo_atp_subt}}</h4>
                                                               </div>
                                                             </div>
                                                         </div>
-                                                            <div class="card  mb-2">
-                                                                <div class="card-header p-3 pt-2">
-                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary shadow text-center border-radius-xl mt-n4 position-absolute">
+                                                            <div class="card border-danger mb-3">
+                                                                <div class="card-header p-3 pt-3">
+                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
                                                                     <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
-                                                                    <!-- <i class="material-icons opacity-10">leaderboard</i> -->
+                                                                    
                                                                   </div>
                                                                   <div class="text-end pt-1">
                                                                     <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
-                                                                    <h4 class="mb-0">$ {{fo_atp_total_descuentos}}</h4>
+                                                                    <h4 class="mb-0 text-danger">$ {{fo_atp_total_descuentos}}</h4>
                                                                   </div>
                                                               </div>
                                                             </div>
-                                                              <div class="card  mb-2">
-                                                        <div class="card-header p-3 pt-2 ">
-                                                          <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                                                              <div class="card border-primary mb-4">
+                                                        <div class="card-header p-3 pt-3">
+                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
                                                             <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
-                                                            <!-- <i class="material-icons opacity-10">store</i> -->
+                                                            
                                                           </div>
                                                           <div class="text-end pt-1">
-                                                            <p class="text-sm mb-0 text-capitalize text-info">TOTAL</p>
-                                                            <h4 class="mb-0 ">$ {{fo_atp_neto}}</h4>
+                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
+                                                            <h4 class="mb-0 text-primary">$ {{fo_atp_neto}}</h4>
                                                           </div>
                                                         </div>
                                                       </div>
                                                           </div>
                                                         </div>
                                                     </div>
-                        {% comment %} OLD   
+                         <!-- OLD   
                                                         <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{fo_atp_subt}}</h4>
@@ -762,8 +762,8 @@
                                                             <h3>  = $ {{fo_atp_neto}}   </h3>
                                                         </div>    
                                                     </div>
-                                                        </div>
-        <!-- CAPITAN -->{% endcomment %}
+                                                        </div> -->
+        <!-- CAPITAN -->
                     {% elif user.position_id is 8 %}
                     <div class="container text-center">
                         <h2>CAPITAN</h2>
