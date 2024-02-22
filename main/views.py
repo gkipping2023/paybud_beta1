@@ -1,6 +1,6 @@
 from multiprocessing import context
 import re
-from datetime import datetime
+from datetime import datetime, date
 import calendar
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -357,21 +357,39 @@ def registeruser(request):
 def logbook_calc(request):
     curr_month = datetime.now().month
     curr_year = datetime.now().year
-    m = request.GET.get('m') 
-    y = request.GET.get('y')
-    if m == None:
-        m = curr_month
+    # m = curr_month
+    # y = curr_year
+    # # if m == None:
+    # #     m = curr_month
+    # # else:
+    # #     m = request.GET.get('m')
+    # # if y == None:
+    # #     y = curr_year
+    # # else:
+    # #     y = request.GET.get('y')
+    # sel_month = calendar.month_name[int(m)]
+    # sel_year = curr_year #Cheat
+    
+    # INTENTANDO FORMATEAR EN TEXTO LA FECHA LUEGO DE BUSCAR EL RANGO/
+    date_from = request.GET.get('from')
+    date_to = request.GET.get('to')
+    if date_from is not None:
+        date_from_obj = datetime.strptime(date_from, '%Y-%m-%d')
+        date_to_obj = datetime.strptime(date_to, '%Y-%m-%d')
+        date_from_text = date_from_obj.strftime('%B %d, %Y')
+        date_to_text = date_to_obj.strftime('%B %d, %Y')
     else:
-        m = request.GET.get('m')
-    if y == None:
-        y = curr_year
-    else:
-        y = request.GET.get('y')
-    sel_month = calendar.month_name[int(m)]
-    sel_year = y
+        date_from_text = date.today()
+        date_to_text = date.today()
+    # date_from_obj = datetime.strptime(date_from, '%Y-%m-%d')
+    # date_to_obj = datetime.strptime(date_to, '%Y-%m-%d')
+    # date_from_text = date_from_obj.strftime('%B %d, %Y')
+    # date_to_text = date_to_obj.strftime('%B %d, %Y')
+    curr_month_text = calendar.month_name[int(curr_month)] #'curr_month_text':curr_month_text,
     today_is = datetime.today()
     logform = LogbookForm()
-    logbook = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).order_by('date')
+    logbook = Logbook.objects.filter(cmp_id=request.user,date__month=curr_month,date__year=curr_year).order_by('date')
+    logbook_search = Logbook.objects.filter(cmp_id=request.user,date__range=[date_from,date_to])
     airport = Airports.objects.filter(oaci_id__startswith='K') | Airports.objects.filter(oaci_id__startswith='M') | Airports.objects.filter(oaci_id__startswith='S') | Airports.objects.filter(oaci_id__startswith='C') | Airports.objects.filter(oaci_id__startswith='T')
     disc1 = User.objects.filter(cmp_id=request.user)
     disc11 = disc1.aggregate(Sum('custom_disc_1')).get('custom_disc_1__sum',0)
@@ -388,32 +406,41 @@ def logbook_calc(request):
     home_total_hours_logged = round(home_total['total_decimal__sum'],2)
     home_total_hours_logged = Logbook.objects.aggregate(Sum('total_decimal'))
     home_total_users_registered = User.objects.aggregate(Count('cmp_id'))
-    bill_hrs_block = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('total_decimal'))
+    if date_from is None:
+        bill_hrs_block = logbook.aggregate(Sum('total_decimal'))
+        bill_hrs_sunday = logbook.aggregate(Sum('sun_decimal'))
+        bill_hrs_holiday = logbook.aggregate(Sum('holiday_decimal'))
+        bill_hrs_libre = logbook.aggregate(Sum('libre_decimal'))
+        bill_hrs_sa = logbook.aggregate(Sum('sa_decimal'))
+        add_incentive1 = logbook.aggregate(Sum('incentive'))
+    else:
+        bill_hrs_block = logbook_search.aggregate(Sum('total_decimal'))
+        bill_hrs_sunday = logbook_search.aggregate(Sum('sun_decimal'))
+        bill_hrs_holiday = logbook_search.aggregate(Sum('holiday_decimal'))
+        bill_hrs_libre = logbook_search.aggregate(Sum('libre_decimal'))
+        bill_hrs_sa = logbook_search.aggregate(Sum('sa_decimal'))
+        add_incentive1 = logbook_search.aggregate(Sum('incentive'))
+
     try :
         sum_block = round(bill_hrs_block['total_decimal__sum'],2)
     except :
-            sum_block = 66.00
-    bill_hrs_sunday = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('sun_decimal'))
+        sum_block = 66.00
     try:
         sum_sunday = round(bill_hrs_sunday['sun_decimal__sum'],2)
     except:
         sum_sunday = 0
-    bill_hrs_holiday = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('holiday_decimal'))
     try:
         sum_holiday = round(bill_hrs_holiday['holiday_decimal__sum'],2)
     except:
         sum_holiday = 0
-    bill_hrs_libre = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('libre_decimal'))
     try:
         sum_libre = round(bill_hrs_libre['libre_decimal__sum'],2)
     except:
         sum_libre = 0
-    bill_hrs_sa = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('sa_decimal'))
     try:
         sum_sa = round(bill_hrs_sa['sa_decimal__sum'],2)
     except:
         sum_sa = 0
-    add_incentive1 = Logbook.objects.filter(cmp_id=request.user,date__month=m,date__year=y).aggregate(Sum('incentive'))
     try:
         add_incentive = round(add_incentive1['incentive__sum'],2)
     except:
@@ -506,8 +533,13 @@ def logbook_calc(request):
             return redirect('logbook_calc') 
         
     context = {
+        'curr_month_text':curr_month_text,
+        'date_from_text':date_from_text,
+        'date_to_text':date_to_text,
+        'date_from':date_from,
+        'logbook_search':logbook_search,
         'airport' : airport,
-        'sel_year' : sel_year,
+        'curr_year' : curr_year,
         'total_personal_discount':total_personal_discount,
         'disc11' : disc11,
         'disc22':disc22,
@@ -518,7 +550,7 @@ def logbook_calc(request):
         'home_total_users_registered': home_total_users_registered,
         'c_isr' : c_isr,
         'fo_isr':fo_isr,
-        'sel_month' : sel_month,
+        'curr_month' : curr_month,
         'logform': logform,
         'logbook': logbook,
         'sum_block' : sum_block,

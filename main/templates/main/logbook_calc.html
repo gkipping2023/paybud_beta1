@@ -14,8 +14,154 @@
         <option>70hrs Reserva</option>
     </select>
 </div> -->
-    <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p>
+    <!-- <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p> -->
 </div>
+<!-- FO SIN ATP TABLA D -->
+{% if user.position_id is 5 %}
+<div class="container">
+    <div class="row">
+            <div class="col">
+                <div class="card border-success mb-2">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
+                            <h4 class="mb-0 text-success">$ {{fod_natp_subt}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-danger mb-3">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
+                            <h4 class="mb-0 text-danger">$ {{fod_natp_total_deducciones}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-primary mb-4">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
+                            <h4 class="mb-0 text-primary">$ {{fod_natp_neto}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<!-- FO SIN ATP -->
+{% elif user.position_id is 6 %}
+<div class="container">
+    <div class="row">
+            <div class="col">
+                <div class="card border-success mb-2">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
+                            <h4 class="mb-0 text-success">$ {{fo_natp_subt}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-danger mb-3">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
+                            <h4 class="mb-0 text-danger">$ {{fo_natp_total_deducciones}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-primary mb-4">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
+                            <h4 class="mb-0 text-primary">$ {{fo_natp_neto}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<!-- FO CON ATP -->
+{% elif user.position_id is 7 %}
+<div class="container">
+    <div class="row">
+            <div class="col">
+                <div class="card border-success mb-2">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
+                            <h4 class="mb-0 text-success">$ {{fo_atp_subt}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-danger mb-3">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
+                            <h4 class="mb-0 text-danger">$ {{fo_atp_total_descuentos}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-primary mb-4">
+                    <div class="card-header p-3 pt-3">
+                        <div class="text-center pt-1">
+                            <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
+                            <h4 class="mb-0 text-primary">$ {{fo_atp_neto}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<!-- CAPITAN -->
+{% elif user.position_id is 8 %}
+<div class="container">
+        <div class="row">
+                <div class="col">
+                    <div class="card border-success mb-2">
+                        <div class="card-header p-3 pt-3">
+                            <div class="text-center pt-1">
+                                <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
+                                <h4 class="mb-0 text-success">$ {{c_subt}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-danger mb-3">
+                        <div class="card-header p-3 pt-3">
+                            <div class="text-center pt-1">
+                                <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
+                                <h4 class="mb-0 text-danger">$ {{c_total_descuentos}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-primary mb-4">
+                        <div class="card-header p-3 pt-3">
+                            <div class="text-center pt-1">
+                                <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
+                                <h4 class="mb-0 text-primary">$ {{c_neto}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+</div>
+{% endif %}
+<!--  -->
 <div class="container-sm text-center">
 <form method="POST" action="" class="container border border-primary border-5 gx-5 gy-5">
     <label class="form-label"><h3>Nueva Entrada</h3></label>
@@ -28,14 +174,7 @@
             <div class="mb-3">
                 <label class="form-label">Ruta:</label>
                 {{ logform.route }}
-                <!-- DROPDOWN -->
-                <!-- <label for="ice-cream-choice">Choose an Airport:</label>
-                <input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" />
-                <datalist id="ice-cream-flavors">
-                        {% for air in airport %}
-                            <option>{{air.oaci_id}} - {{air.iata_id}} - {{air.airport_name}}</option>
-                    {% endfor %}
-                </datalist> -->
+                <!-- AIRPORTS DROPDOWN GOES HERE -->
             </div>
             <div class="row text-center"><h3>Tiempo de Bloque:</h3><div>
                 <div class="row">
@@ -110,53 +249,33 @@
 <div class="row container-sm my-3 text-center">         
 <form method="GET" action="{% url 'logbook_calc' %}">
     <h3>Historial</h3>
-    <div class="row">
+    <div class="row form-floating mb-3">
         <div class="col form-floating mb-3">
-            <select class="form-select" name="m" id="floatingSelectGrid">
-                <option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-            </select>
-            <label>Selecciona el Mes</label>
+            <input class="form-control" id="floatingFrom" type="date" name="from" placeholder="2023-01-01"/></br>
+            <label for="floatingFrom"> Desde: </label>
         </div>
-            <div class="col form-floating mb-3">
-                <select class="form-select" name="y" id="floatingSelectGrid">
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                </select>
-                <label>Selecciona el Ano</label>
-            </div>
-            <input for="floatingSelectGrid" type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Buscar"/>
+        <div class="col form-floating mb-3">
+            <input class="form-control" id="floatingTo" type="date" name="to" placeholder="2023-12-31"/>
+            <label for="floatingTo"> Hasta: </label>
         </div>
+            <input type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Buscar"/>
+</div>
     </div>
 </form>
-     
+{% if date_from is None %}
         <section id="filtered">
             <div class="container-sm">
                 <table class="table table-responsive table-sm table-primary table-hover">
-                    <h3 class="text-center">{{sel_month}} - {{sel_year}}</h3>
+                    <h3 class="text-center">{{curr_month_text}} - {{curr_year}}</h3>
                     <thead class="table-info">
                         <tr>
                         <th scope="col">FECHA</th>
                         <th scope="col">RUTA</th>
                         <th scope="col">BLOQUE</th>
                         <th scope="col">BLOQUE (Decimal)</th>
-                        {% comment %} <th scope="col">DOMINGO</th> {% endcomment %}
                         <th scope="col">DOMINGO</th>
-                        {% comment %} <th scope="col">FERIADO</th> {% endcomment %}
                         <th scope="col">FERIADO</th>
-                        {% comment %} <th scope="col">LIBRE</th> {% endcomment %}
                         <th scope="col">LIBRE</th>
-                        {% comment %} <th scope="col">SA</th> {% endcomment %}
                         <th scope="col">SA</th>
                         <th scope="col">Incentivos Adicionales</th>
                         <th scope="col">COMENTARIOS</th>
@@ -170,13 +289,9 @@
                         <td>{{log.route}}</td>
                         <td>{{log.total_flight_block}}</td>
                         <td>{{log.total_decimal}}</td>
-                        {% comment %} <td>{{log.total_sun_block}}</td> {% endcomment %}
                         <td>{{log.sun_decimal}}</td>
-                        {% comment %} <td>{{log.total_holiday_block}}</td> {% endcomment %}
                         <td>{{log.holiday_decimal}}</td>
-                        {% comment %} <td>{{log.total_libre_block}}</td> {% endcomment %}
                         <td>{{log.libre_decimal}}</td>
-                        {% comment %} <td>{{log.total_sa_block}}</td> {% endcomment %}
                         <td>{{log.sa_decimal}}</td>
                         <td>{{log.incentive}}</td>
                         <td>{{log.remarks}}</td>
@@ -214,6 +329,74 @@
                         </table>
             </div>
         </section>
+{% else %}
+<section id="filtered">
+    <div class="container-sm">
+        <table class="table table-responsive table-sm table-primary table-hover">
+            <h3 class="text-center">Entries From: {{date_from_text}} To: {{date_to_text}}</h3>
+            <thead class="table-info">
+                <tr>
+                <th scope="col">FECHA</th>
+                <th scope="col">RUTA</th>
+                <th scope="col">BLOQUE</th>
+                <th scope="col">BLOQUE (Decimal)</th>
+                <th scope="col">DOMINGO</th>
+                <th scope="col">FERIADO</th>
+                <th scope="col">LIBRE</th>
+                <th scope="col">SA</th>
+                <th scope="col">Incentivos Adicionales</th>
+                <th scope="col">COMENTARIOS</th>
+                <th scope="col">BORRAR</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">    
+                <tr class="table-primary">
+                {%for log in logbook_search %}
+                <td>{{log.date}}</td>
+                <td>{{log.route}}</td>
+                <td>{{log.total_flight_block}}</td>
+                <td>{{log.total_decimal}}</td>
+                <td>{{log.sun_decimal}}</td>
+                <td>{{log.holiday_decimal}}</td>
+                <td>{{log.libre_decimal}}</td>
+                <td>{{log.sa_decimal}}</td>
+                <td>{{log.incentive}}</td>
+                <td>{{log.remarks}}</td>
+                <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">
+                    <img src="{% static '/icons/delete-entry.svg' %}">
+                </a>
+            </td>
+                </tr>   
+                {% endfor %}
+            </tbody>
+            </table>
+            <div class="container text-center">
+            </div>
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">Horas totales</th>
+                    <th scope="col">Horas Extras</th>
+                    <th scope="col">Horas de Domingo</th>
+                    <th scope="col">Horas de Feriado</th>
+                    <th scope="col">Horas de Libre</th>
+                    <th scope="col">Horas de SA</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">    
+                    <tr>
+                    <td>{{sum_block}}</td>
+                    <td>{{block_extra}}</td>
+                    <td>{{sum_sunday}}</td>
+                    <td>{{sum_holiday}}</td>
+                    <td>{{sum_libre}}</td>
+                    <td>{{sum_sa}}</td>
+                    </tr>   
+                </tbody>
+                </table>
+    </div>
+</section>
+{% endif %}
 <!-- FO_SIN_ATP_TABLA_D -->
                     {% if user.position_id is 5 %}
                     <div class="container text-center">
@@ -365,7 +548,50 @@
                                                     </div>
                                                     <div class="container text-center">
                                                         <h2>Aproximado a Recibir:</h2></div>
-                                                        <div class="row justify-content-center">
+                                                        <div class="container">
+                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
+                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
+                                                                  <div class="card border-success mb-2">
+                                                            <div class="card-header p-3 pt-3">
+                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
+                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
+                                                                
+                                                              </div>
+                                                              <div class="text-end pt-1">
+                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
+                                                                <h4 class="mb-0 text-success">$ {{fod_natp_subt}}</h4>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="card border-danger mb-3">
+                                                                <div class="card-header p-3 pt-3">
+                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
+                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
+                                                                    
+                                                                  </div>
+                                                                  <div class="text-end pt-1">
+                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
+                                                                    <h4 class="mb-0 text-danger">$ {{fod_natp_total_deducciones}}</h4>
+                                                                  </div>
+                                                              </div>
+                                                            </div>
+                                                              <div class="card border-primary mb-4">
+                                                        <div class="card-header p-3 pt-3">
+                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
+                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
+                                                            
+                                                          </div>
+                                                          <div class="text-end pt-1">
+                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
+                                                            <h4 class="mb-0 text-primary">$ {{fod_natp_neto}}</h4>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                        <!-- OLD -->
+                                                        <!-- <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{fod_natp_subt}}</h4>
                                                             </div>
@@ -382,7 +608,7 @@
                                                             <h3>  = $ {{fod_natp_neto}}   </h3>
                                                         </div>    
                                                     </div>
-                                                        </div>
+                                                        </div> -->
     <!-- FO_SIN_ATP -->
                     {% elif user.position_id is 6 %}
                     <div class="container text-center">
@@ -533,7 +759,50 @@
                                                     </div>
                                                     <div class="container text-center">
                                                         <h2>Aproximado a Recibir:</h2></div>
-                                                        <div class="row justify-content-center">
+                                                        <div class="container">
+                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
+                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
+                                                                  <div class="card border-success mb-2">
+                                                            <div class="card-header p-3 pt-3">
+                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
+                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
+                                                                
+                                                              </div>
+                                                              <div class="text-end pt-1">
+                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
+                                                                <h4 class="mb-0 text-success">$ {{fo_natp_subt}}</h4>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="card border-danger mb-3">
+                                                                <div class="card-header p-3 pt-3">
+                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
+                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
+                                                                    
+                                                                  </div>
+                                                                  <div class="text-end pt-1">
+                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
+                                                                    <h4 class="mb-0 text-danger">$ {{fo_natp_total_deducciones}}</h4>
+                                                                  </div>
+                                                              </div>
+                                                            </div>
+                                                              <div class="card border-primary mb-4">
+                                                        <div class="card-header p-3 pt-3">
+                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
+                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
+                                                            
+                                                          </div>
+                                                          <div class="text-end pt-1">
+                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
+                                                            <h4 class="mb-0 text-primary">$ {{fo_natp_neto}}</h4>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                    <!--OLD  -->
+                                                        <!-- <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{fo_natp_subt}}</h4>
                                                             </div>
@@ -550,7 +819,7 @@
                                                             <h3>  = $ {{fo_natp_neto}}   </h3>
                                                         </div>    
                                                     </div>
-                                                        </div>
+                                                        </div> -->
     <!-- FO_CON_ATP -->
                     {% elif user.position_id is 7 %}
                     <div class="container text-center">
@@ -915,7 +1184,50 @@
                                                     </div>
                                                     <div class="container text-center">
                                                         <h2>Aproximado a Recibir:</h2></div>
-                                                        <div class="row justify-content-center">
+                                                        <div class="container">
+                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
+                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
+                                                                  <div class="card border-success mb-2">
+                                                            <div class="card-header p-3 pt-3">
+                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
+                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
+                                                                
+                                                              </div>
+                                                              <div class="text-end pt-1">
+                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
+                                                                <h4 class="mb-0 text-success">$ {{c_subt}}</h4>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="card border-danger mb-3">
+                                                                <div class="card-header p-3 pt-3">
+                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
+                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
+                                                                    
+                                                                  </div>
+                                                                  <div class="text-end pt-1">
+                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
+                                                                    <h4 class="mb-0 text-danger">$ {{c_total_descuentos}}</h4>
+                                                                  </div>
+                                                              </div>
+                                                            </div>
+                                                              <div class="card border-primary mb-4">
+                                                        <div class="card-header p-3 pt-3">
+                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
+                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
+                                                            
+                                                          </div>
+                                                          <div class="text-end pt-1">
+                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
+                                                            <h4 class="mb-0 text-primary">$ {{c_neto}}</h4>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                       <!-- OLD -->
+                                                        <!-- <div class="row justify-content-center">
                                                             <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
                                                                 <h4>$ {{c_subt}}</h4>
                                                             </div>
@@ -932,7 +1244,6 @@
                                                             <h3>  = $ {{c_neto}}   </h3>
                                                         </div>    
                                                     </div>
-                                                        </div>
+                                                        </div> -->
                     {% endif %}        
-
 {% endblock content %}
