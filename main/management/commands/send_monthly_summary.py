@@ -45,13 +45,13 @@ class Command(BaseCommand):
                 if not entries.exists():
                     continue
 
-                # Calculate totals
-                total_hours = sum(float(entry.total_decimal) for entry in entries)
-                total_sun = sum(float(entry.sun_decimal) for entry in entries)
-                total_holiday = sum(float(entry.holiday_decimal) for entry in entries)
-                total_libre = sum(float(entry.libre_decimal) for entry in entries)
-                total_sa = sum(float(entry.sa_decimal) for entry in entries)
-                total_incentive = sum(float(entry.incentive) for entry in entries)
+                # Calculate totals (handle None values)
+                total_hours = sum(float(entry.total_decimal or 0) for entry in entries)
+                total_sun = sum(float(entry.sun_decimal or 0) for entry in entries)
+                total_holiday = sum(float(entry.holiday_decimal or 0) for entry in entries)
+                total_libre = sum(float(entry.libre_decimal or 0) for entry in entries)
+                total_sa = sum(float(entry.sa_decimal or 0) for entry in entries)
+                total_incentive = sum(float(entry.incentive or 0) for entry in entries)
 
                 # Prepare context for email template
                 context = {
