@@ -5,4 +5,3 @@ python-decouple==3.8
 python-dotenv==1.2.2
 sqlparse==0.5
 tzdata==2022.7
-

@@ -10,7 +10,6 @@ class PilotRank(models.Model):
 
 class User(AbstractUser):
     cmp_id = models.CharField(unique=True, max_length=20, null=True)
-    username = models.CharField(max_length=20)
     email = models.EmailField(null=True)
     position = models.ForeignKey(PilotRank,on_delete=models.CASCADE,max_length=20,null=True)
     custom_disc_1 = models.DecimalField(max_digits=7, decimal_places=2, default=0)
