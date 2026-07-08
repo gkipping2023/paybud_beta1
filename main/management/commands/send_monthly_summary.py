@@ -87,8 +87,8 @@ class Command(BaseCommand):
                     subject=subject,
                     message=text_message,
                     from_email='noreply@paybud.com',
-                    #recipient_list=[user.email],
-                    recipient_list=['george.kipping@hotmail.com','gkipping01@gmail.com'],  # For testing purposes
+                    recipient_list=[user.email],
+                    #recipient_list=['george.kipping@hotmail.com','gkipping01@gmail.com'],  # For testing purposes
                     html_message=html_message,
                     fail_silently=False,
                 )
