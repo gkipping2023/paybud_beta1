@@ -177,19 +177,19 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 # Email Configuration - Use Mailgun in production, SMTP for local dev
-# if os.getenv('ENVIRONMENT') == 'production':
-#     EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-#     ANYMAIL = {
-#         'MAILGUN_API_KEY': os.getenv('MAILGUN_API_KEY'),
-#         'MAILGUN_SENDER_DOMAIN': os.getenv('MAILGUN_SENDER_DOMAIN'),  # e.g., mg.paybud.com
-#     }
-# else:
+if os.getenv('ENVIRONMENT') == 'production':
+    EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+    ANYMAIL = {
+        'MAILGUN_API_KEY': os.getenv('MAILGUN_API_KEY'),
+        'MAILGUN_SENDER_DOMAIN': os.getenv('MAILGUN_SENDER_DOMAIN'),  # e.g., mg.paybud.com
+    }
+else:
     # Local development with SMTP
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtpout.secureserver.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtpout.secureserver.net'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@paybud.com')
