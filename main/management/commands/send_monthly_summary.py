@@ -12,11 +12,19 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     help = 'Send monthly logbook summaries to users on the 5th of each month'
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--force',
+            action='store_true',
+            help='Force sending summaries regardless of the date',
+        )
+
     def handle(self, *args, **options):
         today = timezone.now().date()
+        force = options.get('force', False)
         
-        # Only run on the 5th of the month
-        if today.day != 5:
+        # Only run on the 5th of the month (unless --force is used)
+        if not force and today.day != 5:
             self.stdout.write(
                 self.style.WARNING(f'Today is the {today.day}th. This command runs on the 5th of each month.')
             )
@@ -79,7 +87,8 @@ class Command(BaseCommand):
                     subject=subject,
                     message=text_message,
                     from_email='noreply@paybud.com',
-                    recipient_list=[user.email],
+                    #recipient_list=[user.email],
+                    recipient_list=['george.kipping@hotmail.com','gkipping01@gmail.com'],  # For testing purposes
                     html_message=html_message,
                     fail_silently=False,
                 )
