@@ -1,0 +1,28 @@
+{{ user.first_name }}, Your Monthly Summary for {{ month }}
+
+Hello {{ user.first_name }},
+
+Here's a summary of your flight logbook entries for {{ month }}.
+
+MONTHLY TOTALS
+===============
+{{ entry_count }} entries recorded
+
+Total Flight Hours: {{ totals.hours }} hrs
+Sun Hours: {{ totals.sun }} hrs
+Holiday Hours: {{ totals.holiday }} hrs
+Libre Hours: {{ totals.libre }} hrs
+SA Hours: {{ totals.sa }} hrs
+Incentive: ${{ totals.incentive }}
+
+RECENT ENTRIES
+===============
+{% for entry in entries %}
+{{ entry.date|date:"M d, Y" }} | {{ entry.route }} | {{ entry.total_decimal }} hrs | ${{ entry.incentive }}
+{% endfor %}
+
+Log in to your PayBud account to see more detailed information about your flights.
+
+---
+© 2024 PayBud. All rights reserved.
+This is an automated email. Please do not reply directly to this message.

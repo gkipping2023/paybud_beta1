@@ -5,3 +5,5 @@ python-decouple==3.8
 python-dotenv==1.2.2
 sqlparse==0.5
 tzdata==2022.7
+django-anymail==10.2
+requests==2.32.3
