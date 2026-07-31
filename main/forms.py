@@ -3,6 +3,7 @@ from .models import Logbook, User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from datetime import date
+from decimal import Decimal
 
 class CMNewUsersForm(UserCreationForm):
     cmp_id = forms.IntegerField(label='Employee ID',widget=forms.NumberInput(attrs={'class': 'form-control'}))
@@ -55,8 +56,14 @@ class LogbookForm(ModelForm):
     libre_min_input = forms.CharField(empty_value=str(0),required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Minutes'}))
     sa_hrs_input = forms.CharField(empty_value=str(0),required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Hours'}))
     sa_min_input = forms.CharField(empty_value=str(0),required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Minutes'}))
-    incentive = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control text-success','placeholder': '0.00'}))
+    incentive = forms.DecimalField(required=False,initial=Decimal('0.00'),widget=forms.NumberInput(attrs={'class':'form-control text-success','placeholder': '0.00'}))
     remarks = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Remarks'}))
+
+    def clean_incentive(self):
+        incentive = self.cleaned_data.get('incentive')
+        if incentive is None:
+            return Decimal('0.00')
+        return incentive
 
     class Meta:
         model = Logbook

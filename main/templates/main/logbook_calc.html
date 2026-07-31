@@ -2,275 +2,239 @@
 {% load static %}
 
 {% block content %}
-<div class="container text-center">
-<h2 class="display-2"><img src="{% static '/icons/cash-coin.svg' %}" alt="Log-in" width="50" height="50"> Logbook Calc</h2>
-<h2>Bienvenido, {{ user.first_name }}! </h2>
-<h3>{{ user.position }}</h3>
-<!-- <div class="container text-center">
-    <div class="form-label">Minimo Garantizado:</div>
-    <select>
-        <option>33hrs Vacaciones 15 dias</option>
-        <option>66hrs Minimo Garantizado Normal</option>
-        <option>70hrs Reserva</option>
-    </select>
-</div> -->
-    <!-- <p>En esta pagina podras ver tus horas voladas en el mes en curso junto con un calculo aproximado de tu pago y descuentos.</p> -->
+<div class="fp-page">
+<div class="page-hero">
+    <h1><img class="page-hero-icon" src="{% static '/icons/cash-coin.svg' %}" alt="Logbook"> Logbook Calc</h1>
+    <p>Bienvenido, {{ user.first_name }}!</p>
+    <span class="position-tag">{{ user.position }}</span>
 </div>
 <!-- FO SIN ATP TABLA D -->
 {% if user.position_id is 5 %}
-<div class="container">
-    <div class="row">
-            <div class="col">
-                <div class="card border-success mb-2">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
-                            <h4 class="mb-0 text-success">$ {{fod_natp_subt}}</h4>
-                            <h5 class="mb-0 text-success text-center">Horas: {{sum_block}}</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-danger mb-3">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
-                            <h4 class="mb-0 text-danger">$ {{fod_natp_total_deducciones}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-primary mb-4">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
-                            <h4 class="mb-0 text-primary">$ {{fod_natp_neto}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="summary-grid">
+    <div class="stat-card stat-card--income">
+        <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Ingresos"></div>
+        <div>
+            <p class="stat-label">Ingresos</p>
+            <h4 class="stat-value">$ {{fod_natp_subt}}</h4>
+            <p class="stat-sub">Horas: {{sum_block}}</p>
+        </div>
+    </div>
+    <div class="stat-card stat-card--deduction">
+        <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="Descuentos"></div>
+        <div>
+            <p class="stat-label">Descuentos</p>
+            <h4 class="stat-value">$ {{fod_natp_total_deducciones}}</h4>
+        </div>
+    </div>
+    <div class="stat-card stat-card--net">
+        <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="Total"></div>
+        <div>
+            <p class="stat-label">Total Aproximado</p>
+            <h4 class="stat-value">$ {{fod_natp_neto}}</h4>
+        </div>
     </div>
 </div>
 <!-- FO SIN ATP -->
 {% elif user.position_id is 6 %}
-<div class="container">
-    <div class="row">
-            <div class="col">
-                <div class="card border-success mb-2">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
-                            <h4 class="mb-0 text-success">$ {{fo_natp_subt}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-danger mb-3">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
-                            <h4 class="mb-0 text-danger">$ {{fo_natp_total_deducciones}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-primary mb-4">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
-                            <h4 class="mb-0 text-primary">$ {{fo_natp_neto}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="summary-grid">
+    <div class="stat-card stat-card--income">
+        <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Ingresos"></div>
+        <div>
+            <p class="stat-label">Ingresos</p>
+            <h4 class="stat-value">$ {{fo_natp_subt}}</h4>
+        </div>
+    </div>
+    <div class="stat-card stat-card--deduction">
+        <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="Descuentos"></div>
+        <div>
+            <p class="stat-label">Descuentos</p>
+            <h4 class="stat-value">$ {{fo_natp_total_deducciones}}</h4>
+        </div>
+    </div>
+    <div class="stat-card stat-card--net">
+        <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="Total"></div>
+        <div>
+            <p class="stat-label">Total Aproximado</p>
+            <h4 class="stat-value">$ {{fo_natp_neto}}</h4>
+        </div>
     </div>
 </div>
 <!-- FO CON ATP -->
 {% elif user.position_id is 7 %}
-<div class="container">
-    <div class="row">
-            <div class="col">
-                <div class="card border-success mb-2">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
-                            <h4 class="mb-0 text-success">$ {{fo_atp_subt}}</h4>
-                            <h6 class="mb-0 text-success text-center">Horas: {{sum_block}}</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-danger mb-3">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
-                            <h4 class="mb-0 text-danger">$ {{fo_atp_total_descuentos}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-primary mb-4">
-                    <div class="card-header p-3 pt-3">
-                        <div class="text-center pt-1">
-                            <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
-                            <h4 class="mb-0 text-primary">$ {{fo_atp_neto}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="summary-grid">
+    <div class="stat-card stat-card--income">
+        <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Ingresos"></div>
+        <div>
+            <p class="stat-label">Ingresos</p>
+            <h4 class="stat-value">$ {{fo_atp_subt}}</h4>
+            <p class="stat-sub">Horas: {{sum_block}}</p>
+        </div>
+    </div>
+    <div class="stat-card stat-card--deduction">
+        <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="Descuentos"></div>
+        <div>
+            <p class="stat-label">Descuentos</p>
+            <h4 class="stat-value">$ {{fo_atp_total_descuentos}}</h4>
+        </div>
+    </div>
+    <div class="stat-card stat-card--net">
+        <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="Total"></div>
+        <div>
+            <p class="stat-label">Total Aproximado</p>
+            <h4 class="stat-value">$ {{fo_atp_neto}}</h4>
+        </div>
     </div>
 </div>
 <!-- CAPITAN -->
 {% elif user.position_id is 8 %}
-<div class="container">
-        <div class="row">
-                <div class="col">
-                    <div class="card border-success mb-2">
-                        <div class="card-header p-3 pt-3">
-                            <div class="text-center pt-1">
-                                <p class="text-sm mb-0 text-capitalize text-success">Ingresos</p>
-                                <h4 class="mb-0 text-success">$ {{c_subt}}</h4>
-                                <h6 class="mb-0 text-success text-center">Horas: {{sum_block}}</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-danger mb-3">
-                        <div class="card-header p-3 pt-3">
-                            <div class="text-center pt-1">
-                                <p class="text-sm mb-0 text-capitalize text-danger">Descuentos</p>
-                                <h4 class="mb-0 text-danger">$ {{c_total_descuentos}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-primary mb-4">
-                        <div class="card-header p-3 pt-3">
-                            <div class="text-center pt-1">
-                                <p class="text-sm mb-0 text-capitalize text-primary">Total Aproximado</p>
-                                <h4 class="mb-0 text-primary">$ {{c_neto}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="summary-grid">
+    <div class="stat-card stat-card--income">
+        <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Ingresos"></div>
+        <div>
+            <p class="stat-label">Ingresos</p>
+            <h4 class="stat-value">$ {{c_subt}}</h4>
+            <p class="stat-sub">Horas: {{sum_block}}</p>
         </div>
+    </div>
+    <div class="stat-card stat-card--deduction">
+        <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="Descuentos"></div>
+        <div>
+            <p class="stat-label">Descuentos</p>
+            <h4 class="stat-value">$ {{c_total_descuentos}}</h4>
+        </div>
+    </div>
+    <div class="stat-card stat-card--net">
+        <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="Total"></div>
+        <div>
+            <p class="stat-label">Total Aproximado</p>
+            <h4 class="stat-value">$ {{c_neto}}</h4>
+        </div>
+    </div>
 </div>
 {% endif %}
-<!--  -->
-<div class="container-sm text-center">
-<form method="POST" action="" class="container border border-primary border-5 gx-5 gy-5">
-    <label class="form-label"><h3>Nueva Entrada</h3></label>
+
+<div class="fp-card">
+<form method="POST" action="">
+    <div class="fp-card-header"><h3>Nueva Entrada</h3></div>
     {% csrf_token %}
-        <div class="col bg-white bg-opacity-75">
-            <div class="mb-3">
-                <label class="form-label">Fecha:</label>
-                {{ logform.date }}
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Ruta:</label>
-                {{ logform.route }}
-                <!-- AIRPORTS DROPDOWN GOES HERE -->
-            </div>
-            <div class="row text-center"><h3>Tiempo de Bloque:</h3><div>
-                <div class="row">
-                    <div class="col">
-                    <label class="form-label">Horas de Bloque:</label>
+    <div class="form-grid">
+        <div class="form-field">
+            <label class="form-label">Fecha:</label>
+            {{ logform.date }}
+        </div>
+        <div class="form-field">
+            <label class="form-label">Ruta:</label>
+            {{ logform.route }}
+            <!-- AIRPORTS DROPDOWN GOES HERE -->
+        </div>
+    </div>
+    <div class="time-grid">
+        <div class="time-section">
+            <h4>Tiempo de Bloque</h4>
+            <div class="time-inputs">
+                <div class="form-field">
+                    <label class="form-label">Horas</label>
                     {{ logform.total_hrs_input }}
                 </div>
-                <div class="col">
-                    <label class="form-label">Minutos de Bloque:</label>
+                <div class="form-field">
+                    <label class="form-label">Minutos</label>
                     {{ logform.total_min_input }}
                 </div>
             </div>
-            <div class="row text-center"><h3>Domingo:</h3></div>
-                <div class="row">
-                    <div class="col">
-                        <label class="form-label">Horas de Domingo:</label>
-                        {{ logform.sun_hrs_input }}
-                    </div>
-                    <div class="col">
-                        <label class="form-label">Minutos de Domingo:</label>
-                        {{ logform.sun_min_input }}
-                    </div>
+        </div>
+        <div class="time-section">
+            <h4>Domingo</h4>
+            <div class="time-inputs">
+                <div class="form-field">
+                    <label class="form-label">Horas</label>
+                    {{ logform.sun_hrs_input }}
                 </div>
-                <div class="row text-center"><h3>Feriado:</h3></div>
-                <p>Genera dia Compensatorio</p>
-                <div class="row">
-                    <div class="col">
-                        <label class="form-label">Horas de Feriado:</label>
-                        {{ logform.holiday_hrs_input }}
-                    </div>
-                    <div class="col">
-                        <label class="form-label">Minutos de Feriado:</label>
-                        {{ logform.holiday_min_input }}
-                    </div>
+                <div class="form-field">
+                    <label class="form-label">Minutos</label>
+                    {{ logform.sun_min_input }}
                 </div>
-                <div class="row text-center"><h3>Dia Libre (L):</h3></div>
-                <p>Genera dia Compensatorio (CMPL)</p>
-                <div class="row">
-                    <div class="col">
-                        <label class="form-label">Horas en Dia Libre:</label>
-                        {{ logform.libre_hrs_input }}
-                    </div>
-                    <div class="col">
-                        <label class="form-label">Minutos en Dia Libre:</label>
-                        {{ logform.libre_min_input }}
-                    </div>
-                </div>
-                <div class="row text-center"><h3>Dia Sin Asignacion (SA):</h3></div>
-                <div class="row">
-                    <div class="col">
-                        <label class="form-label">Horas de SA:</label>
-                        {{ logform.sa_hrs_input }}
-                    </div>
-                    <div class="col">
-                        <label class="form-label">Minutos de SA:</label>
-                        {{ logform.sa_min_input }}
-                    </div>
-                </div>                                                                  
-            <div class="mb-3">
-                <label class="form-label"><h3>Comentarios:</h3></label>
-                {{ logform.remarks }}
             </div>
-            <div class="mb-3">
-                <label class="form-label"><h3>Bonos, Viaticos, Primas o Incentivos Adicionales:</h3></label>
-                {{ logform.incentive }}
+        </div>
+        <div class="time-section">
+            <h4>Feriado</h4>
+            <p class="time-note">Genera dia Compensatorio</p>
+            <div class="time-inputs">
+                <div class="form-field">
+                    <label class="form-label">Horas</label>
+                    {{ logform.holiday_hrs_input }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Minutos</label>
+                    {{ logform.holiday_min_input }}
+                </div>
             </div>
-            <input type="submit" class="btn btn-primary bg-gradient container text-center my-3" name="Submit" value="Save"/>
-        </div>    
+        </div>
+        <div class="time-section">
+            <h4>Dia Libre (L)</h4>
+            <p class="time-note">Genera dia Compensatorio (CMPL)</p>
+            <div class="time-inputs">
+                <div class="form-field">
+                    <label class="form-label">Horas</label>
+                    {{ logform.libre_hrs_input }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Minutos</label>
+                    {{ logform.libre_min_input }}
+                </div>
+            </div>
+        </div>
+        <div class="time-section">
+            <h4>Dia Sin Asignacion (SA)</h4>
+            <div class="time-inputs">
+                <div class="form-field">
+                    <label class="form-label">Horas</label>
+                    {{ logform.sa_hrs_input }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Minutos</label>
+                    {{ logform.sa_min_input }}
+                </div>
+            </div>
+        </div>
     </div>
-</div>               
+    <div class="form-grid">
+        <div class="form-field">
+            <label class="form-label">Comentarios:</label>
+            {{ logform.remarks }}
+        </div>
+        <div class="form-field">
+            <label class="form-label">Bonos, Viaticos, Primas o Incentivos Adicionales:</label>
+            {{ logform.incentive }}
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <input type="submit" class="btn-brand" name="Submit" value="Save"/>
+    </div>
 </form>
-<div class="row container-sm my-3 text-center">         
-<form method="GET" action="{% url 'logbook_calc' %}">
-    <h3>Historial</h3>
-    <div class="row form-floating mb-3">
-        <div class="col form-floating mb-3">
-            <input class="form-control" id="floatingFrom" type="date" name="from" placeholder="2023-01-01"/></br>
-            <label for="floatingFrom"> Desde: </label>
-        </div>
-        <div class="col form-floating mb-3">
-            <input class="form-control" id="floatingTo" type="date" name="to" placeholder="2023-12-31"/>
-            <label for="floatingTo"> Hasta: </label>
-        </div>
-            <input type="submit" class="btn btn-primary bg-gradient container my-3 text-center" value="Buscar"/>
 </div>
+
+<div class="fp-card">
+<form method="GET" action="{% url 'logbook_calc' %}">
+    <div class="fp-card-header"><h3>Historial</h3></div>
+    <div class="filter-bar">
+        <div class="form-field">
+            <label for="floatingFrom" class="form-label">Desde</label>
+            <input class="form-control" id="floatingFrom" type="date" name="from" placeholder="2023-01-01"/>
+        </div>
+        <div class="form-field">
+            <label for="floatingTo" class="form-label">Hasta</label>
+            <input class="form-control" id="floatingTo" type="date" name="to" placeholder="2023-12-31"/>
+        </div>
+        <div class="form-field">
+            <input type="submit" class="btn-brand" value="Buscar"/>
+        </div>
     </div>
 </form>
 {% if date_from is None %}
-        <section id="filtered">
-            <div class="container-sm">
-                <table class="table table-responsive table-sm table-primary table-hover">
-                    <h3 class="text-center">{{curr_month_text}} - {{curr_year}}</h3>
-                    <thead class="table-info">
+        <h3 class="section-title">{{curr_month_text}} - {{curr_year}}</h3>
+        <div class="responsive-table-wrap">
+                <table class="fp-table">
+                    <thead>
                         <tr>
                         <th scope="col">FECHA</th>
                         <th scope="col">RUTA</th>
@@ -282,62 +246,63 @@
                         <th scope="col">SA</th>
                         <th scope="col">Incentivos Adicionales</th>
                         <th scope="col">COMENTARIOS</th>
-                        <th scope="col">BORRAR</th>
+                        <th scope="col">ACCIONES</th>
                         </tr>
                     </thead>
-                    <tbody class="table-group-divider">    
-                        <tr class="table-primary">
+                    <tbody>
                         {%for log in logbook %}
-                        <td>{{log.date}}</td>
-                        <td>{{log.route}}</td>
-                        <td>{{log.total_flight_block}}</td>
-                        <td>{{log.total_decimal}}</td>
-                        <td>{{log.sun_decimal}}</td>
-                        <td>{{log.holiday_decimal}}</td>
-                        <td>{{log.libre_decimal}}</td>
-                        <td>{{log.sa_decimal}}</td>
-                        <td>{{log.incentive}}</td>
-                        <td>{{log.remarks}}</td>
-                        <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">
-                            <img src="{% static '/icons/delete-entry.svg' %}">
-                        </a>
-                    </td>
-                        </tr>   
+                        <tr>
+                        <td data-label="Fecha">{{log.date}}</td>
+                        <td data-label="Ruta">{{log.route}}</td>
+                        <td data-label="Bloque">{{log.total_flight_block}}</td>
+                        <td data-label="Bloque (Decimal)">{{log.total_decimal}}</td>
+                        <td data-label="Domingo">{{log.sun_decimal}}</td>
+                        <td data-label="Feriado">{{log.holiday_decimal}}</td>
+                        <td data-label="Libre">{{log.libre_decimal}}</td>
+                        <td data-label="SA">{{log.sa_decimal}}</td>
+                        <td data-label="Incentivos">{{log.incentive}}</td>
+                        <td data-label="Comentarios">{{log.remarks}}</td>
+                        <td data-label="Acciones" class="row-actions">
+                            <button type="button" class="btn-edit-entry" title="Editar"
+                                data-id="{{log.id}}"
+                                data-date="{{log.date|date:'Y-m-d'}}"
+                                data-route="{{log.route}}"
+                                data-total-hrs="{{log.total_hrs_input}}"
+                                data-total-min="{{log.total_min_input}}"
+                                data-sun-hrs="{{log.sun_hrs_input}}"
+                                data-sun-min="{{log.sun_min_input}}"
+                                data-holiday-hrs="{{log.holiday_hrs_input}}"
+                                data-holiday-min="{{log.holiday_min_input}}"
+                                data-libre-hrs="{{log.libre_hrs_input}}"
+                                data-libre-min="{{log.libre_min_input}}"
+                                data-sa-hrs="{{log.sa_hrs_input}}"
+                                data-sa-min="{{log.sa_min_input}}"
+                                data-incentive="{{log.incentive}}"
+                                data-remarks="{{log.remarks}}">
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>
+                            </button>
+                            <a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm" title="Borrar">
+                                <img src="{% static '/icons/delete-entry.svg' %}">
+                            </a>
+                        </td>
+                        </tr>
                         {% endfor %}
                     </tbody>
                     </table>
-                    <div class="container text-center">
+        </div>
+                    <div class="totals-strip">
+                        <div class="total-chip"><div class="label">Horas totales</div><div class="value">{{sum_block}}</div></div>
+                        <div class="total-chip"><div class="label">Horas Extras</div><div class="value">{{block_extra}}</div></div>
+                        <div class="total-chip"><div class="label">Horas Domingo</div><div class="value">{{sum_sunday}}</div></div>
+                        <div class="total-chip"><div class="label">Horas Feriado</div><div class="value">{{sum_holiday}}</div></div>
+                        <div class="total-chip"><div class="label">Horas Libre</div><div class="value">{{sum_libre}}</div></div>
+                        <div class="total-chip"><div class="label">Horas SA</div><div class="value">{{sum_sa}}</div></div>
                     </div>
-                    <table class="table table-sm table-striped">
-                        <thead>
-                            <tr>
-                            <th scope="col">Horas totales</th>
-                            <th scope="col">Horas Extras</th>
-                            <th scope="col">Horas de Domingo</th>
-                            <th scope="col">Horas de Feriado</th>
-                            <th scope="col">Horas de Libre</th>
-                            <th scope="col">Horas de SA</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">    
-                            <tr>
-                            <td>{{sum_block}}</td>
-                            <td>{{block_extra}}</td>
-                            <td>{{sum_sunday}}</td>
-                            <td>{{sum_holiday}}</td>
-                            <td>{{sum_libre}}</td>
-                            <td>{{sum_sa}}</td>
-                            </tr>   
-                        </tbody>
-                        </table>
-            </div>
-        </section>
 {% else %}
-<section id="filtered">
-    <div class="container-sm">
-        <table class="table table-responsive table-sm table-primary table-hover">
-            <h3 class="text-center">Entries From: {{date_from_text}} To: {{date_to_text}}</h3>
-            <thead class="table-info">
+        <h3 class="section-title">Entries From: {{date_from_text}} To: {{date_to_text}}</h3>
+        <div class="responsive-table-wrap">
+                <table class="fp-table">
+            <thead>
                 <tr>
                 <th scope="col">FECHA</th>
                 <th scope="col">RUTA</th>
@@ -349,904 +314,483 @@
                 <th scope="col">SA</th>
                 <th scope="col">Incentivos Adicionales</th>
                 <th scope="col">COMENTARIOS</th>
-                <th scope="col">BORRAR</th>
+                <th scope="col">ACCIONES</th>
                 </tr>
             </thead>
-            <tbody class="table-group-divider">    
-                <tr class="table-primary">
+            <tbody>
                 {%for log in logbook_search %}
-                <td>{{log.date}}</td>
-                <td>{{log.route}}</td>
-                <td>{{log.total_flight_block}}</td>
-                <td>{{log.total_decimal}}</td>
-                <td>{{log.sun_decimal}}</td>
-                <td>{{log.holiday_decimal}}</td>
-                <td>{{log.libre_decimal}}</td>
-                <td>{{log.sa_decimal}}</td>
-                <td>{{log.incentive}}</td>
-                <td>{{log.remarks}}</td>
-                <td><a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm">
-                    <img src="{% static '/icons/delete-entry.svg' %}">
-                </a>
-            </td>
-                </tr>   
+                <tr>
+                <td data-label="Fecha">{{log.date}}</td>
+                <td data-label="Ruta">{{log.route}}</td>
+                <td data-label="Bloque">{{log.total_flight_block}}</td>
+                <td data-label="Bloque (Decimal)">{{log.total_decimal}}</td>
+                <td data-label="Domingo">{{log.sun_decimal}}</td>
+                <td data-label="Feriado">{{log.holiday_decimal}}</td>
+                <td data-label="Libre">{{log.libre_decimal}}</td>
+                <td data-label="SA">{{log.sa_decimal}}</td>
+                <td data-label="Incentivos">{{log.incentive}}</td>
+                <td data-label="Comentarios">{{log.remarks}}</td>
+                <td data-label="Acciones" class="row-actions">
+                    <button type="button" class="btn-edit-entry" title="Editar"
+                        data-id="{{log.id}}"
+                        data-date="{{log.date|date:'Y-m-d'}}"
+                        data-route="{{log.route}}"
+                        data-total-hrs="{{log.total_hrs_input}}"
+                        data-total-min="{{log.total_min_input}}"
+                        data-sun-hrs="{{log.sun_hrs_input}}"
+                        data-sun-min="{{log.sun_min_input}}"
+                        data-holiday-hrs="{{log.holiday_hrs_input}}"
+                        data-holiday-min="{{log.holiday_min_input}}"
+                        data-libre-hrs="{{log.libre_hrs_input}}"
+                        data-libre-min="{{log.libre_min_input}}"
+                        data-sa-hrs="{{log.sa_hrs_input}}"
+                        data-sa-min="{{log.sa_min_input}}"
+                        data-incentive="{{log.incentive}}"
+                        data-remarks="{{log.remarks}}">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>
+                    </button>
+                    <a href="{% url 'delete_entry' log.id %}" name="delete_entry" class="btn btn-danger btn-sm" title="Borrar">
+                        <img src="{% static '/icons/delete-entry.svg' %}">
+                    </a>
+                </td>
+                </tr>
                 {% endfor %}
             </tbody>
             </table>
-            <div class="container text-center">
+        </div>
+            <div class="totals-strip">
+                <div class="total-chip"><div class="label">Horas totales</div><div class="value">{{sum_block}}</div></div>
+                <div class="total-chip"><div class="label">Horas Extras</div><div class="value">{{block_extra}}</div></div>
+                <div class="total-chip"><div class="label">Horas Domingo</div><div class="value">{{sum_sunday}}</div></div>
+                <div class="total-chip"><div class="label">Horas Feriado</div><div class="value">{{sum_holiday}}</div></div>
+                <div class="total-chip"><div class="label">Horas Libre</div><div class="value">{{sum_libre}}</div></div>
+                <div class="total-chip"><div class="label">Horas SA</div><div class="value">{{sum_sa}}</div></div>
             </div>
-            <table class="table table-sm table-striped">
-                <thead>
-                    <tr>
-                    <th scope="col">Horas totales</th>
-                    <th scope="col">Horas Extras</th>
-                    <th scope="col">Horas de Domingo</th>
-                    <th scope="col">Horas de Feriado</th>
-                    <th scope="col">Horas de Libre</th>
-                    <th scope="col">Horas de SA</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">    
-                    <tr>
-                    <td>{{sum_block}}</td>
-                    <td>{{block_extra}}</td>
-                    <td>{{sum_sunday}}</td>
-                    <td>{{sum_holiday}}</td>
-                    <td>{{sum_libre}}</td>
-                    <td>{{sum_sa}}</td>
-                    </tr>   
-                </tbody>
-                </table>
-    </div>
-</section>
 {% endif %}
+</div>
 <!-- FO_SIN_ATP_TABLA_D -->
                     {% if user.position_id is 5 %}
-                    <div class="container text-center">
-                        <h2>FO sin ATP (Tabla D)</h2>
-                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
-                        <div class="col">
-                            <div class="box text-center">
-                                <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
-                                    <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Salario Base
-                                        <span>{{fo_atp_base}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Gasto de Representacion
-                                        <span>{{fod_natp_grep}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Prima Fija
-                                        <span>{{fo_atp_prima}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Viatico Garantizado
-                                        <span>{{fo_atp_viatico}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Viatico Variable
-                                        <span>{{fo_atp_viatico_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Prima Variable
-                                        <span>{{fo_atp_prima_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Rata por Hora
-                                        <span>{{fod_natp_rata}}</span>
-                                    </li>
-                                    </ul>
-                                </div>
+                    <h2 class="section-title">FO sin ATP (Tabla D)</h2>
+                    <div class="breakdown-grid">
+                        <div class="detail-card detail-card--income">
+                            <div class="detail-card-header">Salarios y Primas fijas</div>
+                            <ul class="detail-list">
+                                    <li>Salario Base <span>{{fo_atp_base}}</span></li>
+                                    <li>Gasto de Representacion <span>{{fod_natp_grep}}</span></li>
+                                    <li>Prima Fija <span>{{fo_atp_prima}}</span></li>
+                                    <li>Viatico Garantizado <span>{{fo_atp_viatico}}</span></li>
+                                    <li>Viatico Variable <span>{{fo_atp_viatico_extra}}</span></li>
+                                    <li>Prima Variable <span>{{fo_atp_prima_extra}}</span></li>
+                                    <li>Rata por Hora <span>{{fod_natp_rata}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="detail-card detail-card--credits">
+                            <div class="detail-card-header">Compensaciones y Recargos</div>
+                            <ul class="detail-list">
+                                            <li>Viatico Variable <span class="chip chip--income">{{fo_viatico_extra}}</span></li>
+                                            <li>Prima Variable <span class="chip chip--income">{{fo_prima_extra}}</span></li>
+                                            <li>Recargo Domingo <span class="chip chip--income">{{fod_natp_rec_dom}}</span></li>
+                                            <li>Recargo Dia Libre <span class="chip chip--income">{{fod_natp_rec_libre}}</span></li>
+                                            <li>Recargo Dia SA <span class="chip chip--income">{{fod_natp_rec_sa}}</span></li>
+                                            <li>Recargo Dia Nacional <span class="chip chip--income">{{fod_natp_rec_nac}}</span></li>
+                                            <li>Bonos, Viaticos, Primas o Incentivos Adicionales <span class="chip chip--income">{{add_incentive}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--income">$ {{fod_natp_subt}}</div>
+                        </div>
+                        <div class="detail-card detail-card--deductions">
+                            <div class="detail-card-header">Descuentos</div>
+                            <ul class="detail-list">
+                                                        <li>C.S.S. <span class="chip chip--deduction">{{fod_natp_css}}</span></li>
+                                                        <li>Seguro Educativo <span class="chip chip--deduction">{{fod_natp_seduc}}</span></li>
+                                                        <li>Impuesto Sobre la Renta <span class="chip chip--deduction">{{fo_isr}}</span></li>
+                                                        <li class="note">El ISR esta calculado estimando 82hrs y es solo un estimado.</li>
+                                                        <li>Impuesto Sobre la Renta (Gasto de Representacion) <span class="chip chip--deduction">{{fod_natp_isr_gr}}</span></li>
+                                                        <li>UNPAC <span class="chip chip--deduction">{{fod_natp_unpac}}</span></li>
+                                                        <li>Descuento 1 <span class="chip chip--deduction">{{disc11|floatformat:2}}</span></li>
+                                                        <li>Descuento 2 <span class="chip chip--deduction">{{disc22|floatformat:2}}</span></li>
+                                                        <li>Descuento 3 <span class="chip chip--deduction">{{disc33|floatformat:2}}</span></li>
+                                                        <li>Descuento 4 <span class="chip chip--deduction">{{disc44|floatformat:2}}</span></li>
+                                                        <li>Descuento 5 <span class="chip chip--deduction">{{disc55|floatformat:2}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--deduction">$ {{fod_natp_total_deducciones}}</div>
+                        </div>
+                    </div>
+                    <h2 class="section-title">Aproximado a Recibir</h2>
+                    <div class="summary-grid">
+                        <div class="stat-card stat-card--income">
+                            <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Income"></div>
+                            <div>
+                                <p class="stat-label">Total Ingresos</p>
+                                <h4 class="stat-value">$ {{fod_natp_subt}}</h4>
                             </div>
-                            <div class="container text-center">
-                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
-                                <div class="col">
-                                    <div class="box text-center">
-                                        <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                              Viatico Variable
-                                              <span class="badge bg-success rounded-pill">{{fo_viatico_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Prima Variable
-                                                <span class="badge bg-success rounded-pill">{{fo_prima_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Domingo
-                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_dom}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Libre
-                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_libre}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia SA
-                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_sa}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Nacional
-                                                <span class="badge bg-success rounded-pill">{{fod_natp_rec_nac}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Bonos, Viaticos, Primas o Incentivos Adicionales
-                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
-                                            </li>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container text-center">
-                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
-                                    <div class="col">
-                                        <div class="box">
-                                            <div class="container text-bg-success bg-gradient text-center rounded-pill">
-                                                <h3> ${{fod_natp_subt}} </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container text-center">
-                                        <h2 class="text-danger">Descuentos</h2></div>
-                                        <div class="col">
-                                            <div class="box">
-                                                <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                        C.S.S.
-                                                        <span class="badge bg-danger rounded-pill">{{fod_natp_css}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Seguro Educativo
-                                                            <span class="badge bg-danger rounded-pill">{{fod_natp_seduc}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta
-                                                            <span class="badge bg-danger rounded-pill">{{fo_isr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex text-danger justify-content-between align-items-center">
-                                                            El ISR esta calculado estimando 82hrs y es solo un estimado.
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta (Gasto de Representacion)
-                                                            <span class="badge bg-danger rounded-pill">{{fod_natp_isr_gr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            UNPAC
-                                                            <span class="badge bg-danger bg-gradient rounded-pill">{{fod_natp_unpac}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 1
-                                                            <span class="badge bg-danger rounded-pill">{{disc11|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 2
-                                                            <span class="badge bg-danger rounded-pill">{{disc22|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 3
-                                                            <span class="badge bg-danger rounded-pill">{{disc33|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 4
-                                                            <span class="badge bg-danger rounded-pill">{{disc44|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 5
-                                                            <span class="badge bg-danger rounded-pill">{{disc55|floatformat:2}}</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Descuentos</h2></div>
-                                                    <div class="col">
-                                                        <div class="box">
-                                                            <div class="container text-bg-danger bg-gradient text-center rounded-pill">
-                                                                <h3> ${{fod_natp_total_deducciones}} </h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="container text-center">
-                                                        <h2>Aproximado a Recibir:</h2></div>
-                                                        <div class="container">
-                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
-                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
-                                                                  <div class="card border-success mb-2">
-                                                            <div class="card-header p-3 pt-3">
-                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
-                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
-                                                                
-                                                              </div>
-                                                              <div class="text-end pt-1">
-                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
-                                                                <h4 class="mb-0 text-success">$ {{fod_natp_subt}}</h4>
-                                                              </div>
-                                                            </div>
-                                                        </div>
-                                                            <div class="card border-danger mb-3">
-                                                                <div class="card-header p-3 pt-3">
-                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
-                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
-                                                                    
-                                                                  </div>
-                                                                  <div class="text-end pt-1">
-                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
-                                                                    <h4 class="mb-0 text-danger">$ {{fod_natp_total_deducciones}}</h4>
-                                                                  </div>
-                                                              </div>
-                                                            </div>
-                                                              <div class="card border-primary mb-4">
-                                                        <div class="card-header p-3 pt-3">
-                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
-                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
-                                                            
-                                                          </div>
-                                                          <div class="text-end pt-1">
-                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
-                                                            <h4 class="mb-0 text-primary">$ {{fod_natp_neto}}</h4>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                        <!-- OLD -->
-                                                        <!-- <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{fod_natp_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{fod_natp_total_deducciones}}</h4>
-                                                            </div>
-                                                        </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{fod_natp_neto}}   </h3>
-                                                        </div>    
-                                                    </div>
-                                                        </div> -->
+                        </div>
+                        <div class="stat-card stat-card--deduction">
+                            <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="tax"></div>
+                            <div>
+                                <p class="stat-label">Total Descuentos</p>
+                                <h4 class="stat-value">$ {{fod_natp_total_deducciones}}</h4>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card--net">
+                            <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="net"></div>
+                            <div>
+                                <p class="stat-label">Total Neto Aproximado</p>
+                                <h4 class="stat-value">$ {{fod_natp_neto}}</h4>
+                            </div>
+                        </div>
+                    </div>
     <!-- FO_SIN_ATP -->
                     {% elif user.position_id is 6 %}
-                    <div class="container text-center">
-                        <h2>FO sin ATP</h2>
-                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
-                        <div class="col">
-                            <div class="box text-center">
-                                <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
-                                    <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Salario Base
-                                        <span>{{fo_atp_base}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Gasto de Representacion
-                                        <span>{{fo_natp_grep}}</span>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Prima Fija
-                                        <span>{{fo_atp_prima}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Viatico Garantizado
-                                        <span>{{fo_atp_viatico}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Viatico Variable
-                                        <span>{{fo_atp_viatico_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Prima Variable
-                                        <span>{{fo_atp_prima_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Rata por Hora
-                                        <span>{{fo_natp_rata}}</span>
-                                    </li>
-                                    </ul>
-                                </div>
+                    <h2 class="section-title">FO sin ATP</h2>
+                    <div class="breakdown-grid">
+                        <div class="detail-card detail-card--income">
+                            <div class="detail-card-header">Salarios y Primas fijas</div>
+                            <ul class="detail-list">
+                                    <li>Salario Base <span>{{fo_atp_base}}</span></li>
+                                    <li>Gasto de Representacion <span>{{fo_natp_grep}}</span></li>
+                                    <li>Prima Fija <span>{{fo_atp_prima}}</span></li>
+                                    <li>Viatico Garantizado <span>{{fo_atp_viatico}}</span></li>
+                                    <li>Viatico Variable <span>{{fo_atp_viatico_extra}}</span></li>
+                                    <li>Prima Variable <span>{{fo_atp_prima_extra}}</span></li>
+                                    <li>Rata por Hora <span>{{fo_natp_rata}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="detail-card detail-card--credits">
+                            <div class="detail-card-header">Compensaciones y Recargos</div>
+                            <ul class="detail-list">
+                                            <li>Viatico Variable <span class="chip chip--income">{{fo_viatico_extra}}</span></li>
+                                            <li>Prima Variable <span class="chip chip--income">{{fo_prima_extra}}</span></li>
+                                            <li>Recargo Domingo <span class="chip chip--income">{{fo_natp_rec_dom}}</span></li>
+                                            <li>Recargo Dia Libre <span class="chip chip--income">{{fo_natp_rec_libre}}</span></li>
+                                            <li>Recargo Dia SA <span class="chip chip--income">{{fo_natp_rec_sa}}</span></li>
+                                            <li>Recargo Dia Nacional <span class="chip chip--income">{{fo_natp_rec_nac}}</span></li>
+                                            <li>Bonos, Viaticos, Primas o Incentivos Adicionales <span class="chip chip--income">{{add_incentive}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--income">$ {{fo_natp_subt}}</div>
+                        </div>
+                        <div class="detail-card detail-card--deductions">
+                            <div class="detail-card-header">Descuentos</div>
+                            <ul class="detail-list">
+                                                        <li>C.S.S. <span class="chip chip--deduction">{{fo_natp_css}}</span></li>
+                                                        <li>Seguro Educativo <span class="chip chip--deduction">{{fo_natp_seduc}}</span></li>
+                                                        <li>Impuesto Sobre la Renta <span class="chip chip--deduction">{{fo_isr}}</span></li>
+                                                        <li class="note">El ISR esta calculado estimando 82hrs y es solo un estimado.</li>
+                                                        <li>Impuesto Sobre la Renta (Gasto de Representacion) <span class="chip chip--deduction">{{fo_natp_isr_gr}}</span></li>
+                                                        <li>UNPAC <span class="chip chip--deduction">{{fo_natp_unpac}}</span></li>
+                                                        <li>Descuento 1 <span class="chip chip--deduction">{{disc11|floatformat:2}}</span></li>
+                                                        <li>Descuento 2 <span class="chip chip--deduction">{{disc22|floatformat:2}}</span></li>
+                                                        <li>Descuento 3 <span class="chip chip--deduction">{{disc33|floatformat:2}}</span></li>
+                                                        <li>Descuento 4 <span class="chip chip--deduction">{{disc44|floatformat:2}}</span></li>
+                                                        <li>Descuento 5 <span class="chip chip--deduction">{{disc55|floatformat:2}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--deduction">$ {{fo_natp_total_deducciones}}</div>
+                        </div>
+                    </div>
+                    <h2 class="section-title">Aproximado a Recibir</h2>
+                    <div class="summary-grid">
+                        <div class="stat-card stat-card--income">
+                            <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Income"></div>
+                            <div>
+                                <p class="stat-label">Total Ingresos</p>
+                                <h4 class="stat-value">$ {{fo_natp_subt}}</h4>
                             </div>
-                            <div class="container text-center">
-                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
-                                <div class="col">
-                                    <div class="box text-center">
-                                        <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                              Viatico Variable
-                                              <span class="badge bg-success rounded-pill">{{fo_viatico_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Prima Variable
-                                                <span class="badge bg-success rounded-pill">{{fo_prima_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Domingo
-                                                <span class="badge bg-success rounded-pill">{{fo_natp_rec_dom}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Libre
-                                                <span class="badge bg-success rounded-pill">{{fo_natp_rec_libre}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia SA
-                                                <span class="badge bg-success rounded-pill">{{fo_natp_rec_sa}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Nacional
-                                                <span class="badge bg-success rounded-pill">{{fo_natp_rec_nac}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Bonos, Viaticos, Primas o Incentivos Adicionales
-                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
-                                            </li>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container text-center">
-                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
-                                    <div class="col">
-                                        <div class="box">
-                                            <div class="container text-bg-success text-center bg-gradient rounded-pill">
-                                                <h3> ${{fo_natp_subt}} </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container text-center">
-                                        <h2 class="text-danger">Descuentos</h2></div>
-                                        <div class="col">
-                                            <div class="box">
-                                                <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                        C.S.S.
-                                                        <span class="badge bg-danger rounded-pill">{{fo_natp_css}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Seguro Educativo
-                                                            <span class="badge bg-danger rounded-pill">{{fo_natp_seduc}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta
-                                                            <span class="badge bg-danger rounded-pill">{{fo_isr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex text-danger justify-content-between align-items-center">
-                                                            El ISR esta calculado estimando 82hrs y es solo un estimado.
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta (Gasto de Representacion)
-                                                            <span class="badge bg-danger rounded-pill">{{fo_natp_isr_gr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            UNPAC
-                                                            <span class="badge bg-danger rounded-pill">{{fo_natp_unpac}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 1
-                                                            <span class="badge bg-danger rounded-pill">{{disc11|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 2
-                                                            <span class="badge bg-danger rounded-pill">{{disc22|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 3
-                                                            <span class="badge bg-danger rounded-pill">{{disc33|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 4
-                                                            <span class="badge bg-danger rounded-pill">{{disc44|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 5
-                                                            <span class="badge bg-danger rounded-pill">{{disc55|floatformat:2}}</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Descuentos</h2></div>
-                                                    <div class="col">
-                                                        <div class="box">
-                                                            <div class="container text-bg-danger bg-gradient text-center rounded-pill">
-                                                                <h3> ${{fo_natp_total_deducciones}} </h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="container text-center">
-                                                        <h2>Aproximado a Recibir:</h2></div>
-                                                        <div class="container">
-                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
-                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
-                                                                  <div class="card border-success mb-2">
-                                                            <div class="card-header p-3 pt-3">
-                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
-                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
-                                                                
-                                                              </div>
-                                                              <div class="text-end pt-1">
-                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
-                                                                <h4 class="mb-0 text-success">$ {{fo_natp_subt}}</h4>
-                                                              </div>
-                                                            </div>
-                                                        </div>
-                                                            <div class="card border-danger mb-3">
-                                                                <div class="card-header p-3 pt-3">
-                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
-                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
-                                                                    
-                                                                  </div>
-                                                                  <div class="text-end pt-1">
-                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
-                                                                    <h4 class="mb-0 text-danger">$ {{fo_natp_total_deducciones}}</h4>
-                                                                  </div>
-                                                              </div>
-                                                            </div>
-                                                              <div class="card border-primary mb-4">
-                                                        <div class="card-header p-3 pt-3">
-                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
-                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
-                                                            
-                                                          </div>
-                                                          <div class="text-end pt-1">
-                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
-                                                            <h4 class="mb-0 text-primary">$ {{fo_natp_neto}}</h4>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                    <!--OLD  -->
-                                                        <!-- <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{fo_natp_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{fo_natp_total_deducciones}}</h4>
-                                                            </div>
-                                                        </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{fo_natp_neto}}   </h3>
-                                                        </div>    
-                                                    </div>
-                                                        </div> -->
+                        </div>
+                        <div class="stat-card stat-card--deduction">
+                            <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="tax"></div>
+                            <div>
+                                <p class="stat-label">Total Descuentos</p>
+                                <h4 class="stat-value">$ {{fo_natp_total_deducciones}}</h4>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card--net">
+                            <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="net"></div>
+                            <div>
+                                <p class="stat-label">Total Neto Aproximado</p>
+                                <h4 class="stat-value">$ {{fo_natp_neto}}</h4>
+                            </div>
+                        </div>
+                    </div>
     <!-- FO_CON_ATP -->
                     {% elif user.position_id is 7 %}
-                    <div class="container text-center">
-                        <h2>FO con ATP</h2>
-                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
-                        <div class="col">
-                            <div class="box text-center">
-                                <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
-                                    <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Salario Base
-                                        <span>{{fo_atp_base}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Gasto de Representacion
-                                        <span>{{fo_atp_grep}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Prima Fija
-                                        <span>{{fo_atp_prima}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Viatico Garantizado
-                                        <span>{{fo_atp_viatico}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Viatico Variable
-                                        <span>{{fo_atp_viatico_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Prima Variable
-                                        <span>{{fo_atp_prima_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Rata por Hora
-                                        <span>{{fo_atp_rata}}</span>
-                                    </li>
-                                    </ul>
-                                </div>
+                    <h2 class="section-title">FO con ATP</h2>
+                    <div class="breakdown-grid">
+                        <div class="detail-card detail-card--income">
+                            <div class="detail-card-header">Salarios y Primas fijas</div>
+                            <ul class="detail-list">
+                                    <li>Salario Base <span>{{fo_atp_base}}</span></li>
+                                    <li>Gasto de Representacion <span>{{fo_atp_grep}}</span></li>
+                                    <li>Prima Fija <span>{{fo_atp_prima}}</span></li>
+                                    <li>Viatico Garantizado <span>{{fo_atp_viatico}}</span></li>
+                                    <li>Viatico Variable <span>{{fo_atp_viatico_extra}}</span></li>
+                                    <li>Prima Variable <span>{{fo_atp_prima_extra}}</span></li>
+                                    <li>Rata por Hora <span>{{fo_atp_rata}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="detail-card detail-card--credits">
+                            <div class="detail-card-header">Compensaciones y Recargos</div>
+                            <ul class="detail-list">
+                                            <li>Viatico Variable <span class="chip chip--income">{{fo_viatico_extra}}</span></li>
+                                            <li>Prima Variable <span class="chip chip--income">{{fo_prima_extra}}</span></li>
+                                            <li>Recargo Domingo <span class="chip chip--income">{{fo_atp_rec_dom}}</span></li>
+                                            <li>Recargo Dia Libre <span class="chip chip--income">{{fo_atp_rec_libre}}</span></li>
+                                            <li>Recargo Dia SA <span class="chip chip--income">{{fo_atp_rec_sa}}</span></li>
+                                            <li>Recargo Dia Nacional <span class="chip chip--income">{{fo_atp_rec_nac}}</span></li>
+                                            <li>Bonos, Viaticos, Primas o Incentivos Adicionales <span class="chip chip--income">{{add_incentive}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--income">$ {{fo_atp_subt}}</div>
+                        </div>
+                        <div class="detail-card detail-card--deductions">
+                            <div class="detail-card-header">Descuentos</div>
+                            <ul class="detail-list">
+                                                        <li>C.S.S. <span class="chip chip--deduction">{{fo_atp_css}}</span></li>
+                                                        <li>Seguro Educativo <span class="chip chip--deduction">{{fo_atp_seduc}}</span></li>
+                                                        <li>Impuesto Sobre la Renta <span class="chip chip--deduction">{{fo_isr}}</span></li>
+                                                        <li class="note">El ISR esta calculado estimando 82hrs y es solo un estimado.</li>
+                                                        <li>Impuesto Sobre la Renta (Gasto de Representacion) <span class="chip chip--deduction">{{fo_atp_isr_gr}}</span></li>
+                                                        <li>UNPAC <span class="chip chip--deduction">{{fo_atp_unpac}}</span></li>
+                                                        <li>{{ user.custom_disc_1_name }} <span class="chip chip--deduction">{{disc11|floatformat:2}}</span></li>
+                                                        <li>{{ user.custom_disc_2_name }} <span class="chip chip--deduction">{{disc22|floatformat:2}}</span></li>
+                                                        <li>{{ user.custom_disc_3_name }} <span class="chip chip--deduction">{{disc33|floatformat:2}}</span></li>
+                                                        <li>{{ user.custom_disc_4_name }} <span class="chip chip--deduction">{{disc44|floatformat:2}}</span></li>
+                                                        <li>{{ user.custom_disc_5_name }} <span class="chip chip--deduction">{{disc55|floatformat:2}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--deduction">$ {{fo_atp_total_descuentos}}</div>
+                        </div>
+                    </div>
+                    <h2 class="section-title">Aproximado a Recibir</h2>
+                    <div class="summary-grid">
+                        <div class="stat-card stat-card--income">
+                            <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Income"></div>
+                            <div>
+                                <p class="stat-label">Total Ingresos</p>
+                                <h4 class="stat-value">$ {{fo_atp_subt}}</h4>
                             </div>
-                            <div class="container text-center">
-                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
-                                <div class="col">
-                                    <div class="box text-center">
-                                        <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                              Viatico Variable
-                                              <span class="badge bg-success rounded-pill">{{fo_viatico_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Prima Variable
-                                                <span class="badge bg-success rounded-pill">{{fo_prima_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Domingo
-                                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_dom}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Libre
-                                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_libre}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia SA
-                                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_sa}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Nacional
-                                                <span class="badge bg-success rounded-pill">{{fo_atp_rec_nac}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Bonos, Viaticos, Primas o Incentivos Adicionales
-                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
-                                            </li>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container text-center">
-                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
-                                    <div class="col">
-                                        <div class="box">
-                                            <div class="container text-bg-success bg-gradient text-center rounded-pill">
-                                                <h3> ${{fo_atp_subt}} </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container text-center">
-                                        <h2 class="text-danger">Descuentos</h2></div>
-                                        <div class="col">
-                                            <div class="box">
-                                                <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                        C.S.S.
-                                                        <span class="badge bg-danger rounded-pill">{{fo_atp_css}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Seguro Educativo
-                                                            <span class="badge bg-danger rounded-pill">{{fo_atp_seduc}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta
-                                                            <span class="badge bg-danger rounded-pill">{{fo_isr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex text-danger justify-content-between align-items-center">
-                                                            El ISR esta calculado estimando 82hrs y es solo un estimado.
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta (Gasto de Representacion)
-                                                            <span class="badge bg-danger rounded-pill">{{fo_atp_isr_gr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            UNPAC
-                                                            <span class="badge bg-danger  rounded-pill">{{fo_atp_unpac}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            {{ user.custom_disc_1_name }}
-                                                            <span class="badge bg-danger rounded-pill">{{disc11|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            {{ user.custom_disc_2_name }}
-                                                            <span class="badge bg-danger rounded-pill">{{disc22|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            {{ user.custom_disc_3_name }}
-                                                            <span class="badge bg-danger rounded-pill">{{disc33|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            {{ user.custom_disc_4_name }}
-                                                            <span class="badge bg-danger rounded-pill">{{disc44|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            {{ user.custom_disc_5_name }}
-                                                            <span class="badge bg-danger rounded-pill">{{disc55|floatformat:2}}</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Descuentos</h2></div>
-                                                    <div class="col">
-                                                        <div class="box">
-                                                            <div class="container text-bg-danger bg-gradient text-center rounded-pill">
-                                                                <h3> ${{fo_atp_total_descuentos}} </h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="container text-center">
-                                                        <h2>Aproximado a Recibir:</h2></div>
-                                                        <div class="container">
-                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
-                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
-                                                                  <div class="card border-success mb-2">
-                                                            <div class="card-header p-3 pt-3">
-                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
-                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
-                                                                
-                                                              </div>
-                                                              <div class="text-end pt-1">
-                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
-                                                                <h4 class="mb-0 text-success">$ {{fo_atp_subt}}</h4>
-                                                              </div>
-                                                            </div>
-                                                        </div>
-                                                            <div class="card border-danger mb-3">
-                                                                <div class="card-header p-3 pt-3">
-                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
-                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
-                                                                    
-                                                                  </div>
-                                                                  <div class="text-end pt-1">
-                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
-                                                                    <h4 class="mb-0 text-danger">$ {{fo_atp_total_descuentos}}</h4>
-                                                                  </div>
-                                                              </div>
-                                                            </div>
-                                                              <div class="card border-primary mb-4">
-                                                        <div class="card-header p-3 pt-3">
-                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
-                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
-                                                            
-                                                          </div>
-                                                          <div class="text-end pt-1">
-                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
-                                                            <h4 class="mb-0 text-primary">$ {{fo_atp_neto}}</h4>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                         <!-- OLD   
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{fo_atp_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{fo_atp_total_descuentos}}</h4>
-                                                            </div>
-                                                        </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{fo_atp_neto}}   </h3>
-                                                        </div>    
-                                                    </div>
-                                                        </div> -->
+                        </div>
+                        <div class="stat-card stat-card--deduction">
+                            <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="tax"></div>
+                            <div>
+                                <p class="stat-label">Total Descuentos</p>
+                                <h4 class="stat-value">$ {{fo_atp_total_descuentos}}</h4>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card--net">
+                            <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="net"></div>
+                            <div>
+                                <p class="stat-label">Total Neto Aproximado</p>
+                                <h4 class="stat-value">$ {{fo_atp_neto}}</h4>
+                            </div>
+                        </div>
+                    </div>
         <!-- CAPITAN -->
                     {% elif user.position_id is 8 %}
-                    <div class="container text-center">
-                        <h2>CAPITAN</h2>
-                        <h2 class="text-primary">Salarios y Primas fijas</h2></div>
-                        <div class="col">
-                            <div class="box text-center">
-                                
-                                <div class="container shadow p-4 mb-4 bg-primary bg-gradient rounded">
-                                    <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Salario Base
-                                        <span>{{c_base}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Gasto de Representacion
-                                        <span>{{c_g_rep}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Prima Fija
-                                        <span>{{c_prima}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        Viatico Garantizado
-                                        <span>{{c_viatico}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Viatico Variable
-                                        <span>{{c_viatico_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Prima Variable
-                                        <span>{{c_prima_extra}}</span>
-                                    </li>
-                                    <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                                        Rata por Hora
-                                        <span>{{c_rata}}</span>
-                                    </li>
-                                    </ul>
-                                </div>
+                    <h2 class="section-title">CAPITAN</h2>
+                    <div class="breakdown-grid">
+                        <div class="detail-card detail-card--income">
+                            <div class="detail-card-header">Salarios y Primas fijas</div>
+                            <ul class="detail-list">
+                                    <li>Salario Base <span>{{c_base}}</span></li>
+                                    <li>Gasto de Representacion <span>{{c_g_rep}}</span></li>
+                                    <li>Prima Fija <span>{{c_prima}}</span></li>
+                                    <li>Viatico Garantizado <span>{{c_viatico}}</span></li>
+                                    <li>Viatico Variable <span>{{c_viatico_extra}}</span></li>
+                                    <li>Prima Variable <span>{{c_prima_extra}}</span></li>
+                                    <li>Rata por Hora <span>{{c_rata}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="detail-card detail-card--credits">
+                            <div class="detail-card-header">Compensaciones y Recargos</div>
+                            <ul class="detail-list">
+                                            <li>Viatico Variable <span class="chip chip--income">{{c_viatico_extra}}</span></li>
+                                            <li>Prima Variable <span class="chip chip--income">{{c_prima_extra}}</span></li>
+                                            <li>Recargo Domingo <span class="chip chip--income">{{c_rec_dom}}</span></li>
+                                            <li>Recargo Dia Libre <span class="chip chip--income">{{c_rec_libre}}</span></li>
+                                            <li>Recargo Dia SA <span class="chip chip--income">{{c_rec_sa}}</span></li>
+                                            <li>Recargo Dia Nacional <span class="chip chip--income">{{c_rec_nac}}</span></li>
+                                            <li>Bonos, Viaticos, Primas o Incentivos Adicionales <span class="chip chip--income">{{add_incentive}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--income">$ {{c_subt}}</div>
+                        </div>
+                        <div class="detail-card detail-card--deductions">
+                            <div class="detail-card-header">Deducciones</div>
+                            <ul class="detail-list">
+                                                        <li>C.S.S. <span class="chip chip--deduction">{{c_css}}</span></li>
+                                                        <li>Seguro Educativo <span class="chip chip--deduction">{{c_seduc}}</span></li>
+                                                        <li>Impuesto Sobre la Renta <span class="chip chip--deduction">{{c_isr}}</span></li>
+                                                        <li class="note">El ISR esta calculado estimando 82hrs y es solo un estimado.</li>
+                                                        <li>Impuesto Sobre la Renta (Gasto de Representacion) <span class="chip chip--deduction">{{c_isr_gr}}</span></li>
+                                                        <li>UNPAC <span class="chip chip--deduction">{{c_unpac}}</span></li>
+                                                        <li>Descuento 1 <span class="chip chip--deduction">{{disc11|floatformat:2}}</span></li>
+                                                        <li>Descuento 2 <span class="chip chip--deduction">{{disc22|floatformat:2}}</span></li>
+                                                        <li>Descuento 3 <span class="chip chip--deduction">{{disc33|floatformat:2}}</span></li>
+                                                        <li>Descuento 4 <span class="chip chip--deduction">{{disc44|floatformat:2}}</span></li>
+                                                        <li>Descuento 5 <span class="chip chip--deduction">{{disc55|floatformat:2}}</span></li>
+                            </ul>
+                            <div class="subtotal-banner subtotal-banner--deduction">$ {{c_total_descuentos}}</div>
+                        </div>
+                    </div>
+                    <h2 class="section-title">Aproximado a Recibir</h2>
+                    <div class="summary-grid">
+                        <div class="stat-card stat-card--income">
+                            <div class="stat-icon"><img src="{% static '/icons/income.png' %}" alt="Income"></div>
+                            <div>
+                                <p class="stat-label">Total Ingresos</p>
+                                <h4 class="stat-value">$ {{c_subt}}</h4>
                             </div>
-                            <div class="container text-center">
-                                <h2 class="text-success">Compensaciones y Recargos</h2></div>
-                                <div class="col">
-                                    <div class="box text-center">
-                                        <div class="container shadow p-4 mb-4 bg-success bg-gradient rounded">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                              Viatico Variable
-                                              <span class="badge bg-success rounded-pill">{{c_viatico_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Prima Variable
-                                                <span class="badge bg-success rounded-pill">{{c_prima_extra}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Domingo
-                                                <span class="badge bg-success rounded-pill">{{c_rec_dom}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Libre
-                                                <span class="badge bg-success rounded-pill">{{c_rec_libre}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia SA
-                                                <span class="badge bg-success rounded-pill">{{c_rec_sa}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Recargo Dia Nacional
-                                                <span class="badge bg-success bg-gradient rounded-pill">{{c_rec_nac}}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Bonos, Viaticos, Primas o Incentivos Adicionales
-                                                <span class="badge bg-success rounded-pill">{{add_incentive}}</span>
-                                            </li>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container text-center">
-                                    <h2 class="text-success">Sub Totales - Ingresos</h2></div>
-                                    <div class="col">
-                                        <div class="box">
-                                            <div class="container text-bg-success bg-gradient text-center rounded-pill">
-                                                <h3> ${{c_subt}} </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container text-center">
-                                        <h2 class="text-danger">Deducciones</h2></div>
-                                        <div class="col">
-                                            <div class="box">
-                                                <div class="container shadow p-4 mb-4 bg-danger bg-gradient rounded">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                        C.S.S.
-                                                        <span class="badge bg-danger rounded-pill">{{c_css}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Seguro Educativo
-                                                            <span class="badge bg-danger rounded-pill">{{c_seduc}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta
-                                                            <span class="badge bg-danger rounded-pill">{{c_isr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex text-danger justify-content-between align-items-center">
-                                                            El ISR esta calculado estimando 82hrs y es solo un estimado.
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Impuesto Sobre la Renta (Gasto de Representacion)
-                                                            <span class="badge bg-danger rounded-pill">{{c_isr_gr}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            UNPAC
-                                                            <span class="badge bg-danger rounded-pill">{{c_unpac}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 1
-                                                            <span class="badge bg-danger rounded-pill">{{disc11|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 2
-                                                            <span class="badge bg-danger rounded-pill">{{disc22|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 3
-                                                            <span class="badge bg-danger rounded-pill">{{disc33|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 4
-                                                            <span class="badge bg-danger rounded-pill">{{disc44|floatformat:2}}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            Descuento 5
-                                                            <span class="badge bg-danger rounded-pill">{{disc55|floatformat:2}}</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container text-center">
-                                            <h2 class="text-danger">Sub Totales - Deducciones</h2></div>
-                                                    <div class="col">
-                                                        <div class="box">
-                                                            <div class="container text-bg-danger bg-gradient text-center rounded-pill">
-                                                                <h3> ${{c_total_descuentos}} </h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="container text-center">
-                                                        <h2>Aproximado a Recibir:</h2></div>
-                                                        <div class="container">
-                                                            <!-- {% comment %} <div class="row"> {% endcomment %}
-                                                                {% comment %} <div class="col-lg-5 col-sm-5"> {% endcomment %} -->
-                                                                  <div class="card border-success mb-2">
-                                                            <div class="card-header p-3 pt-3">
-                                                              <div class="icon icon-lg icon-shape bg-gradient-dark text-center border-radius-xl mt-n4 position-absolute">
-                                                                <img src="{% static '/icons/income.png' %}" alt="Income" width="50" height="50">
-                                                                
-                                                              </div>
-                                                              <div class="text-end pt-1">
-                                                                <p class="text-sm mb-0 text-capitalize text-success">Total Ingresos</p>
-                                                                <h4 class="mb-0 text-success">$ {{c_subt}}</h4>
-                                                              </div>
-                                                            </div>
-                                                        </div>
-                                                            <div class="card border-danger mb-3">
-                                                                <div class="card-header p-3 pt-3">
-                                                                  <div class="icon icon-lg icon-shape bg-gradient-primary text-center border-radius-xl mt-n4 position-absolute">
-                                                                    <img src="{% static '/icons/tax.png' %}" alt="tax" width="50" height="50">
-                                                                    
-                                                                  </div>
-                                                                  <div class="text-end pt-1">
-                                                                    <p class="text-sm mb-0 text-capitalize text-danger">Total Descuentos</p>
-                                                                    <h4 class="mb-0 text-danger">$ {{c_total_descuentos}}</h4>
-                                                                  </div>
-                                                              </div>
-                                                            </div>
-                                                              <div class="card border-primary mb-4">
-                                                        <div class="card-header p-3 pt-3">
-                                                          <div class="icon icon-lg icon-shape bg-gradient-success text-center border-radius-xl mt-n4 position-absolute">
-                                                            <img src="{% static '/icons/net.png' %}" alt="net" width="50" height="50">
-                                                            
-                                                          </div>
-                                                          <div class="text-end pt-1">
-                                                            <p class="text-sm mb-0 text-capitalize text-primary">Total Neto Aproximado</p>
-                                                            <h4 class="mb-0 text-primary">$ {{c_neto}}</h4>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                       <!-- OLD -->
-                                                        <!-- <div class="row justify-content-center">
-                                                            <div class="col-auto text-center text-bg-success bg-gradient rounded-pill">
-                                                                <h4>$ {{c_subt}}</h4>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <h4> - </h4>
-                                                            </div>
-                                                            <div class="col-auto text-center text-bg-danger bg-gradient rounded-pill ">
-                                                                <h4>$ {{c_total_descuentos}}</h4>
-                                                            </div>
-                                                        </div>
-                                                    </br>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto text-center text-bg-info bg-gradient rounded-pill">
-                                                            <h3>  = $ {{c_neto}}   </h3>
-                                                        </div>    
-                                                    </div>
-                                                        </div> -->
-                    {% endif %}        
-{% endblock content %}
+                        </div>
+                        <div class="stat-card stat-card--deduction">
+                            <div class="stat-icon"><img src="{% static '/icons/tax.png' %}" alt="tax"></div>
+                            <div>
+                                <p class="stat-label">Total Descuentos</p>
+                                <h4 class="stat-value">$ {{c_total_descuentos}}</h4>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card--net">
+                            <div class="stat-icon"><img src="{% static '/icons/net.png' %}" alt="net"></div>
+                            <div>
+                                <p class="stat-label">Total Neto Aproximado</p>
+                                <h4 class="stat-value">$ {{c_neto}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+</div>
+
+<!-- Edit Entry Modal -->
+<div class="modal fade" id="editEntryModal" tabindex="-1" aria-labelledby="editEntryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <form method="POST" id="editEntryForm" action="{% url 'edit_entry' 0 %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="editEntryModalLabel">Editar Entrada</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-label" for="edit_date">Fecha:</label>
+              <input type="date" name="date" id="edit_date" class="form-control" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="edit_route">Ruta:</label>
+              <input type="text" name="route" id="edit_route" class="form-control" required>
+            </div>
+          </div>
+          <div class="time-grid">
+            <div class="time-section">
+              <h4>Tiempo de Bloque</h4>
+              <div class="time-inputs">
+                <div class="form-field">
+                  <label class="form-label">Horas</label>
+                  <input type="text" name="total_hrs_input" id="edit_total_hrs" class="form-control" required>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Minutos</label>
+                  <input type="text" name="total_min_input" id="edit_total_min" class="form-control" required>
+                </div>
+              </div>
+            </div>
+            <div class="time-section">
+              <h4>Domingo</h4>
+              <div class="time-inputs">
+                <div class="form-field">
+                  <label class="form-label">Horas</label>
+                  <input type="text" name="sun_hrs_input" id="edit_sun_hrs" class="form-control">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Minutos</label>
+                  <input type="text" name="sun_min_input" id="edit_sun_min" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="time-section">
+              <h4>Feriado</h4>
+              <p class="time-note">Genera dia Compensatorio</p>
+              <div class="time-inputs">
+                <div class="form-field">
+                  <label class="form-label">Horas</label>
+                  <input type="text" name="holiday_hrs_input" id="edit_holiday_hrs" class="form-control">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Minutos</label>
+                  <input type="text" name="holiday_min_input" id="edit_holiday_min" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="time-section">
+              <h4>Dia Libre (L)</h4>
+              <p class="time-note">Genera dia Compensatorio (CMPL)</p>
+              <div class="time-inputs">
+                <div class="form-field">
+                  <label class="form-label">Horas</label>
+                  <input type="text" name="libre_hrs_input" id="edit_libre_hrs" class="form-control">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Minutos</label>
+                  <input type="text" name="libre_min_input" id="edit_libre_min" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="time-section">
+              <h4>Dia Sin Asignacion (SA)</h4>
+              <div class="time-inputs">
+                <div class="form-field">
+                  <label class="form-label">Horas</label>
+                  <input type="text" name="sa_hrs_input" id="edit_sa_hrs" class="form-control">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Minutos</label>
+                  <input type="text" name="sa_min_input" id="edit_sa_min" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-label" for="edit_remarks">Comentarios:</label>
+              <input type="text" name="remarks" id="edit_remarks" class="form-control">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="edit_incentive">Bonos, Viaticos, Primas o Incentivos Adicionales:</label>
+              <input type="number" step="0.01" name="incentive" id="edit_incentive" class="form-control" placeholder="0.00">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <input type="submit" class="btn-brand" value="Guardar Cambios">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var editForm = document.getElementById('editEntryForm');
+    var urlTemplate = editForm.getAttribute('action');
+    document.querySelectorAll('.btn-edit-entry').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var id = btn.dataset.id;
+            editForm.setAttribute('action', urlTemplate.replace('/0/', '/' + id + '/'));
+            document.getElementById('edit_date').value = btn.dataset.date;
+            document.getElementById('edit_route').value = btn.dataset.route;
+            document.getElementById('edit_total_hrs').value = btn.dataset.totalHrs;
+            document.getElementById('edit_total_min').value = btn.dataset.totalMin;
+            document.getElementById('edit_sun_hrs').value = btn.dataset.sunHrs;
+            document.getElementById('edit_sun_min').value = btn.dataset.sunMin;
+            document.getElementById('edit_holiday_hrs').value = btn.dataset.holidayHrs;
+            document.getElementById('edit_holiday_min').value = btn.dataset.holidayMin;
+            document.getElementById('edit_libre_hrs').value = btn.dataset.libreHrs;
+            document.getElementById('edit_libre_min').value = btn.dataset.libreMin;
+            document.getElementById('edit_sa_hrs').value = btn.dataset.saHrs;
+            document.getElementById('edit_sa_min').value = btn.dataset.saMin;
+            document.getElementById('edit_incentive').value = btn.dataset.incentive;
+            document.getElementById('edit_remarks').value = btn.dataset.remarks;
+            var modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('editEntryModal'));
+            modal.show();
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -14,6 +14,7 @@ urlpatterns = [
     path('flexpay/simple_calc_fo_natp/', views.simplecalc, name='simple_calc_fo_natp'),
     path('flexpay/simple_calc_fod_natp/', views.simplecalc, name='simple_calc_fod_natp'),
     path('flexpay/delete_entry/<entry_id>', views.delete_entry, name='delete_entry'),
+    path('flexpay/edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
     path('flexpay/profile/<str:pk>/', views.userprofile, name='profile'),
     path('flexpay/logbook_calculator/', views.logbook_calc, name='logbook_calc'),
     path('flexpay/contact-us/', views.ContactUs, name='contact-us'),

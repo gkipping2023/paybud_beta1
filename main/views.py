@@ -2,7 +2,7 @@ from multiprocessing import context
 import re
 from datetime import datetime, date
 import calendar
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -631,10 +631,26 @@ def logbook_calc(request):
     return render(request,'main/logbook_calc.html', context)
 
 #Delete Entry
+@login_required(login_url='login')
 def delete_entry(request, entry_id):
-    delete_entry = Logbook.objects.get(pk=entry_id)
+    delete_entry = get_object_or_404(Logbook, pk=entry_id, cmp_id=request.user)
     delete_entry.delete()
     messages.error(request,'Entry DELETED!')
+    return redirect('logbook_calc')
+
+#Edit Entry
+@login_required(login_url='login')
+def edit_entry(request, entry_id):
+    entry = get_object_or_404(Logbook, pk=entry_id, cmp_id=request.user)
+    if request.method == 'POST':
+        logform = LogbookForm(request.POST, instance=entry)
+        if logform.is_valid():
+            updated_entry = logform.save(commit=False)
+            updated_entry.cmp_id = request.user.cmp_id
+            updated_entry.save()
+            messages.success(request,'Entry updated successfully!')
+        else:
+            messages.error(request,'Error updating entry. Please check the fields.')
     return redirect('logbook_calc')
 
 #User Profile
