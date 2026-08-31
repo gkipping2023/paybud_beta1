@@ -4,6 +4,7 @@
    ========================================================= */
 
 :root {
+  --color-white:#ffffff;
   --color-blue: #3b5bfd;
   --color-blue-dark: #2743c4;
   --color-purple: #7c3aed;
@@ -11,7 +12,7 @@
   --color-magenta: #d6249f;
   --color-magenta-dark: #a3157a;
 
-  --gradient-brand: linear-gradient(135deg, var(--color-blue) 0%, var(--color-purple) 55%, var(--color-magenta) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--color-blue) 25%, var(--color-purple) 55%, var(--color-magenta) 100%);
   --gradient-brand-soft: linear-gradient(135deg, rgba(59, 91, 253, 0.10) 0%, rgba(124, 58, 237, 0.10) 55%, rgba(214, 36, 159, 0.10) 100%);
   --gradient-brand-diagonal: linear-gradient(160deg, #201347 0%, #4c1d95 35%, #7c3aed 65%, #d6249f 100%);
 
